@@ -6,6 +6,7 @@ export ZSH=/Users/DogLooksGood/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="bureau"
+# ZSH_THEME="gozilla"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -90,3 +91,11 @@ source /usr/local/bin/virtualenvwrapper.sh
 export WORKON_HOME=~/.virtualenv
 export TERM=xterm-256color
 export PGDATA=/usr/local/var/postgres
+alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
+alias clojure='java -cp ~/.m2/repository/org/clojure/clojure/1.7.0/clojure-1.7.0.jar:. clojure.main'
+alias e=emacsclient $@
+
+
+# Company
+#
+export HELIX_MODE="ProductionConfig"

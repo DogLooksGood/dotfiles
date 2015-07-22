@@ -1,0 +1,13 @@
+*.pyc
+*.so
+*.a
+*.o
+*.class
+
+*.log
+*~
+
+.DS_Store
+.CFUserTextEncoding
+
+.gitignore
