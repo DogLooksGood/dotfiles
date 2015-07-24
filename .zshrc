@@ -89,12 +89,14 @@ source $ZSH/oh-my-zsh.sh
 # ENABLE vitualenvwrappers
 source /usr/local/bin/virtualenvwrapper.sh
 export WORKON_HOME=~/.virtualenv
+export HISTSIZE=100
 export TERM=xterm-256color
 export PGDATA=/usr/local/var/postgres
-alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
+#alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
 alias clojure='java -cp ~/.m2/repository/org/clojure/clojure/1.7.0/clojure-1.7.0.jar:. clojure.main'
 alias e=emacsclient $@
-
+alias h=history
+#alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 
 # Company
 #

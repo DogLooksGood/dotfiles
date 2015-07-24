@@ -1,5 +1,4 @@
-set nocompatible
-filetype off
+
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -12,18 +11,27 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
-" Plugin 'Townk/vim-autoclose'
+Plugin 'Townk/vim-autoclose'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'mtth/scratch.vim'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/VimClojure'
 Plugin 'oblitum/rainbow'
+Plugin 'ervandew/supertab'
+Plugin 'maxbrunsfeld/vim-emacs-bindings'
+Plugin 'jpalardy/vim-slime'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'mattn/emmet-vim'
+Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'itchyny/lightline.vim'
+Plugin 'honza/vim-snippets'
+Plugin 'SirVer/ultisnips'
 
 call vundle#end()
 filetype plugin indent on
-
 set t_Co=256
+set noshowmode
 set nu
 set ruler
 set ts=4
@@ -31,9 +39,10 @@ set sws=4
 set sw=4
 set expandtab
 set smartindent
+set cursorline
 set laststatus=2
-set background=dark
-" colorscheme solarized
+colorscheme solarized
+
 
 syntax enable
 filetype plugin indent on
@@ -42,7 +51,14 @@ filetype plugin indent on
 set clipboard=unnamed
 
 " Set Leader key to <Space>
+noremap <Space> <NOP>
 let mapleader = "\<Space>"
+inoremap <C-g> <C-c>
+
+" Use FD to escape
+set timeout timeoutlen=10000 ttimeoutlen=70
+set <F13>=fd
+imap <F13> <C-c>
 
 " Shortcut [FILE]
 nnoremap <Leader>fs :w<CR>
@@ -74,25 +90,44 @@ nnoremap <Leader>9 9<C-w><C-w>
 " Shortcut [TOGGLE]
 nnoremap <Leader>tt :TagbarOpenAutoClose<CR>
 nnoremap <Leader>tn :NERDTreeToggle<CR>
-
-" Emacs Key Binding
-inoremap ≈ <C-o>:
-inoremap ƒ <C-o>e
-inoremap ∫ <C-o>b
-inoremap <C-v> <C-o><C-f>
-inoremap √ <C-o><C-b>
-inoremap <C-a> <C-o>^
-inoremap <C-e> <C-o>$
-inoremap <C-f> <C-o><Space>
-inoremap <C-b> <C-o><Backspace>
-inoremap <C-n> <C-o>j
-inoremap <C-p> <C-o>k
-inoremap <C-k> <C-o>d$
-inoremap <C-g> <C-o><C-c>
-inoremap <C-d> <C-o>x
-inoremap <D-s> <C-o>w<CR>
+nnoremap <Leader>ts :Scratch<CR>
 
 " CtrlP
 nnoremap <Leader>p :CtrlP<CR>
+nmap <C-p> <NOP>
 
-au FileType clojure call rainbow#load()
+" Shortcut [SLIME]
+xmap <Leader>ss <Plug>SlimeRegionSend
+nmap <Leader>ss <Plug>SlimeParagraphSend
+nmap <Leader>sc <Plug>SlimeConfig
+
+" Shortcut [ALIGN]
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+
+" Slime
+let g:slime_target = "tmux"
+let g:slime_paste_file = tempname()
+let g:slime_python_ipython = 1
+
+" Emment
+let g:user_emmet_mode='i'
+
+" autocmd
+au FileType lisp,clojure let b:AutoClosePairs = AutoClose#DefaultPairsModified("", "'")
+au FileType clojure,python call rainbow#load()
+
+" Shortcut [EASYMOTION]
+" Must use autocmd
+au FileType * nmap <Leader><Leader> <Plug>(easymotion-s)
+
+" Emacs Key Binding
+cnoremap <C-g> <C-c>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+noremap ≈ <C-c>:
+
+" Lightline
+let g:lightline = {'colorscheme': 'solarized'}
