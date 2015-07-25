@@ -42,8 +42,9 @@ set expandtab
 set smartindent
 set cursorline
 set laststatus=2
+set esckeys
 colorscheme solarized
-
+set background=dark
 
 syntax enable
 filetype plugin indent on
@@ -54,7 +55,6 @@ set clipboard=unnamed
 " Set Leader key to <Space>
 nnoremap <Space> <NOP>
 let mapleader = "\<Space>"
-inoremap <C-g> <C-c>
 
 " Use FD to escape
 set timeout timeoutlen=5000 ttimeoutlen=50
@@ -68,8 +68,7 @@ nnoremap <Leader>fs :w<CR>
 nnoremap <Leader>fr :source ~/.vimrc<CR>
 
 " Shortcut [QUIT]
-nnoremap <Leader>qq :wq<CR>
-nnoremap <Leader>q! :q!<CR>
+nnoremap <Leader>qq :q!<CR>
 
 " Shortcut [WINDOW]
 nnoremap <Leader>ws :split<CR>
@@ -112,7 +111,6 @@ vmap <Leader>a: :Tabularize /:\zs<CR>
 nmap <Leader>a<Space> :Tabularize /<Space>\zs<CR>
 vmap <Leader>a<Space> :Tabularize /<Space>\zs<CR>
 
-
 " Slime
 let g:slime_target = "tmux"
 let g:slime_paste_file = tempname()
@@ -120,6 +118,10 @@ let g:slime_python_ipython = 1
 
 " Emment
 let g:user_emmet_mode='i'
+
+" Expant Region
+vmap v <Plug>(expand_region_expand)
+vmap V <Plug>(expand_region_shrink)
 
 " autocmd
 au FileType lisp,clojure let b:AutoClosePairs = AutoClose#DefaultPairsModified("", "'")
@@ -130,9 +132,16 @@ au FileType clojure,python call rainbow#load()
 au FileType * nmap <Leader><Leader> <Plug>(easymotion-s)
 
 " Emacs Key Binding
-cnoremap <C-g> <C-c>
 inoremap <C-n> <Down>
 inoremap <C-p> <Up>
 
 " Lightline
 let g:lightline = {'colorscheme': 'solarized'}
+
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <Esc>l :TmuxNavigateLeft<cr>
+nnoremap <silent> <Esc>j :TmuxNavigateDown<cr>
+nnoremap <silent> <Esc>k :TmuxNavigateUp<cr>
+nnoremap <silent> <Esc>l :TmuxNavigateRight<cr>
+nnoremap <silent> <Esc>\ :TmuxNavigatePrevious<cr>
