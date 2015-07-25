@@ -1,5 +1,3 @@
-
-
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -27,9 +25,12 @@ Plugin 'hynek/vim-python-pep8-indent'
 Plugin 'itchyny/lightline.vim'
 Plugin 'honza/vim-snippets'
 Plugin 'SirVer/ultisnips'
+Plugin 'terryma/vim-expand-region'
+Plugin 'christoomey/vim-tmux-navigator'
 
 call vundle#end()
 filetype plugin indent on
+
 set t_Co=256
 set noshowmode
 set nu
@@ -51,14 +52,16 @@ filetype plugin indent on
 set clipboard=unnamed
 
 " Set Leader key to <Space>
-noremap <Space> <NOP>
+nnoremap <Space> <NOP>
 let mapleader = "\<Space>"
 inoremap <C-g> <C-c>
 
 " Use FD to escape
-set timeout timeoutlen=10000 ttimeoutlen=70
+set timeout timeoutlen=5000 ttimeoutlen=50
 set <F13>=fd
 imap <F13> <C-c>
+set <F14>=df
+imap <F14> <C-c>
 
 " Shortcut [FILE]
 nnoremap <Leader>fs :w<CR>
@@ -106,6 +109,9 @@ nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
+nmap <Leader>a<Space> :Tabularize /<Space>\zs<CR>
+vmap <Leader>a<Space> :Tabularize /<Space>\zs<CR>
+
 
 " Slime
 let g:slime_target = "tmux"
@@ -127,7 +133,6 @@ au FileType * nmap <Leader><Leader> <Plug>(easymotion-s)
 cnoremap <C-g> <C-c>
 inoremap <C-n> <Down>
 inoremap <C-p> <Up>
-noremap ≈ <C-c>:
 
 " Lightline
 let g:lightline = {'colorscheme': 'solarized'}
