@@ -50,7 +50,7 @@ ZSH_THEME="bureau"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx autojump)
+plugins=(git osx autojump mvn lein sbt virtualenvwrapper)
 
 # User configuration
 
@@ -92,11 +92,9 @@ export WORKON_HOME=~/.virtualenv
 export HISTSIZE=100
 export TERM=xterm-256color
 export PGDATA=/usr/local/var/postgres
-#alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
+alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
 alias clojure='java -cp ~/.m2/repository/org/clojure/clojure/1.7.0/clojure-1.7.0.jar:. clojure.main'
 alias e=emacsclient $@
-alias h=history
-#alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 
 # Company
 #
