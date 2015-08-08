@@ -33,6 +33,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'tpope/vim-surround'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plugin 'jszakmeister/vim-togglecursor'
+Plugin 'rking/ag.vim'
 
 "Plugin 'Townk/vim-autoclose'
 
@@ -44,7 +46,7 @@ set noshowmode
 set nu
 set ruler
 set ts=4
-set sws=4
+set sts=4
 set sw=4
 set expandtab
 set smartindent
@@ -143,8 +145,8 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
-
-au FileType html setlocal shiftwidth=2 tabstop=2
+au FileType html setlocal ts=2 sts=2 sw=2
+au FileType javascript,html,json,javascript.jsx setlocal ts=2 sts=2 sw=2
 
 " Emacs Key Binding
 inoremap <C-n> <Down>
@@ -183,6 +185,7 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 24
 let g:rbpt_loadcmd_toggle = 0
 
-
+" JSX
+let g:jsx_ext_required = 0
 
 
