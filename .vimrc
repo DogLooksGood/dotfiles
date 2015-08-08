@@ -9,7 +9,6 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'Townk/vim-autoclose'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'mtth/scratch.vim'
@@ -29,6 +28,13 @@ Plugin 'guns/vim-clojure-static'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'gorodinskiy/vim-coloresque'
+Plugin 'wting/rust.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'tpope/vim-surround'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+
+"Plugin 'Townk/vim-autoclose'
 
 call vundle#end()
 syntax on
@@ -44,7 +50,9 @@ set expandtab
 set smartindent
 set cursorline
 set laststatus=2
+set nofoldenable
 colorscheme solarized
+" colorscheme tomorrow-night-bright
 set background=dark
 
 " paste
@@ -54,14 +62,9 @@ set clipboard=unnamed
 nnoremap <Space> <NOP>
 let mapleader = "\<Space>"
 
-" Use FD to escape
-"set timeout timeoutlen=5000 ttimeoutlen=0
-"set <F13>=fd
-"inoremap <F13> <C-c>
-"set <F14>=df
-"inoremap <F14> <C-c>
+" Fast escape
 if ! has('gui_running')
-  set ttimeoutlen=10
+  set ttimeoutlen=100
   augroup FastEscape
     autocmd!
     au InsertEnter * set timeoutlen=0
@@ -99,7 +102,6 @@ nnoremap <Leader>9 9<C-w><C-w>
 " Shortcut [TOGGLE]
 nnoremap <Leader>tt :TagbarOpenAutoClose<CR>
 nnoremap <Leader>tn :NERDTreeToggle<CR>
-nnoremap <Leader>ts :Scratch<CR>
 
 " CtrlP
 nnoremap <Leader>p :CtrlP<CR>
@@ -118,7 +120,6 @@ vmap <Leader>a: :Tabularize /:\zs<CR>
 nmap <Leader>a<Space> :Tabularize /<Space>\zs<CR>
 vmap <Leader>a<Space> :Tabularize /<Space>\zs<CR>
 
-
 " Slime
 let g:slime_target = "tmux"
 let g:slime_paste_file = tempname()
@@ -133,7 +134,7 @@ vmap v <Plug>(expand_region_expand)
 vmap V <Plug>(expand_region_shrink)
 
 " autocmd
-au FileType lisp,clojure let b:AutoClosePairs = AutoClose#DefaultPairsModified("", "'")
+" au FileType lisp,clojure let b:AutoClosePairs = AutoClose#DefaultPairsModified("", "'")
 
 " Shortcut [EASYMOTION]
 " Must use autocmd
@@ -143,20 +144,19 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
+au FileType html setlocal shiftwidth=2 tabstop=2
+
 " Emacs Key Binding
 inoremap <C-n> <Down>
 inoremap <C-p> <Up>
 
-
 " Lightline
 " let g:lightline = {'colorscheme': 'solarized'}
 
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <Esc>h :TmuxNavigateLeft<cr>
-nnoremap <silent> <Esc>j :TmuxNavigateDown<cr>
-nnoremap <silent> <Esc>k :TmuxNavigateUp<cr>
-nnoremap <silent> <Esc>l :TmuxNavigateRight<cr>
-nnoremap <silent> <Esc>\ :TmuxNavigatePrevious<cr>
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
 " Shortcut [VIM]
 nnoremap <Leader>vi :PluginInstall<CR>

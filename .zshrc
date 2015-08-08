@@ -5,8 +5,9 @@ export ZSH=/Users/DogLooksGood/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="bureau"
-# ZSH_THEME="gozilla"
+# ZSH_THEME="bureau"
+ZSH_THEME="simple"
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -50,7 +51,7 @@ ZSH_THEME="bureau"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx autojump mvn lein sbt virtualenvwrapper)
+plugins=(git osx autojump mvn lein sbt virtualenv)
 
 # User configuration
 
@@ -95,7 +96,7 @@ export PGDATA=/usr/local/var/postgres
 alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
 alias clojure='java -cp ~/.m2/repository/org/clojure/clojure/1.7.0/clojure-1.7.0.jar:. clojure.main'
 alias e=emacsclient $@
-
-# Company
-#
-export HELIX_MODE="ProductionConfig"
+alias cnpm="npm --registry=https://registry.npm.taobao.org \
+--cache=$HOME/.npm/.cache/cnpm \
+--disturl=https://npm.taobao.org/dist \
+--userconfig=$HOME/.cnpmrc"
