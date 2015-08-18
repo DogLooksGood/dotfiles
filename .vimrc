@@ -33,10 +33,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'tpope/vim-surround'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-Plugin 'jszakmeister/vim-togglecursor'
 Plugin 'rking/ag.vim'
-
-"Plugin 'Townk/vim-autoclose'
+Plugin 'kchmck/vim-coffee-script'
 
 call vundle#end()
 syntax on
@@ -54,22 +52,23 @@ set cursorline
 set laststatus=2
 set nofoldenable
 colorscheme solarized
-" colorscheme tomorrow-night-bright
+"colorscheme tomorrow-night-bright
 set background=dark
 
 " paste
 set clipboard=unnamed
+set pastetoggle=<F5>
 
 " Set Leader key to <Space>
-nnoremap <Space> <NOP>
-let mapleader = "\<Space>"
+nmap <Space> <NOP>
+let mapleader="\<Space>"
 
 " Fast escape
 if ! has('gui_running')
   set ttimeoutlen=100
   augroup FastEscape
     autocmd!
-    au InsertEnter * set timeoutlen=0
+    au InsertEnter * set timeoutlen=500
     au InsertLeave * set timeoutlen=1000
   augroup END
 endif
@@ -127,9 +126,6 @@ let g:slime_target = "tmux"
 let g:slime_paste_file = tempname()
 let g:slime_python_ipython = 1
 
-" Emment
-let g:user_emmet_mode='n'
-nmap <Leader>ee <Plug>(emmet-expand-abbr)
 
 " Expant Region
 vmap v <Plug>(expand_region_expand)
@@ -145,15 +141,14 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
-au FileType html setlocal ts=2 sts=2 sw=2
-au FileType javascript,html,json,javascript.jsx setlocal ts=2 sts=2 sw=2
+au FileType javascript,html,json,javascript.jsx,coffee setlocal ts=2 sts=2 sw=2
 
 " Emacs Key Binding
 inoremap <C-n> <Down>
 inoremap <C-p> <Up>
 
 " Lightline
-" let g:lightline = {'colorscheme': 'solarized'}
+let g:lightline = {'colorscheme': 'solarized'}
 
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
@@ -178,14 +173,17 @@ let g:rbpt_colorpairs = [
     \ ['darkmagenta', 'DarkOrchid3'],
     \ ['Darkblue',    'firebrick3'],
     \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
     \ ['darkred',     'DarkOrchid3'],
+    \ ['darkcyan',    'SeaGreen3'],
     \ ['red',         'firebrick3'],
     \ ]
-let g:rbpt_max = 24
+let g:rbpt_max = 30
 let g:rbpt_loadcmd_toggle = 0
-
 " JSX
 let g:jsx_ext_required = 0
 
+" Emment
+let g:user_emmet_mode='in'
+let g:user_emmet_leader_key='<C-Y>'
 
+nmap \ :b#<CR>

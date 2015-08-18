@@ -64,11 +64,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='atom'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -87,15 +87,18 @@ source $ZSH/oh-my-zsh.sh
 #
 #
 
-# ENABLE vitualenvwrappers
+export TERM=xterm-256color
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 source /usr/local/bin/virtualenvwrapper.sh
 export WORKON_HOME=~/.virtualenv
 export HISTSIZE=100
-export TERM=xterm-256color
 export PGDATA=/usr/local/var/postgres
 alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
+alias v='vi .'
+alias vi='nvim'
 alias clojure='java -cp ~/.m2/repository/org/clojure/clojure/1.7.0/clojure-1.7.0.jar:. clojure.main'
 alias e=emacsclient $@
+alias mongod='mongod --dbpath /usr/local/var/mongodb'
 alias cnpm="npm --registry=https://registry.npm.taobao.org \
 --cache=$HOME/.npm/.cache/cnpm \
 --disturl=https://npm.taobao.org/dist \
