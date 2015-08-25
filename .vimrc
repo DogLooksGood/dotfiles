@@ -27,7 +27,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'guns/vim-clojure-static'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'itchyny/lightline.vim'
-Plugin 'gorodinskiy/vim-coloresque'
+" Plugin 'gorodinskiy/vim-coloresque'
 Plugin 'wting/rust.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
@@ -35,6 +35,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'rking/ag.vim'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'Raimondi/delimitMate'
+
 
 call vundle#end()
 syntax on
@@ -177,13 +179,17 @@ let g:rbpt_colorpairs = [
     \ ['darkcyan',    'SeaGreen3'],
     \ ['red',         'firebrick3'],
     \ ]
+
 let g:rbpt_max = 30
 let g:rbpt_loadcmd_toggle = 0
 " JSX
 let g:jsx_ext_required = 0
+nmap \ :b#<CR>
 
 " Emment
 let g:user_emmet_mode='in'
 let g:user_emmet_leader_key='<C-Y>'
 
-nmap \ :b#<CR>
+au FileType python let b:delimitMate_nesting_quotes = ['"']
+au FileType clojure let b:delimitMate_matchpairs = "(:),[:],{:}"
+au FileType clojure let b:delimitMate_quotes = "\""
