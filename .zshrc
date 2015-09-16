@@ -8,7 +8,6 @@ export ZSH=/Users/DogLooksGood/.oh-my-zsh
 # ZSH_THEME="bureau"
 ZSH_THEME="simple"
 
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -51,7 +50,8 @@ ZSH_THEME="simple"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx autojump mvn lein sbt virtualenv)
+# plugins=(git osx autojump mvn lein sbt virtualenv tmux tmuxinator safe-paste)
+plugins=(autojump lein virtualenv tmux tmuxinator git)
 
 # User configuration
 
@@ -65,7 +65,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  export EDITOR='nvim'
 else
   export EDITOR='atom'
 fi
@@ -93,11 +93,8 @@ source /usr/local/bin/virtualenvwrapper.sh
 export WORKON_HOME=~/.virtualenv
 export HISTSIZE=100
 export PGDATA=/usr/local/var/postgres
-alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
-alias v='vi .'
-#alias vi='nvim'
-alias clojure='java -cp ~/.m2/repository/org/clojure/clojure/1.7.0/clojure-1.7.0.jar:. clojure.main'
-alias e=emacsclient $@
+alias vi='mvim -v'
+alias v='mvim -v .'
 alias mongod='mongod --dbpath /usr/local/var/mongodb'
 alias cnpm="npm --registry=https://registry.npm.taobao.org \
 --cache=$HOME/.npm/.cache/cnpm \

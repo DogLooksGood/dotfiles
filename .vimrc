@@ -1,69 +1,157 @@
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Note: Skip initialization for vim-tiny or vim-small.
+if 0 | endif
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'majutsushi/tagbar'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'chriskempson/vim-tomorrow-theme'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'mtth/scratch.vim'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'ervandew/supertab'
-Plugin 'maxbrunsfeld/vim-emacs-bindings'
-Plugin 'jpalardy/vim-slime'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'mattn/emmet-vim'
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'honza/vim-snippets'
-Plugin 'SirVer/ultisnips'
-Plugin 'terryma/vim-expand-region'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'guns/vim-clojure-static'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'itchyny/lightline.vim'
-" Plugin 'gorodinskiy/vim-coloresque'
-Plugin 'wting/rust.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'tpope/vim-surround'
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-Plugin 'rking/ag.vim'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'Raimondi/delimitMate'
+if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
+
+  " Required:
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'easymotion/vim-easymotion'
+NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'chriskempson/vim-tomorrow-theme'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'mtth/scratch.vim'
+NeoBundle 'maxbrunsfeld/vim-emacs-bindings'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'hynek/vim-python-pep8-indent'
+NeoBundle 'terryma/vim-expand-region'
+NeoBundle 'Raimondi/delimitMate'
+"NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'Glench/Vim-Jinja2-Syntax'
+NeoBundle 'guns/vim-clojure-static'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'wting/rust.vim'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'honza/vim-snippets'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'mxw/vim-jsx'
+NeoBundle 'christoomey/vim-tmux-navigator'
+NeoBundle 'jpalardy/vim-slime'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'kshenoy/vim-signature'
+NeoBundle 'myusuf3/numbers.vim'
+NeoBundle 'ervandew/supertab'
+NeoBundle 'goldfeld/vim-seek'
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
 
 
-call vundle#end()
-syntax on
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
+
+call neobundle#end()
+" Required:
 filetype plugin indent on
-set t_Co=256
-set noshowmode
-set nu
-set ruler
-set ts=4
-set sts=4
-set sw=4
-set expandtab
-set smartindent
-set cursorline
-set laststatus=2
-set nofoldenable
-colorscheme solarized
-"colorscheme tomorrow-night-bright
-set background=dark
 
-" paste
-set clipboard=unnamed
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
+set mouse=a
+syntax on
+"set noshowmode
+set nu
+set ts=4
+set sws=4
+set sw=4
+set background=dark
+" colorscheme Tomorrow-Night-Blue
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+colorscheme solarized
+set noshowcmd
+"set laststatus=2
+set cursorline
 set pastetoggle=<F5>
 
 " Set Leader key to <Space>
 nmap <Space> <NOP>
+nmap <silent> \ :b#<CR>
 let mapleader="\<Space>"
+
+let g:SeekKey=','
+
+" Shortcuts
+nnoremap <silent> <Leader>` :source ~/.vimrc<CR>
+nnoremap <silent> <Leader>t :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>l :TagbarOpenAutoClose<CR>
+
+" Expant Region
+vmap v <Plug>(expand_region_expand)
+vmap V <Plug>(expand_region_shrink)
+" Emacs Key Binding
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+
+" TmuxNavigate
+nnoremap <silent> <C-h> :TmuxNavigateLeft<CR>
+nnoremap <silent> <C-j> :TmuxNavigateDown<CR>
+nnoremap <silent> <C-k> :TmuxNavigateUp<CR>
+nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
+
+" Shortcut [SLIME]
+xmap <Leader>ss <Plug>SlimeRegionSend
+nmap <Leader>ss <Plug>SlimeParagraphSend
+nmap <Leader>sc <Plug>SlimeConfig
+
+" Expant Region
+vmap v <Plug>(expand_region_expand)
+vmap V <Plug>(expand_region_shrink)
+
+" Slime
+let g:slime_target = "tmux"
+let g:slime_no_mappings = 1
+let g:slime_paste_file = tempname()
+let g:slime_python_ipython = 1
+" Colorpairs
+let g:rbpt_colorpairs = [
+            \ ['2', 'firebrick3'],
+            \ ['3', 'firebrick3'],
+            \ ['4', 'firebrick3'],
+            \ ['6', 'firebrick3'],
+            \ ['7', 'firebrick3'],
+            \ ]
+
+let g:rbpt_max = 32
+let g:rbpt_loadcmd_toggle = 0
+let g:jsx_ext_required = 0
+let g:user_emmet_mode='in'
+let g:user_emmet_leader_key='<C-Y>'
+let NERDTreeIgnore=['\.swp$', '\~$', '\.pyc$']
+let g:lightline = {
+      \ 'colorscheme': '16color',
+      \ 'active': {
+      \   'left': [[ 'mode', 'paste' ], [ 'filename' ]]
+      \ }
+      \ }
+
 
 " Fast escape
 if ! has('gui_running')
@@ -75,121 +163,13 @@ if ! has('gui_running')
   augroup END
 endif
 
-" Shortcut [FILE]
-nnoremap <Leader>fw :w<CR>
-nnoremap <Leader>fr :source ~/.vimrc<CR>
-nnoremap <silent> <Leader>fs :source %<CR>
-
-" Shortcut [QUIT]
-nnoremap <Leader>qq :q!<CR>
-
-" Shortcut [WINDOW]
-nnoremap <Leader>ws :split<CR>
-nnoremap <Leader>wv :vs<CR>
-nnoremap <Leader>wo <C-w>o
-nnoremap <Leader>wc <C-w>c
-nnoremap <Leader>wj <C-w>j
-nnoremap <Leader>wk <C-w>k
-nnoremap <Leader>wh <C-w>h
-nnoremap <Leader>wl <C-w>l
-nnoremap <Leader>1 1<C-w><C-w>
-nnoremap <Leader>2 2<C-w><C-w>
-nnoremap <Leader>3 3<C-w><C-w>
-nnoremap <Leader>4 4<C-w><C-w>
-nnoremap <Leader>5 5<C-w><C-w>
-nnoremap <Leader>6 6<C-w><C-w>
-nnoremap <Leader>7 7<C-w><C-w>
-nnoremap <Leader>8 8<C-w><C-w>
-nnoremap <Leader>9 9<C-w><C-w>
-
-" Shortcut [TOGGLE]
-nnoremap <Leader>tt :TagbarOpenAutoClose<CR>
-nnoremap <Leader>tn :NERDTreeToggle<CR>
-
-" CtrlP
-nnoremap <Leader>p :CtrlP<CR>
-nmap <C-p> <NOP>
-
-" Shortcut [SLIME]
-xmap <Leader>ss <Plug>SlimeRegionSend
-nmap <Leader>ss <Plug>SlimeParagraphSend
-nmap <Leader>sc <Plug>SlimeConfig
-
-" Shortcut [ALIGN]
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
-nmap <Leader>a<Space> :Tabularize /<Space>\zs<CR>
-vmap <Leader>a<Space> :Tabularize /<Space>\zs<CR>
-
-" Slime
-let g:slime_target = "tmux"
-let g:slime_paste_file = tempname()
-let g:slime_python_ipython = 1
-
-
-" Expant Region
-vmap v <Plug>(expand_region_expand)
-vmap V <Plug>(expand_region_shrink)
-
-" autocmd
-" au FileType lisp,clojure let b:AutoClosePairs = AutoClose#DefaultPairsModified("", "'")
-
-" Shortcut [EASYMOTION]
-" Must use autocmd
-au FileType * nmap <Leader><Leader> <Plug>(easymotion-s)
+"au FileType * nmap <Leader><Leader> <Plug>(easymotion-s)
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 au FileType javascript,html,json,javascript.jsx,coffee setlocal ts=2 sts=2 sw=2
-
-" Emacs Key Binding
-inoremap <C-n> <Down>
-inoremap <C-p> <Up>
-
-" Lightline
-let g:lightline = {'colorscheme': 'solarized'}
-
-nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
-
-" Shortcut [VIM]
-nnoremap <Leader>vi :PluginInstall<CR>
-nnoremap <Leader>vc :PluginClean<CR>
-
-" Rainbow
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-
-let g:rbpt_max = 30
-let g:rbpt_loadcmd_toggle = 0
-" JSX
-let g:jsx_ext_required = 0
-nmap \ :b#<CR>
-
-" Emment
-let g:user_emmet_mode='in'
-let g:user_emmet_leader_key='<C-Y>'
-
 au FileType python let b:delimitMate_nesting_quotes = ['"']
-au FileType clojure let b:delimitMate_matchpairs = "(:),[:],{:}"
-au FileType clojure let b:delimitMate_quotes = "\""
+let g:NERDCustomDelimiters = {
+				\ 'clojure': { 'left': ';;' }
+			\ }
