@@ -12,13 +12,18 @@ export TERM=xterm-256color
 
 export ANDROID_HOME=/usr/local/opt/android-sdk
 
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+source /usr/local/bin/virtualenvwrapper.sh
 export WORKON_HOME=~/.virtualenv
 
 export PGDATA=/usr/local/var/postgres
 
 source /usr/local/bin/virtualenvwrapper.sh
 
-alias clojure='java -cp ~/.m2/repository/org/clojure/clojure/1.7.0/clojure-1.7.0.jar:. clojure.main'
+alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
 
 export LEIN_JAVA_CMD=drip
 
+# alias tshark /usr/local/Cellar/wireshark/1.12.5/bin/tshark

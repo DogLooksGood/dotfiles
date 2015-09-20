@@ -17,7 +17,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'easymotion/vim-easymotion'
-NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundle 'spinningarrow/vim-niji'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'plasticboy/vim-markdown'
@@ -28,12 +28,12 @@ NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'mtth/scratch.vim'
+NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'maxbrunsfeld/vim-emacs-bindings'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'hynek/vim-python-pep8-indent'
 NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'Raimondi/delimitMate'
-"NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'Glench/Vim-Jinja2-Syntax'
@@ -51,6 +51,7 @@ NeoBundle 'kshenoy/vim-signature'
 NeoBundle 'myusuf3/numbers.vim'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'goldfeld/vim-seek'
+NeoBundle 'dag/vim-fish'
 NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
 \     'windows' : 'tools\\update-dll-mingw',
@@ -76,18 +77,17 @@ NeoBundleCheck
 
 set mouse=a
 syntax on
-"set noshowmode
+set noshowmode
 set nu
 set ts=4
 set sws=4
 set sw=4
 set background=dark
-" colorscheme Tomorrow-Night-Blue
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
+"let g:solarized_visibility = "high"
+"let g:solarized_contrast = "high"
 colorscheme solarized
 set noshowcmd
-"set laststatus=2
+set laststatus=2
 set cursorline
 set pastetoggle=<F5>
 
@@ -130,14 +130,6 @@ let g:slime_target = "tmux"
 let g:slime_no_mappings = 1
 let g:slime_paste_file = tempname()
 let g:slime_python_ipython = 1
-" Colorpairs
-let g:rbpt_colorpairs = [
-            \ ['2', 'firebrick3'],
-            \ ['3', 'firebrick3'],
-            \ ['4', 'firebrick3'],
-            \ ['6', 'firebrick3'],
-            \ ['7', 'firebrick3'],
-            \ ]
 
 let g:rbpt_max = 32
 let g:rbpt_loadcmd_toggle = 0
@@ -145,13 +137,6 @@ let g:jsx_ext_required = 0
 let g:user_emmet_mode='in'
 let g:user_emmet_leader_key='<C-Y>'
 let NERDTreeIgnore=['\.swp$', '\~$', '\.pyc$']
-let g:lightline = {
-      \ 'colorscheme': '16color',
-      \ 'active': {
-      \   'left': [[ 'mode', 'paste' ], [ 'filename' ]]
-      \ }
-      \ }
-
 
 " Fast escape
 if ! has('gui_running')
@@ -163,13 +148,26 @@ if ! has('gui_running')
   augroup END
 endif
 
-"au FileType * nmap <Leader><Leader> <Plug>(easymotion-s)
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+
+let g:lightline = {
+			\ 'active': {
+			\   'left': [ [ 'mode', 'paste' ],
+			\             [ 'filename', 'modified' ] ],
+			\ },
+			\ 'colorscheme': 'solarized',
+			\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+			\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+			\ }
+
+au FileType * nmap <Leader><Leader> <Plug>(easymotion-s)
 au FileType javascript,html,json,javascript.jsx,coffee setlocal ts=2 sts=2 sw=2
 au FileType python let b:delimitMate_nesting_quotes = ['"']
 let g:NERDCustomDelimiters = {
 				\ 'clojure': { 'left': ';;' }
 			\ }
+
+let g:UltiSnipsExpandTrigger="<C-l>"
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+
+

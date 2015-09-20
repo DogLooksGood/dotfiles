@@ -6,47 +6,35 @@
   "Configuration Layers declaration."
   (setq-default
    ;; List of additional paths where to look for configuration layers.
-   ;; Paths must have a trailing slash (ie. `~/.mycontribs/')
+   ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     (colors :variables
-             colors-enable-nyan-cat-progress-bar t)
      auto-completion
+     osx
      better-defaults
-     clojure
-     c-c++
-     emacs-lisp
-     (ibuffer :variables
-              ibuffer-group-buffers-by 'projects)
-     html
-     java
      javascript
+     emacs-lisp
+     git
      markdown
      org
-     osx
      python
-     sql
-     (scala :variables
-            flycheck-scalastyle-jar (expand-file-name "~/.spacemacs.third/scalastyle_2.11-0.6.0-batch.jar "))
+     clojure
+     perspectives
      (shell :variables
-            shell-default-shell 'ansi-term
-            shell-default-term-shell "/bin/sh")
-
+            shell-default-height 30
+            shell-default-position 'bottom)
      ;; syntax-checking
-     semantic
-     smex
-     ycmd
-     (git :variables
-          git-gutter-use-fringe t)
+     ;; version-control
      )
-   ;; List of additional packages that will be installed wihout being
+   ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
@@ -54,9 +42,11 @@
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages
    '(
+     ;; From python layer
      pony-mode
+     flycheck
+     semantic
      cython-mode
-     yasnippet
      )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
@@ -81,23 +71,25 @@ before layers configuration."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed.
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner 'random
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'."
    dotspacemacs-startup-lists '(recents projects)
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(
-                         spacemacs-light
+   dotspacemacs-themes '(spacemacs-dark
                          solarized-dark
-                         spacemacs-dark
-                         )
+                         solarized-light
+                         spacemacs-light
+                         leuven
+                         monokai
+                         zenburn)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Hack"
                                :size 13
                                :weight normal
                                :width normal
@@ -116,6 +108,11 @@ before layers configuration."
    ;; By default the command key is `:' so ex-commands are executed like in Vim
    ;; with `:' and Emacs commands are executed with `<leader> :'.
    dotspacemacs-command-key ":"
+   ;; Location where to auto-save files. Possible values are `original' to
+   ;; auto-save the file in-place, `cache' to auto-save the file to another
+   ;; file stored in the cache directory and `nil' to disable auto-saving.
+   ;; Default value is `cache'.
+   dotspacemacs-auto-save-file-location 'cache
    ;; If non nil then `ido' replaces `helm' for some commands. For now only
    ;; `find-files' (SPC f f) is replaced.
    dotspacemacs-use-ido nil
@@ -173,25 +170,9 @@ before layers configuration."
 
 (defun dotspacemacs/config ()
   "Configuration function.
-  This function is called at the very end of Spacemacs initialization after
+ This function is called at the very end of Spacemacs initialization after
 layers configuration."
-  (add-to-list 'auto-mode-alist '("\\.h\\'" . c-mode))
-  (add-to-list 'auto-mode-alist '("\\.c\\'" . c-mode))
-  ;; Maybe useless oneday :
-  ;; (delete 'company-c-headers company-backends-c-mode-common)
-  ;; (delete 'company-clang company-backends-c-mode-common)
-  ;; (push 'company-c-headers company-backends-c-mode-common)
-  ;; ----------------------------------------------------------
-  (setq clojure-enable-fancify-symbols t)
-  (set-variable 'ycmd-server-command `("python" ,(expand-file-name "~/.spacemacs.third/ycmd/ycmd")))
-  ;; (set-variable 'ycmd-global-config "~/.spacemacs.third/ycmd/cpp/ycm/.ycm_extra_conf.py")
-  (set-variable 'ycmd-request-message-level -1)
-  (set-variable 'ycmd-force-semantic-completion t)
-  (custom-set-variables
-   '(eclim-eclipse-dirs '("/opt/homebrew-cask/Caskroom/eclipse-jee/4.4.2/eclipse"))
-   '(eclim-executable "/opt/homebrew-cask/Caskroom/eclipse-jee/4.4.2/eclipse/eclim"))
-  (add-hook 'c-mode-hook 'ycmd-mode)
-  )
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
