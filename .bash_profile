@@ -24,6 +24,4 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
 
-export LEIN_JAVA_CMD=drip
-
 # alias tshark /usr/local/Cellar/wireshark/1.12.5/bin/tshark
