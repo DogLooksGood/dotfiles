@@ -22,13 +22,13 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'Yggdroot/LeaderF'
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'mtth/scratch.vim'
-NeoBundle 'itchyny/lightline.vim'
+"NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'maxbrunsfeld/vim-emacs-bindings'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'hynek/vim-python-pep8-indent'
@@ -75,19 +75,23 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 
+"set ttyfast
+set t_Co=256
+set foldlevelstart=99
 set mouse=a
 syntax on
-set noshowmode
+"set noshowmode
 set nu
 set ts=4
 set sws=4
 set sw=4
+set expandtab
 set background=dark
-"let g:solarized_visibility = "high"
-"let g:solarized_contrast = "high"
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
 colorscheme solarized
 set noshowcmd
-set laststatus=2
+set laststatus=1
 set cursorline
 set pastetoggle=<F5>
 
@@ -106,6 +110,7 @@ nnoremap <silent> <Leader>l :TagbarOpenAutoClose<CR>
 " Expant Region
 vmap v <Plug>(expand_region_expand)
 vmap V <Plug>(expand_region_shrink)
+
 " Emacs Key Binding
 inoremap <C-n> <Down>
 inoremap <C-p> <Up>
@@ -136,7 +141,7 @@ let g:rbpt_loadcmd_toggle = 0
 let g:jsx_ext_required = 0
 let g:user_emmet_mode='in'
 let g:user_emmet_leader_key='<C-Y>'
-let NERDTreeIgnore=['\.swp$', '\~$', '\.pyc$']
+let NERDTreeIgnore=['\.swp$', '\~$', '\.pyco$', 'node_modules', 'dist']
 
 " Fast escape
 if ! has('gui_running')
@@ -149,25 +154,36 @@ if ! has('gui_running')
 endif
 
 
-let g:lightline = {
-			\ 'active': {
-			\   'left': [ [ 'mode', 'paste' ],
-			\             [ 'filename', 'modified' ] ],
-			\ },
-			\ 'colorscheme': 'solarized',
-			\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-			\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-			\ }
+"let g:lightline = {
+"            \ 'active': {
+"            \   'left': [ [ 'mode', 'paste' ],
+"            \             [ 'filename', 'modified' ] ],
+"            \ },
+"            \ 'colorscheme': 'solarized',
+"            \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+"            \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+"            \ }
 
 au FileType * nmap <Leader><Leader> <Plug>(easymotion-s)
-au FileType javascript,html,json,javascript.jsx,coffee setlocal ts=2 sts=2 sw=2
+au FileType javascript,html,json,javascript.jsx,coffee,sass setlocal ts=2 sts=2 sw=2
 au FileType python let b:delimitMate_nesting_quotes = ['"']
+au FileType clojure let b:delimitMate_quotes="\""
+
+let g:Lf_CommandMap = {'<C-C>': ['<Esc>', '<C-C>'], '<Down>': ['<C-N>', '<Down>'], '<Up>': ['<C-P>', '<Up>']}
+let g:Lf_WildIgnore = {
+			\ 'dir': ['.git', 'node_modules', 'log', 'dist', '.sass-cache'],
+			\ 'file': ['~$*', '*.bak', '*.py[co]', '*.swp']
+			\}
+
 let g:NERDCustomDelimiters = {
 				\ 'clojure': { 'left': ';;' }
 			\ }
-
 let g:UltiSnipsExpandTrigger="<C-l>"
-let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "<c-p>"
+"let g:enable_numbers = 0
+"nnoremap <Leader>r :NumbersToggle<CR>
 
+imap <C-J> <Plug>(emmet-expand-abbr)
 
+au BufNewFile,BufRead *.es6 set filetype=javascript.jsx
 
