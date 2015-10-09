@@ -41,11 +41,9 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'wting/rust.vim'
 NeoBundle 'rking/ag.vim'
-"NeoBundle 'honza/vim-snippets'
-"NeoBundle 'SirVer/ultisnips'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle 'christoomey/vim-tmux-navigator'
-NeoBundle 'jpalardy/vim-slime'
+NeoBundle 'epeli/slimux'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'kshenoy/vim-signature'
 NeoBundle 'myusuf3/numbers.vim'
@@ -64,7 +62,6 @@ NeoBundle 'Shougo/vimproc.vim', {
 \     'unix' : 'gmake',
 \    },
 \ }
-
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
@@ -102,7 +99,6 @@ set pastetoggle=<F5>
 nmap <Space> <NOP>
 nmap <silent> \ :b#<CR>
 let mapleader="\<Space>"
-
 let g:SeekKey=','
 
 " Shortcuts
@@ -115,8 +111,8 @@ vmap v <Plug>(expand_region_expand)
 vmap V <Plug>(expand_region_shrink)
 
 " Emacs Key Binding
-"inoremap <C-n> <Down>
-"inoremap <C-p> <Up>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
 
 " TmuxNavigate
 nnoremap <silent> <M-h> :TmuxNavigateLeft<CR>
@@ -132,12 +128,6 @@ nmap <Leader>sc <Plug>SlimeConfig
 " Expant Region
 vmap v <Plug>(expand_region_expand)
 vmap V <Plug>(expand_region_shrink)
-
-" Slime
-let g:slime_target = "tmux"
-let g:slime_no_mappings = 1
-let g:slime_paste_file = tempname()
-let g:slime_python_ipython = 1
 
 let g:rbpt_max = 32
 let g:rbpt_loadcmd_toggle = 0
@@ -189,9 +179,8 @@ let g:ctrlp_prompt_mappings = {
 
 " Plugin key-mappings.
 imap <C-l>     <Plug>(neosnippet_expand_or_jump)
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
+nnoremap <Leader>ss :SlimuxREPLSendSelection<CR>
+nnoremap <Leader>sl :SlimuxREPLSendLine<CR>
+nnoremap <Leader>sc :SlimuxREPLConfigure<CR>
+let g:slimux_select_from_current_window = 1
 
