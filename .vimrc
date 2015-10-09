@@ -18,31 +18,31 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'spinningarrow/vim-niji'
+NeoBundle 'vim-scripts/paredit.vim'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'Yggdroot/LeaderF'
-NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'chriskempson/vim-tomorrow-theme'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'mtth/scratch.vim'
-"NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'maxbrunsfeld/vim-emacs-bindings'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'hynek/vim-python-pep8-indent'
 NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'bling/vim-airline'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'Glench/Vim-Jinja2-Syntax'
 NeoBundle 'guns/vim-clojure-static'
 NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'wting/rust.vim'
 NeoBundle 'rking/ag.vim'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'SirVer/ultisnips'
+"NeoBundle 'honza/vim-snippets'
+"NeoBundle 'SirVer/ultisnips'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'jpalardy/vim-slime'
@@ -52,6 +52,9 @@ NeoBundle 'myusuf3/numbers.vim'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'goldfeld/vim-seek'
 NeoBundle 'dag/vim-fish'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
 \     'windows' : 'tools\\update-dll-mingw',
@@ -75,12 +78,12 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 
-"set ttyfast
+set ttyfast
 set t_Co=256
 set foldlevelstart=99
+set laststatus=2
 set mouse=a
 syntax on
-"set noshowmode
 set nu
 set ts=4
 set sws=4
@@ -90,8 +93,8 @@ set background=dark
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 colorscheme solarized
+set noshowmode
 set noshowcmd
-set laststatus=1
 set cursorline
 set pastetoggle=<F5>
 
@@ -112,14 +115,14 @@ vmap v <Plug>(expand_region_expand)
 vmap V <Plug>(expand_region_shrink)
 
 " Emacs Key Binding
-inoremap <C-n> <Down>
-inoremap <C-p> <Up>
+"inoremap <C-n> <Down>
+"inoremap <C-p> <Up>
 
 " TmuxNavigate
-nnoremap <silent> <C-h> :TmuxNavigateLeft<CR>
-nnoremap <silent> <C-j> :TmuxNavigateDown<CR>
-nnoremap <silent> <C-k> :TmuxNavigateUp<CR>
-nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
+nnoremap <silent> <M-h> :TmuxNavigateLeft<CR>
+nnoremap <silent> <M-j> :TmuxNavigateDown<CR>
+nnoremap <silent> <M-k> :TmuxNavigateUp<CR>
+nnoremap <silent> <M-l> :TmuxNavigateRight<CR>
 
 " Shortcut [SLIME]
 xmap <Leader>ss <Plug>SlimeRegionSend
@@ -153,37 +156,42 @@ if ! has('gui_running')
   augroup END
 endif
 
-
-"let g:lightline = {
-"            \ 'active': {
-"            \   'left': [ [ 'mode', 'paste' ],
-"            \             [ 'filename', 'modified' ] ],
-"            \ },
-"            \ 'colorscheme': 'solarized',
-"            \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-"            \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-"            \ }
-
 au FileType * nmap <Leader><Leader> <Plug>(easymotion-s)
 au FileType javascript,html,json,javascript.jsx,coffee,sass setlocal ts=2 sts=2 sw=2
 au FileType python let b:delimitMate_nesting_quotes = ['"']
 au FileType clojure let b:delimitMate_quotes="\""
+au BufNewFile,BufRead *.es6 set filetype=javascript.jsx
 
-let g:Lf_CommandMap = {'<C-C>': ['<Esc>', '<C-C>'], '<Down>': ['<C-N>', '<Down>'], '<Up>': ['<C-P>', '<Up>']}
-let g:Lf_WildIgnore = {
-			\ 'dir': ['.git', 'node_modules', 'log', 'dist', '.sass-cache'],
-			\ 'file': ['~$*', '*.bak', '*.py[co]', '*.swp']
-			\}
+set wildignore+=*/tmp/*,*/dist/*,*/node_modules/*,*/log/*
+set wildignore+=*.pyc,*.bak,*~,*.swp
 
 let g:NERDCustomDelimiters = {
-				\ 'clojure': { 'left': ';;' }
+				\ 'clojure': { 'left': ';; ' }
 			\ }
 let g:UltiSnipsExpandTrigger="<C-l>"
 let g:SuperTabDefaultCompletionType = "<c-p>"
-"let g:enable_numbers = 0
-"nnoremap <Leader>r :NumbersToggle<CR>
-
 imap <C-J> <Plug>(emmet-expand-abbr)
 
-au BufNewFile,BufRead *.es6 set filetype=javascript.jsx
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#enabled = 1
+let g:paredit_electric_return=0
+
+nnoremap <Leader>f :CtrlP<CR>
+nnoremap <Leader>b :CtrlPBuffer<CR>
+nnoremap <Leader>B :CtrlPMixed<CR>
+
+let g:ctrlp_prompt_mappings = {
+  \ 'PrtSelectMove("j")':   ['<c-n>'],
+  \ 'PrtSelectMove("k")':   ['<c-p>'],
+  \ 'PrtHistory(-1)':       ['<up>'],
+  \ 'PrtHistory(1)':        ['<down>']
+  \ }
+
+" Plugin key-mappings.
+imap <C-l>     <Plug>(neosnippet_expand_or_jump)
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
 
