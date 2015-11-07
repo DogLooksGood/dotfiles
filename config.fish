@@ -1,5 +1,8 @@
 set fish_greeting ""
 
+set --global --export LANG en_US.UTF-8
+set --global --export LC_ALL en_US.UTF-8
+            
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
@@ -12,6 +15,13 @@ alias cnpm="npm --registry=https://registry.npm.taobao.org \
 --userconfig=$HOME/.cnpmrc"
 
 alias vi="nvim"
+alias em="emacsclient"
+
+alias lead='ssh root@101.200.197.153'
+alias mx='ssh mx@192.168.10.180'
+
+# auto jump
+[ -f /usr/local/share/autojump/autojump.fish ]; and . /usr/local/share/autojump/autojump.fish
 
 eval (python -m virtualfish)
 
