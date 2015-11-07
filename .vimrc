@@ -18,13 +18,15 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'spinningarrow/vim-niji'
+NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'vim-scripts/paredit.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'scrooloose/nerdtree'
+" NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'mtth/scratch.vim'
 NeoBundle 'maxbrunsfeld/vim-emacs-bindings'
@@ -103,7 +105,7 @@ let g:SeekKey=','
 
 " Shortcuts
 nnoremap <silent> <Leader>` :source ~/.vimrc<CR>
-nnoremap <silent> <Leader>t :NERDTreeToggle<CR>
+"nnoremap <silent> <Leader>t :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>l :TagbarOpenAutoClose<CR>
 
 " Expant Region
@@ -179,7 +181,7 @@ let g:ctrlp_prompt_mappings = {
 
 " Plugin key-mappings.
 imap <C-l>     <Plug>(neosnippet_expand_or_jump)
-nnoremap <Leader>ss :SlimuxREPLSendSelection<CR>
+vnoremap <Leader>ss :SlimuxREPLSendSelection<CR>
 nnoremap <Leader>sl :SlimuxREPLSendLine<CR>
 nnoremap <Leader>sc :SlimuxREPLConfigure<CR>
 let g:slimux_select_from_current_window = 1
