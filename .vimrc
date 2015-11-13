@@ -116,10 +116,10 @@ inoremap <C-n> <Down>
 inoremap <C-p> <Up>
 
 " TmuxNavigate
-" nnoremap <silent> <M-h> :TmuxNavigateLeft<CR>
-" nnoremap <silent> <M-j> :TmuxNavigateDown<CR>
-" nnoremap <silent> <M-k> :TmuxNavigateUp<CR>
-" nnoremap <silent> <M-l> :TmuxNavigateRight<CR>
+nnoremap <silent> <A-h> :TmuxNavigateLeft<CR>
+nnoremap <silent> <A-j> :TmuxNavigateDown<CR>
+nnoremap <silent> <A-k> :TmuxNavigateUp<CR>
+nnoremap <silent> <A-l> :TmuxNavigateRight<CR>
 
 " Shortcut [SLIME]
 xmap <Leader>ss <Plug>SlimeRegionSend
@@ -195,10 +195,10 @@ tnoremap <A-h> <C-\><C-n><C-w>h
 tnoremap <A-j> <C-\><C-n><C-w>j
 tnoremap <A-k> <C-\><C-n><C-w>k
 tnoremap <A-l> <C-\><C-n><C-w>l
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
+" nnoremap <A-h> <C-w>h
+" nnoremap <A-j> <C-w>j
+" nnoremap <A-k> <C-w>k
+" nnoremap <A-l> <C-w>l
 nnoremap <A-v> <C-w>v
 nnoremap <A-s> <C-w>s
 nnoremap <A-o> <C-w>o
@@ -236,3 +236,4 @@ vnoremap <silent> <Leader>ss :REPLSendVisual<cr>
 
 nmap <silent> <A-t> :terminal fish<CR>
 nmap <silent> \ <Space>b<CR><CR>
+set virtualedit="onemore"
