@@ -1,207 +1,199 @@
-" Note: Skip initialization for vim-tiny or vim-small.
+" ===============================================================================
+"  Initialization: No compatible and set up runtimepath & python path.
+" ===============================================================================
+
 if 0 | endif
 
 if has('vim_starting')
   if &compatible
-    set nocompatible               " Be iMproved
+    set nocompatible
   endif
-
-  " Required:
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+let g:python_host_prog = '/usr/local/bin/python'
 
-" Let NeoBundle manage NeoBundle
-" Required:
+" ================================================================================
+"  Plugins: Manage plugins with `neobundle`
+" $ curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
+" $ sh ./install.sh
+" ================================================================================
+
+call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'easymotion/vim-easymotion'
-NeoBundle 'spinningarrow/vim-niji'
-NeoBundle 'tpope/vim-speeddating'
-NeoBundle 'vim-scripts/paredit.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'artur-shaik/vim-javacomplete2'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'mtth/scratch.vim'
-NeoBundle 'maxbrunsfeld/vim-emacs-bindings'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'hynek/vim-python-pep8-indent'
-NeoBundle 'terryma/vim-expand-region'
+
+" --------------------------------------------------------------------------------
+"  Edit:
+" --------------------------------------------------------------------------------
 NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'bling/vim-airline'
+NeoBundle 'easymotion/vim-easymotion'
+NeoBundle 'goldfeld/vim-seek'
+NeoBundle 'tpope/vim-speeddating'
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'terryma/vim-expand-region'
+NeoBundle 'vim-scripts/paredit.vim'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'maxbrunsfeld/vim-emacs-bindings'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'dhruvasagar/vim-table-mode'
+
+" --------------------------------------------------------------------------------
+"  Syntax:
+" --------------------------------------------------------------------------------
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'hynek/vim-python-pep8-indent'
 NeoBundle 'Glench/Vim-Jinja2-Syntax'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'wting/rust.vim'
 NeoBundle 'guns/vim-clojure-static'
 NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'wting/rust.vim'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'mxw/vim-jsx'
-NeoBundle 'christoomey/vim-tmux-navigator'
-NeoBundle 'epeli/slimux'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'kshenoy/vim-signature'
-NeoBundle 'ervandew/supertab'
-NeoBundle 'goldfeld/vim-seek'
 NeoBundle 'dag/vim-fish'
-NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'mxw/vim-jsx'
+NeoBundle 'jceb/vim-orgmode'
+
+" --------------------------------------------------------------------------------
+"  File:
+" --------------------------------------------------------------------------------
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'rking/ag.vim'
+
+
+" --------------------------------------------------------------------------------
+"  Version_control:
+" --------------------------------------------------------------------------------
+NeoBundle 'tpope/vim-fugitive'
+
+" --------------------------------------------------------------------------------
+"  Process_interaction:
+" --------------------------------------------------------------------------------
+NeoBundle 'epeli/slimux'
+NeoBundle 'christoomey/vim-tmux-navigator'
+
+" --------------------------------------------------------------------------------
+"  Template_and_completion:
+" --------------------------------------------------------------------------------
+" NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'ervandew/supertab'
 NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'artur-shaik/vim-javacomplete2'
+
+" --------------------------------------------------------------------------------
+"  Theme:
+" --------------------------------------------------------------------------------
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'spinningarrow/vim-niji'
+NeoBundle 'bling/vim-airline'
+
+" --------------------------------------------------------------------------------
+"  Others:
+" --------------------------------------------------------------------------------
 NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
 \     'mac' : 'make -f make_mac.mak',
 \    },
 \ }
-" NeoBundle 'tpope/vim-vinegar'
-" NeoBundle 'jceb/vim-orgmode'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'mtth/scratch.vim'
 
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-" Note: You don't set neobundle setting in .gvimrc!
-
+" Finish
 call neobundle#end()
-" Required:
 filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
+syntax on
 NeoBundleCheck
 
+" ================================================================================
+"  Configurations:
+" ================================================================================
+
+" --------------------------------------------------------------------------------
+"  Basic:
+" --------------------------------------------------------------------------------
+" ttyfast
 set ttyfast
+" xterm-256color
 set t_Co=256
-set foldlevelstart=99
-set laststatus=2
-set mouse=a
-syntax on
+" enable line number
 set nu
-set rnu
-set ts=4
-set sws=4
-set sw=4
-set expandtab
-set background=dark
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
-colorscheme solarized
-set noshowmode
-set noshowcmd
-set cursorline
-set pastetoggle=<F5>
-
-" Set Leader key to <Space>
-nmap <Space> <NOP>
-" nmap <silent> \ :b#<CR>
-let mapleader="\<Space>"
-let g:SeekKey=','
-
-" Shortcuts
-nnoremap <silent> <Leader>` :source ~/.vimrc<CR>
-nnoremap <silent> <Leader>t :NERDTreeToggle<CR>
-nnoremap <silent> <Leader>l :TagbarOpenAutoClose<CR>
-
-" Expant Region
-vmap v <Plug>(expand_region_expand)
-vmap V <Plug>(expand_region_shrink)
-
-" Emacs Key Binding
-inoremap <C-n> <Down>
-inoremap <C-p> <Up>
-nnoremap <Return> o<Esc>
-
-" TmuxNavigate
-nnoremap <silent> <A-h> :TmuxNavigateLeft<CR>
-nnoremap <silent> <A-j> :TmuxNavigateDown<CR>
-nnoremap <silent> <A-k> :TmuxNavigateUp<CR>
-nnoremap <silent> <A-l> :TmuxNavigateRight<CR>
-
-
-" Expant Region
-vmap v <Plug>(expand_region_expand)
-vmap V <Plug>(expand_region_shrink)
-
-let g:rbpt_max = 32
-let g:rbpt_loadcmd_toggle = 0
-let g:jsx_ext_required = 0
-let g:user_emmet_mode='in'
-" let g:user_emmet_leader_key='<C-Y>'
-let NERDTreeIgnore=['\.swp$', '\~$', '\.pyco$', 'node_modules', 'dist']
-
-" Fast escape
+" ESC without delay
 if ! has('gui_running')
   set ttimeoutlen=100
   augroup FastEscape
-    autocmd!
+    au!
     au InsertEnter * set timeoutlen=500
     au InsertLeave * set timeoutlen=1000
   augroup END
 endif
 
-au FileType * nmap <Leader><Leader> <Plug>(easymotion-s)
-au FileType javascript,html,json,javascript.jsx,coffee,sass setlocal ts=2 sts=2 sw=2
-au FileType python let b:delimitMate_nesting_quotes = ['"']
-au FileType clojure let b:delimitMate_quotes="\""
-au BufNewFile,BufRead *.es6 set filetype=javascript.jsx
+" --------------------------------------------------------------------------------
+"  Theme:
+" --------------------------------------------------------------------------------
+colorscheme solarized
 
-set wildignore+=*/tmp/*,*/dist/*,*/node_modules/*,*/log/*
-set wildignore+=*.pyc,*.bak,*~,*.swp
+set background=dark
+set cursorline
+set laststatus=2
+set noshowmode
+set noshowcmd
 
+let g:airline#extensions#whitespace#checks = []
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#enabled = 1
+
+" --------------------------------------------------------------------------------
+"  Space_leader: Use space as leader key, but not set mapleader for flexible
+" --------------------------------------------------------------------------------
+nmap <Space> <NOP>
+let mapleader="\<Space>"
+
+" --------------------------------------------------------------------------------
+"  Syntax:
+" --------------------------------------------------------------------------------
+" Indent with 4 spaces instead of tab
+set ts=4
+set sws=4
+set sw=4
+set expandtab
+" No auto fold
+set foldmethod=manual
+
+" Rainbow parentheses
+let g:rbpt_max = 32
+let g:rbpt_loadcmd_toggle = 0
+" Clojure line commend use ;;
 let g:NERDCustomDelimiters = {
 				\ 'clojure': { 'left': ';; ' }
 			\ }
-let g:UltiSnipsExpandTrigger="<C-l>"
-let g:SuperTabDefaultCompletionType = "<c-p>"
-imap <C-J> <Plug>(emmet-expand-abbr)
+let g:jsx_ext_required = 0
 
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#branch#enabled = 1
-let g:paredit_electric_return=0
-let g:airline#extensions#whitespace#checks = []
+" Use 2 spaces indentation in web
+au FileType javascript,html,json,javascript.jsx,coffee,sass setlocal ts=2 sts=2 sw=2
+" Python doc string support
+au FileType python let b:delimitMate_nesting_quotes = ['"']
+" Clojure use ' for quote
+au FileType clojure let b:delimitMate_quotes="\""
+" Treat es6 as jsx
+au BufNewFile,BufRead *.es6 set filetype=javascript.jsx
+" .fishrc
+au BufNewFile,BufRead .fishrc set filetype=fish
 
-nnoremap <Leader>f :CtrlP<CR>
-nnoremap <Leader>b :CtrlPBuffer<CR>
-nnoremap <Leader>B :CtrlPMixed<CR>
+" --------------------------------------------------------------------------------
+"  File: 
+" --------------------------------------------------------------------------------
+" Wild ignore file extensions
+set wildignore+=*/tmp/*,*/dist/*,*/node_modules/*,*/log/*
+set wildignore+=*.pyc,*.bak,*~,*.swp
 
-let g:ctrlp_prompt_mappings = {
-  \ 'PrtSelectMove("j")':   ['<c-n>'],
-  \ 'PrtSelectMove("k")':   ['<c-p>'],
-  \ 'PrtHistory(-1)':       ['<up>'],
-  \ 'PrtHistory(1)':        ['<down>']
-  \ }
+" NERDTree ignore
+let NERDTreeIgnore=['\.swp$', '\~$', '\.pyco$', 'node_modules', 'dist']
 
-" Plugin key-mappings.
-imap <C-l>     <Plug>(neosnippet_expand_or_jump)
-vnoremap <Leader>sS :SlimuxREPLSendSelection<CR>
-nnoremap <Leader>sL :SlimuxREPLSendLine<CR>
-nnoremap <Leader>sC :SlimuxREPLConfigure<CR>
-let g:slimux_select_from_current_window = 0
-
-let g:python_host_prog = '/usr/local/bin/python'
-
-autocmd FileType java set omnifunc=javacomplete#Complete
-
-tnoremap <Esc> <C-\><C-n>
-tnoremap <A-h> <C-\><C-n><C-w>h
-tnoremap <A-j> <C-\><C-n><C-w>j
-tnoremap <A-k> <C-\><C-n><C-w>k
-tnoremap <A-l> <C-\><C-n><C-w>l
-" nnoremap <A-h> <C-w>h
-" nnoremap <A-j> <C-w>j
-" nnoremap <A-k> <C-w>k
-" nnoremap <A-l> <C-w>l
-nnoremap <A-v> <C-w>v
-nnoremap <A-s> <C-w>s
-nnoremap <A-o> <C-w>o
-nnoremap <A-c> <C-w>c
-
-" Send command to terminal.
+" --------------------------------------------------------------------------------
+"  Send_to_terminal:
+" --------------------------------------------------------------------------------
 augroup Terminal
   au!
   au TermOpen * let g:last_terminal_job_id = b:terminal_job_id
@@ -228,11 +220,82 @@ endfunction
 command! -range=% -bar -nargs=* REPLSendVisual call REPLSend(split(GetVisual(), "\n"))
 command! REPLSendLine call REPLSend([getline('.')])
 
-nnoremap <silent> <Leader>sl :REPLSendLine<cr>
-vnoremap <silent> <Leader>ss :REPLSendVisual<cr>
+" --------------------------------------------------------------------------------
+"  Emmet:
+" --------------------------------------------------------------------------------
+let g:user_emmet_mode='in'
 
-nmap <silent> <Leader>k :bd!<cr>
-nmap <silent> <A-t> :terminal fish<CR>
-nmap <silent> \ <Space>b<CR><CR>
-set virtualedit="onemore"
+" --------------------------------------------------------------------------------
+"  Supertab:
+" --------------------------------------------------------------------------------
+let g:SuperTabDefaultCompletionType = "<c-p>"
+
+" --------------------------------------------------------------------------------
+"  Paredit:
+" --------------------------------------------------------------------------------
+let g:paredit_electric_return=0
+
+" --------------------------------------------------------------------------------
+"  Slimux:
+" --------------------------------------------------------------------------------
+let g:slimux_select_from_current_window = 0
+
+" --------------------------------------------------------------------------------
+"  CtrlP:
+" --------------------------------------------------------------------------------
+let g:ctrlp_prompt_mappings = {
+  \ 'PrtSelectMove("j")':   ['<c-n>'],
+  \ 'PrtSelectMove("k")':   ['<c-p>'],
+  \ 'PrtHistory(-1)':       ['<up>'],
+  \ 'PrtHistory(1)':        ['<down>']
+  \ }
+
+" --------------------------------------------------------------------------------
+"  JavaComplete2:
+" --------------------------------------------------------------------------------
+augroup JC2
+    au!
+    au FileType java set omnifunc=javacomplete#Complete
+    au FileType java let b:SuperTabDefaultCompletionType = "<c-x><c-o><c-p>"
+augroup END
+
+" ================================================================================
+"  Keybindings:
+" ================================================================================
+let g:SeekKey=','
+nnoremap <return> o<esc>
+nnoremap <silent> <leader>tr :set rnu!<cr>
+nnoremap <silent> <leader>tp :set paste!<cr>
+nnoremap <silent> <leader>u :Unite<cr>
+nnoremap <silent> <leader>` :source ~/.vimrc<cr>
+nnoremap <silent> <leader>0 :NERDTreeToggle<cr>
+nnoremap <silent> <leader>l :TagbarOpenAutoClose<cr>
+nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
+nnoremap <Leader>f :CtrlP<cr>
+nnoremap <Leader>b :CtrlPBuffer<cr>
+nnoremap <Leader>B :CtrlPMixed<cr>
+imap <C-J> <Plug>(emmet-expand-abbr)
+imap <C-l>     <Plug>(neosnippet_expand_or_jump)
+vnoremap <Leader>sS :SlimuxREPLSendSelection<cr>
+nnoremap <Leader>sL :SlimuxREPLSendLine<cr>
+nnoremap <Leader>sC :SlimuxREPLConfigure<cr>
+nnoremap <silent> <Leader>sl :REPLSendLine<cr>
+vnoremap <silent> <leader>ss :REPLSendVisual<cr>
+nnoremap <silent> <Leader>k :bd!<cr>
+nnoremap <silent> <A-t> :terminal fish<cr>
+nnoremap <A-v> <C-w>v
+nnoremap <A-s> <C-w>s
+nnoremap <A-o> <C-w>o
+nnoremap <A-c> <C-w>c
+vmap v <Plug>(expand_region_expand)
+vmap V <Plug>(expand_region_shrink)
+tnoremap <Esc> <C-\><C-n>
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
+au FileType * nmap <Leader><Leader> <Plug>(easymotion-s)
 
