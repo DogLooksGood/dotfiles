@@ -18,9 +18,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'spinningarrow/vim-niji'
-" NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'tpope/vim-speeddating'
-" NeoBundle 'jceb/vim-orgmode'
 NeoBundle 'vim-scripts/paredit.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tpope/vim-fugitive'
@@ -62,6 +60,8 @@ NeoBundle 'Shougo/vimproc.vim', {
 \     'mac' : 'make -f make_mac.mak',
 \    },
 \ }
+" NeoBundle 'tpope/vim-vinegar'
+" NeoBundle 'jceb/vim-orgmode'
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
@@ -114,6 +114,7 @@ vmap V <Plug>(expand_region_shrink)
 " Emacs Key Binding
 inoremap <C-n> <Down>
 inoremap <C-p> <Up>
+nnoremap <Return> o<Esc>
 
 " TmuxNavigate
 nnoremap <silent> <A-h> :TmuxNavigateLeft<CR>
@@ -121,10 +122,6 @@ nnoremap <silent> <A-j> :TmuxNavigateDown<CR>
 nnoremap <silent> <A-k> :TmuxNavigateUp<CR>
 nnoremap <silent> <A-l> :TmuxNavigateRight<CR>
 
-" Shortcut [SLIME]
-xmap <Leader>ss <Plug>SlimeRegionSend
-nmap <Leader>ss <Plug>SlimeParagraphSend
-nmap <Leader>sc <Plug>SlimeConfig
 
 " Expant Region
 vmap v <Plug>(expand_region_expand)
@@ -134,7 +131,7 @@ let g:rbpt_max = 32
 let g:rbpt_loadcmd_toggle = 0
 let g:jsx_ext_required = 0
 let g:user_emmet_mode='in'
-let g:user_emmet_leader_key='<C-Y>'
+" let g:user_emmet_leader_key='<C-Y>'
 let NERDTreeIgnore=['\.swp$', '\~$', '\.pyco$', 'node_modules', 'dist']
 
 " Fast escape
@@ -228,12 +225,14 @@ function! GetVisual() range
     return selection
 endfunction
 
-command! -range=% -bar -nargs=* REPLSendVisual call REPLSend([GetVisual()])
+command! -range=% -bar -nargs=* REPLSendVisual call REPLSend(split(GetVisual(), "\n"))
 command! REPLSendLine call REPLSend([getline('.')])
 
 nnoremap <silent> <Leader>sl :REPLSendLine<cr>
 vnoremap <silent> <Leader>ss :REPLSendVisual<cr>
 
+nmap <silent> <Leader>k :bd!<cr>
 nmap <silent> <A-t> :terminal fish<CR>
 nmap <silent> \ <Space>b<CR><CR>
 set virtualedit="onemore"
+
