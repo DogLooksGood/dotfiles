@@ -60,7 +60,6 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'rking/ag.vim'
 
-
 " --------------------------------------------------------------------------------
 "  Version_control:
 " --------------------------------------------------------------------------------
@@ -88,6 +87,7 @@ NeoBundle 'artur-shaik/vim-javacomplete2'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'spinningarrow/vim-niji'
 NeoBundle 'bling/vim-airline'
+NeoBundle 'jszakmeister/vim-togglecursor'
 
 " --------------------------------------------------------------------------------
 "  Others:
@@ -141,11 +141,12 @@ set noshowmode
 set noshowcmd
 
 let g:airline#extensions#whitespace#checks = []
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline#extensions#branch#enabled = 1
 
+hi VertSplit ctermbg=NONE term=NONE
 " --------------------------------------------------------------------------------
-"  Space_leader: Use space as leader key, but not set mapleader for flexible
+"  Space_leader: Use space as leader key
 " --------------------------------------------------------------------------------
 nmap <Space> <NOP>
 let mapleader="\<Space>"
@@ -185,7 +186,7 @@ au BufNewFile,BufRead .fishrc set filetype=fish
 "  File: 
 " --------------------------------------------------------------------------------
 " Wild ignore file extensions
-set wildignore+=*/tmp/*,*/dist/*,*/node_modules/*,*/log/*
+set wildignore+=*/tmp/*,*/dist/*,*/node_modules/*,*/log/*,*/target/*,*/out/* 
 set wildignore+=*.pyc,*.bak,*~,*.swp
 
 " NERDTree ignore
@@ -262,11 +263,25 @@ augroup END
 " ================================================================================
 "  Keybindings:
 " ================================================================================
+" | prefix key | command      |
+" |------------+--------------|
+" | g          | Git          |
+" | t          | Toggle & Tab |
+" | s          | Slime        |
+" | u          | Unite        |
+" | k          | Kill Buffer  |
+" | c          | Comment      |
+" | f          | Find File    |
+" | b          | Find Buffer  |
+" | l          | Tag List     |
+" | 0          | Tree View    |
+
 let g:SeekKey=','
 nnoremap <return> o<esc>
 nnoremap <silent> <leader>tr :set rnu!<cr>
 nnoremap <silent> <leader>tp :set paste!<cr>
-nnoremap <silent> <leader>u :Unite<cr>
+nnoremap <silent> <leader>tm :TableModeToggle<cr>
+nnoremap <silent> tn :tabnew<cr>
 nnoremap <silent> <leader>` :source ~/.vimrc<cr>
 nnoremap <silent> <leader>0 :NERDTreeToggle<cr>
 nnoremap <silent> <leader>l :TagbarOpenAutoClose<cr>
@@ -278,14 +293,14 @@ nnoremap <Leader>f :CtrlP<cr>
 nnoremap <Leader>b :CtrlPBuffer<cr>
 nnoremap <Leader>B :CtrlPMixed<cr>
 imap <C-J> <Plug>(emmet-expand-abbr)
-imap <C-l>     <Plug>(neosnippet_expand_or_jump)
+imap <C-l> <Plug>(neosnippet_expand_or_jump)
 vnoremap <Leader>sS :SlimuxREPLSendSelection<cr>
 nnoremap <Leader>sL :SlimuxREPLSendLine<cr>
 nnoremap <Leader>sC :SlimuxREPLConfigure<cr>
 nnoremap <silent> <Leader>sl :REPLSendLine<cr>
 vnoremap <silent> <leader>ss :REPLSendVisual<cr>
 nnoremap <silent> <Leader>k :bd!<cr>
-nnoremap <silent> <A-t> :terminal fish<cr>
+nnoremap <silent> <A-t> :terminal! fish<cr>
 nnoremap <A-v> <C-w>v
 nnoremap <A-s> <C-w>s
 nnoremap <A-o> <C-w>o
@@ -298,4 +313,18 @@ tnoremap <A-j> <C-\><C-n><C-w>j
 tnoremap <A-k> <C-\><C-n><C-w>k
 tnoremap <A-l> <C-\><C-n><C-w>l
 au FileType * nmap <Leader><Leader> <Plug>(easymotion-s)
+nmap <leader>gB :Gblame<cr>
+nmap <leader>gs :Gstatus<cr>
+nmap <leader>gb :Gbrowse<cr>
+nmap <leader>gr :Gread<cr>
+nmap <leader>gw :Gwrite<cr>
+nmap <leader>gd :Gdiff<cr>
+nmap <leader>gc :Gcommit<cr>
+nmap <leader>gm :Gmove<cr>
+nmap <leader>gR :Gremove<cr>
+nmap <leader>gP :Gpush<cr>
+nmap <leader>gf :Gfetch<cr>
+nmap <leader>gg :Unite grep/git<cr><cr>
+nnoremap <silent> <leader>u :Unite<cr>
+
 
