@@ -13,6 +13,8 @@ endif
 
 let g:python_host_prog = '/usr/local/bin/python'
 
+"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
 " ================================================================================
 "  Plugins: Manage plugins with `neobundle`
 " $ curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
@@ -85,9 +87,10 @@ NeoBundle 'artur-shaik/vim-javacomplete2'
 "  Theme:
 " --------------------------------------------------------------------------------
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'geoffharcourt/one-dark.vim'
 NeoBundle 'spinningarrow/vim-niji'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'jszakmeister/vim-togglecursor'
+" NeoBundle 'jszakmeister/vim-togglecursor'
 
 " --------------------------------------------------------------------------------
 "  Others:
@@ -99,6 +102,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 \ }
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'mtth/scratch.vim'
+NeoBundle 'moll/vim-bbye'
 
 " Finish
 call neobundle#end()
@@ -141,7 +145,7 @@ set noshowmode
 set noshowcmd
 
 let g:airline#extensions#whitespace#checks = []
-let g:airline_powerline_fonts = 0
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#enabled = 1
 
 hi VertSplit ctermbg=NONE term=NONE
@@ -192,6 +196,7 @@ set wildignore+=*.pyc,*.bak,*~,*.swp
 " NERDTree ignore
 let NERDTreeIgnore=['\.swp$', '\~$', '\.pyco$', 'node_modules', 'dist']
 
+
 " --------------------------------------------------------------------------------
 "  Send_to_terminal:
 " --------------------------------------------------------------------------------
@@ -224,7 +229,7 @@ command! REPLSendLine call REPLSend([getline('.')])
 " --------------------------------------------------------------------------------
 "  Emmet:
 " --------------------------------------------------------------------------------
-let g:user_emmet_mode='in'
+let g:user_emmet_mode = 'in'
 
 " --------------------------------------------------------------------------------
 "  Supertab:
@@ -234,7 +239,12 @@ let g:SuperTabDefaultCompletionType = "<c-p>"
 " --------------------------------------------------------------------------------
 "  Paredit:
 " --------------------------------------------------------------------------------
-let g:paredit_electric_return=0
+let g:paredit_electric_return = 0
+
+" --------------------------------------------------------------------------------
+"  Dwm:
+" --------------------------------------------------------------------------------
+"let g:dwm_map_keys = 1
 
 " --------------------------------------------------------------------------------
 "  Slimux:
@@ -282,7 +292,7 @@ nnoremap <silent> <leader>tr :set rnu!<cr>
 nnoremap <silent> <leader>tp :set paste!<cr>
 nnoremap <silent> <leader>tm :TableModeToggle<cr>
 nnoremap <silent> tn :tabnew<cr>
-nnoremap <silent> <leader>` :source ~/.vimrc<cr>
+nnoremap <silent> <leader>` :source ~/.nvimrc<cr>
 nnoremap <silent> <leader>0 :NERDTreeToggle<cr>
 nnoremap <silent> <leader>l :TagbarOpenAutoClose<cr>
 nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
@@ -299,12 +309,9 @@ nnoremap <Leader>sL :SlimuxREPLSendLine<cr>
 nnoremap <Leader>sC :SlimuxREPLConfigure<cr>
 nnoremap <silent> <Leader>sl :REPLSendLine<cr>
 vnoremap <silent> <leader>ss :REPLSendVisual<cr>
-nnoremap <silent> <Leader>k :bd!<cr>
-nnoremap <silent> <A-t> :terminal! fish<cr>
-nnoremap <A-v> <C-w>v
-nnoremap <A-s> <C-w>s
-nnoremap <A-o> <C-w>o
-nnoremap <A-c> <C-w>c
+nnoremap <silent> <Leader>q :Bdelete<cr>
+nnoremap <silent> <Leader>Q :Bdelete!<cr>
+nnoremap <silent> <Leader>x :terminal! (cd `pwd`; fish)<cr>
 vmap v <Plug>(expand_region_expand)
 vmap V <Plug>(expand_region_shrink)
 tnoremap <Esc> <C-\><C-n>
@@ -312,6 +319,10 @@ tnoremap <A-h> <C-\><C-n><C-w>h
 tnoremap <A-j> <C-\><C-n><C-w>j
 tnoremap <A-k> <C-\><C-n><C-w>k
 tnoremap <A-l> <C-\><C-n><C-w>l
+nnoremap <A-v> <C-w>v
+nnoremap <A-s> <C-w>s
+nnoremap <A-o> <C-w>o
+nnoremap <A-c> <C-w>c
 au FileType * nmap <Leader><Leader> <Plug>(easymotion-s)
 nmap <leader>gB :Gblame<cr>
 nmap <leader>gs :Gstatus<cr>
@@ -326,5 +337,4 @@ nmap <leader>gP :Gpush<cr>
 nmap <leader>gf :Gfetch<cr>
 nmap <leader>gg :Unite grep/git<cr><cr>
 nnoremap <silent> <leader>u :Unite<cr>
-
 
