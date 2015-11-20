@@ -11,9 +11,9 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-let g:python_host_prog = '/usr/local/bin/python'
 
-"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+"let $NVIM_TUI_ENABLE_TRUE_COLOR=0
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 
 " ================================================================================
 "  Plugins: Manage plugins with `neobundle`
@@ -33,7 +33,6 @@ NeoBundle 'goldfeld/vim-seek'
 NeoBundle 'tpope/vim-speeddating'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'terryma/vim-expand-region'
-NeoBundle 'vim-scripts/paredit.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'maxbrunsfeld/vim-emacs-bindings'
 NeoBundle 'tpope/vim-surround'
@@ -76,10 +75,12 @@ NeoBundle 'christoomey/vim-tmux-navigator'
 " --------------------------------------------------------------------------------
 "  Template_and_completion:
 " --------------------------------------------------------------------------------
-" NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
+"NeoBundle 'Shougo/neocomplcache'
+"NeoBundle 'Shougo/neosnippet'
+"NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'honza/vim-snippets'
+NeoBundle 'SirVer/ultisnips'
 NeoBundle 'ervandew/supertab'
-NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'artur-shaik/vim-javacomplete2'
 
@@ -87,10 +88,9 @@ NeoBundle 'artur-shaik/vim-javacomplete2'
 "  Theme:
 " --------------------------------------------------------------------------------
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'geoffharcourt/one-dark.vim'
 NeoBundle 'spinningarrow/vim-niji'
 NeoBundle 'bling/vim-airline'
-" NeoBundle 'jszakmeister/vim-togglecursor'
+NeoBundle 'DogLooksGood/zoomwin-vim'
 
 " --------------------------------------------------------------------------------
 "  Others:
@@ -103,11 +103,13 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'mtth/scratch.vim'
 NeoBundle 'moll/vim-bbye'
+NeoBundle 'airblade/vim-rooter'
+"NeoBundle 'spolu/dwm.vim'
+NeoBundle 'szw/vim-maximizer'
 
 " Finish
 call neobundle#end()
 filetype plugin indent on
-syntax on
 NeoBundleCheck
 
 " ================================================================================
@@ -117,6 +119,7 @@ NeoBundleCheck
 " --------------------------------------------------------------------------------
 "  Basic:
 " --------------------------------------------------------------------------------
+syntax on
 " ttyfast
 set ttyfast
 " xterm-256color
@@ -124,14 +127,14 @@ set t_Co=256
 " enable line number
 set nu
 " ESC without delay
-if ! has('gui_running')
-  set ttimeoutlen=100
-  augroup FastEscape
-    au!
-    au InsertEnter * set timeoutlen=500
-    au InsertLeave * set timeoutlen=1000
-  augroup END
-endif
+"if ! has('gui_running')
+"  set ttimeoutlen=100
+"  augroup FastEscape
+"    au!
+"    au InsertEnter * set timeoutlen=500
+"    au InsertLeave * set timeoutlen=1000
+"  augroup END
+"endif
 
 " --------------------------------------------------------------------------------
 "  Theme:
@@ -145,7 +148,7 @@ set noshowmode
 set noshowcmd
 
 let g:airline#extensions#whitespace#checks = []
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline#extensions#branch#enabled = 1
 
 hi VertSplit ctermbg=NONE term=NONE
@@ -196,7 +199,6 @@ set wildignore+=*.pyc,*.bak,*~,*.swp
 " NERDTree ignore
 let NERDTreeIgnore=['\.swp$', '\~$', '\.pyco$', 'node_modules', 'dist']
 
-
 " --------------------------------------------------------------------------------
 "  Send_to_terminal:
 " --------------------------------------------------------------------------------
@@ -242,11 +244,6 @@ let g:SuperTabDefaultCompletionType = "<c-p>"
 let g:paredit_electric_return = 0
 
 " --------------------------------------------------------------------------------
-"  Dwm:
-" --------------------------------------------------------------------------------
-"let g:dwm_map_keys = 1
-
-" --------------------------------------------------------------------------------
 "  Slimux:
 " --------------------------------------------------------------------------------
 let g:slimux_select_from_current_window = 0
@@ -262,13 +259,25 @@ let g:ctrlp_prompt_mappings = {
   \ }
 
 " --------------------------------------------------------------------------------
+"  Scratch:
+" --------------------------------------------------------------------------------
+let g:scratch_horizontal = 1
+let g:scratch_insert_autohide = 0
+let g:scratch_top = 1
+
+" --------------------------------------------------------------------------------
+"  Dwm:
+" --------------------------------------------------------------------------------
+let g:dwm_map_keys = 0
+
+" --------------------------------------------------------------------------------
 "  JavaComplete2:
 " --------------------------------------------------------------------------------
-augroup JC2
-    au!
-    au FileType java set omnifunc=javacomplete#Complete
-    au FileType java let b:SuperTabDefaultCompletionType = "<c-x><c-o><c-p>"
-augroup END
+"augroup JC2
+"    au!
+"    au FileType java set omnifunc=javacomplete#Complete
+"    au FileType java let b:SuperTabDefaultCompletionType = "<c-x><c-o><c-p>"
+"augroup END
 
 " ================================================================================
 "  Keybindings:
@@ -286,24 +295,30 @@ augroup END
 " | l          | Tag List     |
 " | 0          | Tree View    |
 
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-n>"
+let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 let g:SeekKey=','
+vmap <silent> <Leader>} S}
+vmap <silent> <Leader>{ S{
+vmap <silent> <Leader>] S[
+vmap <silent> <Leader>[ S[
+vmap <silent> <Leader>) S)
+vmap <silent> <Leader>( S(
+vmap <silent> <Leader>" S"
+vmap <silent> <Leader>' S'
+vmap <silent> <Leader>` S`
 nnoremap <return> o<esc>
 nnoremap <silent> <leader>tr :set rnu!<cr>
 nnoremap <silent> <leader>tp :set paste!<cr>
 nnoremap <silent> <leader>tm :TableModeToggle<cr>
-nnoremap <silent> tn :tabnew<cr>
-nnoremap <silent> <leader>` :source ~/.nvimrc<cr>
+nnoremap <silent> <leader>R :source ~/.nvimrc<cr>
 nnoremap <silent> <leader>0 :NERDTreeToggle<cr>
 nnoremap <silent> <leader>l :TagbarOpenAutoClose<cr>
-nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
 nnoremap <Leader>f :CtrlP<cr>
 nnoremap <Leader>b :CtrlPBuffer<cr>
 nnoremap <Leader>B :CtrlPMixed<cr>
 imap <C-J> <Plug>(emmet-expand-abbr)
-imap <C-l> <Plug>(neosnippet_expand_or_jump)
 vnoremap <Leader>sS :SlimuxREPLSendSelection<cr>
 nnoremap <Leader>sL :SlimuxREPLSendLine<cr>
 nnoremap <Leader>sC :SlimuxREPLConfigure<cr>
@@ -314,6 +329,10 @@ nnoremap <silent> <Leader>Q :Bdelete!<cr>
 nnoremap <silent> <Leader>x :terminal! (cd `pwd`; fish)<cr>
 vmap v <Plug>(expand_region_expand)
 vmap V <Plug>(expand_region_shrink)
+nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
 tnoremap <Esc> <C-\><C-n>
 tnoremap <A-h> <C-\><C-n><C-w>h
 tnoremap <A-j> <C-\><C-n><C-w>j
@@ -321,8 +340,13 @@ tnoremap <A-k> <C-\><C-n><C-w>k
 tnoremap <A-l> <C-\><C-n><C-w>l
 nnoremap <A-v> <C-w>v
 nnoremap <A-s> <C-w>s
-nnoremap <A-o> <C-w>o
+nmap <A-o> <C-w>o
 nnoremap <A-c> <C-w>c
+nmap <A-n> gt
+nmap <A-p> gt
+nmap <A-w> :tabclose<cr>
+nmap <A-t> :tabnew<cr>
+nmap <A-x> :tabnew<cr>:terminal! (cd `pwd`; fish)<cr>
 au FileType * nmap <Leader><Leader> <Plug>(easymotion-s)
 nmap <leader>gB :Gblame<cr>
 nmap <leader>gs :Gstatus<cr>
@@ -336,5 +360,10 @@ nmap <leader>gR :Gremove<cr>
 nmap <leader>gP :Gpush<cr>
 nmap <leader>gf :Gfetch<cr>
 nmap <leader>gg :Unite grep/git<cr><cr>
+nmap + <Plug>SpeedDatingUp
+nmap - <Plug>SpeedDatingDown
+nnoremap <silent> tn :tabnew<cr>
+nnoremap <silent> tx :tabnew<cr>:terminal! (cd `pwd`; fish)<cr>
 nnoremap <silent> <leader>u :Unite<cr>
 
+let g:python_host_prog = '/usr/local/bin/python'
