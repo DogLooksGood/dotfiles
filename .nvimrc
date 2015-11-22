@@ -12,7 +12,6 @@ if has('vim_starting')
 endif
 
 
-"let $NVIM_TUI_ENABLE_TRUE_COLOR=0
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 
 " ================================================================================
@@ -37,6 +36,7 @@ NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'maxbrunsfeld/vim-emacs-bindings'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'dhruvasagar/vim-table-mode'
+NeoBundle 'pelodelfuego/vim-swoop'
 
 " --------------------------------------------------------------------------------
 "  Syntax:
@@ -60,7 +60,8 @@ NeoBundle 'majutsushi/tagbar'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'rking/ag.vim'
-
+NeoBundle 'danro/rename.vim'
+NeoBundle 'jlanzarotta/bufexplorer'
 " --------------------------------------------------------------------------------
 "  Version_control:
 " --------------------------------------------------------------------------------
@@ -75,9 +76,6 @@ NeoBundle 'christoomey/vim-tmux-navigator'
 " --------------------------------------------------------------------------------
 "  Template_and_completion:
 " --------------------------------------------------------------------------------
-"NeoBundle 'Shougo/neocomplcache'
-"NeoBundle 'Shougo/neosnippet'
-"NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'ervandew/supertab'
@@ -88,6 +86,7 @@ NeoBundle 'artur-shaik/vim-javacomplete2'
 "  Theme:
 " --------------------------------------------------------------------------------
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'spinningarrow/vim-niji'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'DogLooksGood/zoomwin-vim'
@@ -104,7 +103,6 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'mtth/scratch.vim'
 NeoBundle 'moll/vim-bbye'
 NeoBundle 'airblade/vim-rooter'
-"NeoBundle 'spolu/dwm.vim'
 NeoBundle 'szw/vim-maximizer'
 
 " Finish
@@ -123,35 +121,29 @@ syntax on
 " ttyfast
 set ttyfast
 " xterm-256color
-set t_Co=256
+"set t_Co=256
 " enable line number
 set nu
-" ESC without delay
-"if ! has('gui_running')
-"  set ttimeoutlen=100
-"  augroup FastEscape
-"    au!
-"    au InsertEnter * set timeoutlen=500
-"    au InsertLeave * set timeoutlen=1000
-"  augroup END
-"endif
 
 " --------------------------------------------------------------------------------
 "  Theme:
 " --------------------------------------------------------------------------------
-colorscheme solarized
+colorscheme elflord
 
-set background=dark
-set cursorline
+"set background=dark
+"set cursorline
 set laststatus=2
 set noshowmode
 set noshowcmd
+set wildmode=longest,list,full
+set wildmenu
 
 let g:airline#extensions#whitespace#checks = []
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 
-hi VertSplit ctermbg=NONE term=NONE
+hi! VertSplit ctermfg=NONE ctermbg=NONE cterm=NONE term=NONE
 " --------------------------------------------------------------------------------
 "  Space_leader: Use space as leader key
 " --------------------------------------------------------------------------------
@@ -202,13 +194,20 @@ let NERDTreeIgnore=['\.swp$', '\~$', '\.pyco$', 'node_modules', 'dist']
 " --------------------------------------------------------------------------------
 "  Send_to_terminal:
 " --------------------------------------------------------------------------------
+function! IfTerminalSetId()
+    if exists("b:terminal_job_id")
+        let g:last_terminal_job_id = b:terminal_job_id
+    endif
+endfunction
+
 augroup Terminal
   au!
   au TermOpen * let g:last_terminal_job_id = b:terminal_job_id
+  au BufEnter * call IfTerminalSetId()
 augroup END
 
 function! REPLSend(lines)
-  call jobsend(g:last_terminal_job_id, add(a:lines, ''))
+    call jobsend(g:last_terminal_job_id, add(a:lines, ''))
 endfunction
 
 function! GetVisual() range
@@ -265,6 +264,12 @@ let g:scratch_horizontal = 1
 let g:scratch_insert_autohide = 0
 let g:scratch_top = 1
 
+
+" --------------------------------------------------------------------------------
+"  BufExplorer:
+" --------------------------------------------------------------------------------
+let g:bufExplorerDisableDefaultKeyMapping = 1
+
 " --------------------------------------------------------------------------------
 "  Dwm:
 " --------------------------------------------------------------------------------
@@ -316,12 +321,12 @@ nnoremap <silent> <leader>R :source ~/.nvimrc<cr>
 nnoremap <silent> <leader>0 :NERDTreeToggle<cr>
 nnoremap <silent> <leader>l :TagbarOpenAutoClose<cr>
 nnoremap <Leader>f :CtrlP<cr>
-nnoremap <Leader>b :CtrlPBuffer<cr>
+nnoremap <Leader>b :ToggleBufExplorer<cr>
 nnoremap <Leader>B :CtrlPMixed<cr>
 imap <C-J> <Plug>(emmet-expand-abbr)
-vnoremap <Leader>sS :SlimuxREPLSendSelection<cr>
-nnoremap <Leader>sL :SlimuxREPLSendLine<cr>
-nnoremap <Leader>sC :SlimuxREPLConfigure<cr>
+vnoremap <Leader>Ss :SlimuxREPLSendSelection<cr>
+nnoremap <Leader>Sl :SlimuxREPLSendLine<cr>
+nnoremap <Leader>Sc :SlimuxREPLConfigure<cr>
 nnoremap <silent> <Leader>sl :REPLSendLine<cr>
 vnoremap <silent> <leader>ss :REPLSendVisual<cr>
 nnoremap <silent> <Leader>q :Bdelete<cr>
@@ -362,8 +367,9 @@ nmap <leader>gf :Gfetch<cr>
 nmap <leader>gg :Unite grep/git<cr><cr>
 nmap + <Plug>SpeedDatingUp
 nmap - <Plug>SpeedDatingDown
-nnoremap <silent> tn :tabnew<cr>
-nnoremap <silent> tx :tabnew<cr>:terminal! (cd `pwd`; fish)<cr>
 nnoremap <silent> <leader>u :Unite<cr>
+nmap <Leader>r :call Swoop()<cr>
+vmap <Leader>r :call SwoopSelection()<cr>
 
 let g:python_host_prog = '/usr/local/bin/python'
+
