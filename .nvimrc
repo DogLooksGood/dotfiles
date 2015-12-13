@@ -11,15 +11,13 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
+"let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 
 " ================================================================================
 "  Plugins: Manage plugins with `neobundle`
 " $ curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
 " $ sh ./install.sh
 " ================================================================================
-
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -37,6 +35,7 @@ NeoBundle 'maxbrunsfeld/vim-emacs-bindings'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'dhruvasagar/vim-table-mode'
 NeoBundle 'pelodelfuego/vim-swoop'
+NeoBundle 'junegunn/vim-easy-align'
 
 " --------------------------------------------------------------------------------
 "  Syntax:
@@ -102,8 +101,10 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'mtth/scratch.vim'
 NeoBundle 'moll/vim-bbye'
-NeoBundle 'airblade/vim-rooter'
 NeoBundle 'szw/vim-maximizer'
+
+NeoBundle 'tpope/vim-fireplace'
+"NeoBundle 'tpope/vim-salve'
 
 " Finish
 call neobundle#end()
@@ -124,14 +125,16 @@ set ttyfast
 "set t_Co=256
 " enable line number
 set nu
+"set bufhidden=delete
+set completeopt-=preview
 
 " --------------------------------------------------------------------------------
 "  Theme:
 " --------------------------------------------------------------------------------
-colorscheme elflord
+colorscheme solarized
 
-"set background=dark
-"set cursorline
+set background=dark
+set cursorline
 set laststatus=2
 set noshowmode
 set noshowcmd
@@ -142,6 +145,7 @@ let g:airline#extensions#whitespace#checks = []
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 0
+let g:airline_theme = "raven"
 
 hi! VertSplit ctermfg=NONE ctermbg=NONE cterm=NONE term=NONE
 " --------------------------------------------------------------------------------
@@ -245,7 +249,7 @@ let g:paredit_electric_return = 0
 " --------------------------------------------------------------------------------
 "  Slimux:
 " --------------------------------------------------------------------------------
-let g:slimux_select_from_current_window = 0
+let g:slimux_select_from_current_window = 1
 
 " --------------------------------------------------------------------------------
 "  CtrlP:
@@ -278,11 +282,11 @@ let g:dwm_map_keys = 0
 " --------------------------------------------------------------------------------
 "  JavaComplete2:
 " --------------------------------------------------------------------------------
-"augroup JC2
-"    au!
-"    au FileType java set omnifunc=javacomplete#Complete
-"    au FileType java let b:SuperTabDefaultCompletionType = "<c-x><c-o><c-p>"
-"augroup END
+augroup JC2
+    au!
+    au FileType java set omnifunc=javacomplete#Complete
+    au FileType java let b:SuperTabDefaultCompletionType = "<c-x><c-o><c-p>"
+augroup END
 
 " ================================================================================
 "  Keybindings:
@@ -304,9 +308,11 @@ let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-n>"
 let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 let g:SeekKey=','
+
+imap <M-Return> <C-x><C-o>
 vmap <silent> <Leader>} S}
 vmap <silent> <Leader>{ S{
-vmap <silent> <Leader>] S[
+vmap <silent> <Leader>] S]
 vmap <silent> <Leader>[ S[
 vmap <silent> <Leader>) S)
 vmap <silent> <Leader>( S(
@@ -319,16 +325,15 @@ nnoremap <silent> <leader>tp :set paste!<cr>
 nnoremap <silent> <leader>tm :TableModeToggle<cr>
 nnoremap <silent> <leader>R :source ~/.nvimrc<cr>
 nnoremap <silent> <leader>0 :NERDTreeToggle<cr>
-nnoremap <silent> <leader>l :TagbarOpenAutoClose<cr>
+nnoremap <silent> <leader>r :TagbarOpenAutoClose<cr>
 nnoremap <Leader>f :CtrlP<cr>
-nnoremap <Leader>b :ToggleBufExplorer<cr>
+nnoremap <Leader>b :CtrlPBuffer<cr>
+"nnoremap <Leader>b :ToggleBufExplorer<cr>
 nnoremap <Leader>B :CtrlPMixed<cr>
 imap <C-J> <Plug>(emmet-expand-abbr)
-vnoremap <Leader>Ss :SlimuxREPLSendSelection<cr>
-nnoremap <Leader>Sl :SlimuxREPLSendLine<cr>
-nnoremap <Leader>Sc :SlimuxREPLConfigure<cr>
-nnoremap <silent> <Leader>sl :REPLSendLine<cr>
-vnoremap <silent> <leader>ss :REPLSendVisual<cr>
+vnoremap <Leader>ss :SlimuxREPLSendSelection<cr>
+nnoremap <Leader>sl :SlimuxREPLSendLine<cr>
+nnoremap <Leader>sc :SlimuxREPLConfigure<cr>
 nnoremap <silent> <Leader>q :Bdelete<cr>
 nnoremap <silent> <Leader>Q :Bdelete!<cr>
 nnoremap <silent> <Leader>x :terminal! (cd `pwd`; fish)<cr>
@@ -338,20 +343,6 @@ nnoremap <silent> <A-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <A-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <A-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <A-l> :TmuxNavigateRight<cr>
-tnoremap <Esc> <C-\><C-n>
-tnoremap <A-h> <C-\><C-n><C-w>h
-tnoremap <A-j> <C-\><C-n><C-w>j
-tnoremap <A-k> <C-\><C-n><C-w>k
-tnoremap <A-l> <C-\><C-n><C-w>l
-nnoremap <A-v> <C-w>v
-nnoremap <A-s> <C-w>s
-nmap <A-o> <C-w>o
-nnoremap <A-c> <C-w>c
-nmap <A-n> gt
-nmap <A-p> gt
-nmap <A-w> :tabclose<cr>
-nmap <A-t> :tabnew<cr>
-nmap <A-x> :tabnew<cr>:terminal! (cd `pwd`; fish)<cr>
 au FileType * nmap <Leader><Leader> <Plug>(easymotion-s)
 nmap <leader>gB :Gblame<cr>
 nmap <leader>gs :Gstatus<cr>
@@ -368,8 +359,26 @@ nmap <leader>gg :Unite grep/git<cr><cr>
 nmap + <Plug>SpeedDatingUp
 nmap - <Plug>SpeedDatingDown
 nnoremap <silent> <leader>u :Unite<cr>
-nmap <Leader>r :call Swoop()<cr>
-vmap <Leader>r :call SwoopSelection()<cr>
+nmap <Leader>l :call Swoop()<cr>
+vmap <Leader>l :call SwoopSelection()<cr>
 
 let g:python_host_prog = '/usr/local/bin/python'
-
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
+" Not use terminal, tmux instead.
+"tnoremap <Esc> <C-\><C-n>
+"tnoremap <A-h> <C-\><C-n><C-w>h
+"tnoremap <A-j> <C-\><C-n><C-w>j
+"tnoremap <A-k> <C-\><C-n><C-w>k
+"tnoremap <A-l> <C-\><C-n><C-w>l
+"nnoremap <A-v> <C-w>v
+"nnoremap <A-s> <C-w>s
+"nmap <A-o> <C-w>o
+"nnoremap <A-c> <C-w>c
+"nmap <A-n> gt
+"nmap <A-p> gt
+"nmap <A-w> :tabclose<cr>
+"nmap <A-t> :tabnew<cr>
+"nmap <A-x> :tabnew<cr>:terminal! (cd `pwd`; fish)<cr>
+"nnoremap <silent> <Leader>el :REPLSendLine<cr>
+"vnoremap <silent> <leader>es :REPLSendVisual<cr>
