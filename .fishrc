@@ -1,9 +1,13 @@
 set fish_greeting ""
 
-#set --global --export LANG en_US.UTF-8
-#set --global --export LC_ALL en_US.UTF-8
-            
+### COMPANY
+set -x HADOOP_CONF_DIR $CELLAR_DIR/hadoop/2.7.1/libexec/etc/hadoop/
+set -x HADOOP_USER_NAME hadoop
+### COMPANY END
+
+set -x CELLAR_DIR "/usr/local/Cellar"
 set -x PGDATA /usr/local/var/postgres
+set -x LEIN_FAST_TRAMPOLINE y
 alias mongod='mongod --dbpath /usr/local/var/mongodb'
 alias cnpm="npm --registry=https://registry.npm.taobao.org \
 --cache=$HOME/.npm/.cache/cnpm \
@@ -46,7 +50,6 @@ function fish_prompt --description 'Write out the prompt'
     # PWD
     set_color $fish_color_cwd
     echo -n (prompt_pwd)
-    set_color normal
 
     printf '%s ' (__fish_git_prompt)
 
@@ -54,7 +57,7 @@ function fish_prompt --description 'Write out the prompt'
         set_color $fish_color_error
     end
 
-    echo -n ' $ '
+    echo -n '->> '
 
     set_color normal
 end

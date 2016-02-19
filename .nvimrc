@@ -11,6 +11,7 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
+syntax enable 
 "let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 
 " ================================================================================
@@ -20,22 +21,21 @@ endif
 " ================================================================================
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-
 " --------------------------------------------------------------------------------
 "  Edit:
 " --------------------------------------------------------------------------------
-NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'easymotion/vim-easymotion'
-NeoBundle 'goldfeld/vim-seek'
-NeoBundle 'tpope/vim-speeddating'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'terryma/vim-expand-region'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'maxbrunsfeld/vim-emacs-bindings'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'dhruvasagar/vim-table-mode'
-NeoBundle 'pelodelfuego/vim-swoop'
-NeoBundle 'junegunn/vim-easy-align'
+NeoBundle 'Raimondi/delimitMate'                   " parentheses auto complete
+NeoBundle 'easymotion/vim-easymotion'              " Ace Jump e.g. <SPC><SPC>x
+NeoBundle 'goldfeld/vim-seek'                      " Seek next two char  e.g. ,ee
+NeoBundle 'tpope/vim-speeddating'                  " Number inc/dec e.g. <C-a> | <C-x> on number
+NeoBundle 'terryma/vim-multiple-cursors'           " Multiple cursor e.g. In visual mode, <C-n> | <C-x> | <C-p>
+NeoBundle 'terryma/vim-expand-region'              " e.g. In visual mode, v
+NeoBundle 'scrooloose/nerdcommenter'               " Commenter e.g. <SPC>cl | <SPC>cu
+NeoBundle 'maxbrunsfeld/vim-emacs-bindings'        " Unix cursove movement
+NeoBundle 'tpope/vim-surround'                     " Surrend region with specify symbol. e.g. <SPC>[ | <SPC>] | <SPC>( | <SPC>) etc
+NeoBundle 'dhruvasagar/vim-table-mode'             " Toggle with <SPC>tm
+NeoBundle 'pelodelfuego/vim-swoop'                 " Multiple find & modify e.g. <SPC>l
+NeoBundle 'junegunn/vim-easy-align'                " Align text , TODO
 
 " --------------------------------------------------------------------------------
 "  Syntax:
@@ -55,40 +55,41 @@ NeoBundle 'jceb/vim-orgmode'
 " --------------------------------------------------------------------------------
 "  File:
 " --------------------------------------------------------------------------------
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'majutsushi/tagbar'          " <SPC>r
+NeoBundle 'scrooloose/nerdtree'        " <SPC>0
+NeoBundle 'kien/ctrlp.vim'             " Swith to file in project. <SPC>f , Swith to opened buffer. <SPC>b, Most used. <SPC>B
 NeoBundle 'rking/ag.vim'
-NeoBundle 'danro/rename.vim'
-NeoBundle 'jlanzarotta/bufexplorer'
+NeoBundle 'danro/rename.vim'           " Unused!
+NeoBundle 'jlanzarotta/bufexplorer'    " Unused!
 " --------------------------------------------------------------------------------
 "  Version_control:
 " --------------------------------------------------------------------------------
-NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-fugitive'         " Git
 
 " --------------------------------------------------------------------------------
 "  Process_interaction:
 " --------------------------------------------------------------------------------
-NeoBundle 'epeli/slimux'
-NeoBundle 'christoomey/vim-tmux-navigator'
+NeoBundle 'epeli/slimux'                     " Send to Tmux e.g. Config with <SPC>sc, Send region <SPC>ss, Send line <SPC>sl
+NeoBundle 'christoomey/vim-tmux-navigator'   " <M-l> <M-r> <M-j> <M-k>
 
 " --------------------------------------------------------------------------------
 "  Template_and_completion:
 " --------------------------------------------------------------------------------
-NeoBundle 'honza/vim-snippets'
+NeoBundle 'honza/vim-snippets'               " Template complete. e.g. <C-l>
 NeoBundle 'SirVer/ultisnips'
-NeoBundle 'ervandew/supertab'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'artur-shaik/vim-javacomplete2'
+NeoBundle 'ervandew/supertab'                " TAB Complete
+NeoBundle 'mattn/emmet-vim'                  " HTML e.g. <C-j>
+" NeoBundle 'artur-shaik/vim-javacomplete2'
 
 " --------------------------------------------------------------------------------
 "  Theme:
 " --------------------------------------------------------------------------------
+NeoBundle 'endel/vim-github-colorscheme'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'spinningarrow/vim-niji'
+NeoBundle 'spinningarrow/vim-niji'           " Rainbow parentheses
 NeoBundle 'bling/vim-airline'
-NeoBundle 'DogLooksGood/zoomwin-vim'
+NeoBundle 'DogLooksGood/zoomwin-vim'         " Unused!
 
 " --------------------------------------------------------------------------------
 "  Others:
@@ -98,13 +99,13 @@ NeoBundle 'Shougo/vimproc.vim', {
 \     'mac' : 'make -f make_mac.mak',
 \    },
 \ }
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'mtth/scratch.vim'
+NeoBundle 'Shougo/unite.vim'                 " <C-u>
+NeoBundle 'mtth/scratch.vim'                 " Open a scratch buffer, e.g. gs
 NeoBundle 'moll/vim-bbye'
 NeoBundle 'szw/vim-maximizer'
 
-NeoBundle 'tpope/vim-fireplace'
-"NeoBundle 'tpope/vim-salve'
+" NeoBundle 'tpope/vim-fireplace'
+" NeoBundle 'tpope/vim-salve'
 
 " Finish
 call neobundle#end()
@@ -132,9 +133,10 @@ set completeopt-=preview
 "  Theme:
 " --------------------------------------------------------------------------------
 colorscheme solarized
+" colorscheme github
 
 set background=dark
-set cursorline
+" set cursorline
 set laststatus=2
 set noshowmode
 set noshowcmd
