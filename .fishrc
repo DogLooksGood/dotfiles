@@ -1,10 +1,5 @@
 set fish_greeting ""
 
-### COMPANY
-set -x HADOOP_CONF_DIR $CELLAR_DIR/hadoop/2.7.1/libexec/etc/hadoop/
-set -x HADOOP_USER_NAME hadoop
-### COMPANY END
-
 set -x CELLAR_DIR "/usr/local/Cellar"
 set -x PGDATA /usr/local/var/postgres
 set -x LEIN_FAST_TRAMPOLINE y
