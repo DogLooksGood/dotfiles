@@ -1,12 +1,13 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/DogLooksGood/.oh-my-zsh
+  export ZSH=/home/dog/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# ZSH_THEME="bureau"
-ZSH_THEME="simple"
+# ZSH_THEME="rixius"
+ZSH_THEME="gnzh"
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -48,14 +49,13 @@ ZSH_THEME="simple"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
+# Example format: plugins=(git fcitx lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins=(git osx autojump mvn lein sbt virtualenv tmux tmuxinator safe-paste)
-plugins=(autojump lein virtualenv tmux tmuxinator git)
+plugins=(git vim)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+  export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -64,11 +64,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
-else
-  export EDITOR='atom'
-fi
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -84,19 +84,18 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-#
+alias p="proxychains4 -q"
+alias x="xmonad --recompile"
+alias z='source ~/.zshrc'
+alias f='feh --bg-fill'
+alias e='emacsclient -n'
 
-export TERM=xterm-256color
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-source /usr/local/bin/virtualenvwrapper.sh
-export WORKON_HOME=~/.virtualenv
-export HISTSIZE=100
-export PGDATA=/usr/local/var/postgres
-alias vi='mvim -v'
-alias v='mvim -v .'
-alias mongod='mongod --dbpath /usr/local/var/mongodb'
-alias cnpm="npm --registry=https://registry.npm.taobao.org \
---cache=$HOME/.npm/.cache/cnpm \
---disturl=https://npm.taobao.org/dist \
---userconfig=$HOME/.cnpmrc"
+JAVA_HOME=/opt/jdk1.8.0_77
+PATH=$HOME/scripts:$JAVA_HOME/bin:$PATH
+
+export JAVA_HOME
+export PATH
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /usr/share/autojump/autojump.zsh
+
