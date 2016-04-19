@@ -18,7 +18,7 @@
 ;; Basic configurations.
 (set-face-attribute 'default nil
 		    :family "Source Code Pro"
-		    :height 120
+		    :height 135
 		    :weight 'medium)
 
 (add-to-list 'default-frame-alist '(alpha 92 92))
@@ -278,5 +278,12 @@
     (setq cider-cljs-lein-repl "(in-ns 'user) (cljs-repl)")
     (setq clojure-defun-style-default-indent t)
     (add-hook 'cider-repl-mode-hook (eldoc-mode 1))))
+
+;; ============================================================================
+;; Org-mode setup
+(add-hook 'org-mode-hook
+	  (lambda ()
+	    (face-remap-add-relative 'default :family "Source Han Sans HW"
+				     :height 145)))
 
 (server-start)
