@@ -17,11 +17,15 @@
 ;; =============================================================================
 ;; Basic configurations.
 (set-face-attribute 'default nil
-		    :family "Source Code Pro"
+		    :family "Source Code Pro For Powerline"
 		    :height 135
 		    :weight 'medium)
 
-(add-to-list 'default-frame-alist '(alpha 92 92))
+;; MAC OSX
+(setq mac-command-modifier 'super)
+(setq mac-option-modifier 'meta)
+
+;; (add-to-list 'default-frame-alist '(alpha 92 92))
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
@@ -206,27 +210,6 @@
   ("+" text-scale-increase "in")
   ("-" text-scale-decrease "out"))
 
-(defhydra hydra-navi ()
-  "navi"
-  ("u" undo)
-  ("g" goto-line)
-  ("p" projectile-switch-project)
-  ("o" projectile-find-file-dwim)
-  ("<" beginning-of-buffer)
-  (">" end-of-buffer)
-  ("a" beginning-of-line)
-  ("e" end-of-line)
-  ("y" kill-ring-save "yank" :color blue)
-  ("d" delete-region "del" :color blue)
-  ("m" set-mark-command "mark")
-  ("f" forward-word)
-  ("b" backward-word)
-  ("l" forward-char)
-  ("h" backward-char)
-  ("j" next-line)
-  ("k" previous-line)
-  ("q" nil "quit"))
-
 (defhydra hydra-window ()
   "window"
   ("h" windmove-left)
@@ -243,41 +226,58 @@
   ("b" ido-switch-buffer)
   ("q" nil "quit"))
 
-(bind-key "C-o" 'hydra-navi/body)
-(bind-key "C-M-o" 'hydra-window/body)
+(bind-key "C-o" 'hydra-window/body)
 
 ;; =============================================================================
 ;; Theme
-;; (use-package color-theme-sanityinc-solarized
-;;   :ensure t
-;;   :init
-;;   (load-theme 'sanityinc-solarized-dark t))
+(use-package color-theme-sanityinc-solarized
+  :ensure t
+  :init
+  (load-theme 'sanityinc-solarized-dark t))
 
 ;; (use-package color-theme-sanityinc-tomorrow
 ;;   :ensure t
 ;;   :init
 ;;   (load-theme 'sanityinc-tomorrow-blue t))
 
-(use-package zenburn-theme
+;; (use-package zenburn-theme
+;;   :ensure t
+;;   :init
+;;   (load-theme 'zenburn t))
+
+
+;; =============================================================================
+;; Git
+(use-package magit
   :ensure t
-  :init
-  (load-theme 'zenburn t))
+  :bind
+  (("C-z" . magit-dispatch-popup)))
 
 ;; =============================================================================
 ;; Clojure
-(add-hook 'clojure-mode-hook
-	  (lambda ()
-	    (dolist (c (string-to-list ":_-?!#*"))
-	      (modify-syntax-entry c "w" clojure-mode-syntax-table))))
+
+(defun clojure-mode-init ()
+  (dolist (c (string-to-list ":_-?!#*"))
+    (modify-syntax-entry c "w" clojure-mode-syntax-table))
+  (clj-refactor-mode 1)
+  (yas-minor-mode 1)
+  (eldoc-mode 1)
+  (cljr-add-keybindings-with-prefix "C-c C-m"))
+
+(use-package clj-refactor
+  :ensure t
+  :bind
+  (:map clojure-mode-map
+	("C-." . hydra-cljr-help-menu/body)))
 
 (use-package cider
   :ensure t
   :init
   (progn
+    (add-hook 'clojure-mode-hook 'clojure-mode-init)
     (setq cider-lein-parameters "with-profile +emacs repl :headless")
     (setq cider-cljs-lein-repl "(in-ns 'user) (cljs-repl)")
-    (setq clojure-defun-style-default-indent t)
-    (add-hook 'cider-repl-mode-hook (eldoc-mode 1))))
+    (setq clojure-defun-style-default-indent t)))
 
 ;; ============================================================================
 ;; Org-mode setup
@@ -287,3 +287,5 @@
 				     :height 145)))
 
 (server-start)
+
+(toggle-frame-maximized)
