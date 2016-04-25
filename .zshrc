@@ -5,7 +5,7 @@ export ZSH=/Users/DogLooksGood/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="dog"
+ZSH_THEME="apple"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -68,6 +68,7 @@ else
   export EDITOR='nvim'
 fi
 
+export PATH="$HOME/bin:$PATH"
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -84,7 +85,7 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim="nvim"
 alias p="proxychains4 -q"
-alias e="open -a /Applications/Emacs.app $1"
+alias e="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -n $1"
 
 # Autojump
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
