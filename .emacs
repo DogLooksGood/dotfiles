@@ -10,15 +10,15 @@
   (progn
     ;; If there's no use-package, this should be the first launch
     ;; So, refresh the package list
-    (package-refresh-contents)
+    ;; (package-refresh-contents)
     (package-install 'use-package)))
 (require 'use-package)
 
 ;; =============================================================================
 ;; Basic configurations.
 (set-face-attribute 'default nil
-		    :family "Source Code Pro For Powerline"
-		    :height 135
+		    :family "Terminus"
+		    :height 125
 		    :weight 'medium)
 
 ;; MAC OSX
@@ -176,11 +176,12 @@
 	("<escape>" . lispy-escape)
 	("M-[" . lispy-left)
 	("M-]" . lispy-right))
+  :config
+  (progn
+    (setq lispy-no-space t)
+    (unbind-key "M-n" lispy-mode-map))
   :init
   (progn
-    ;; Override lispy's M-n.
-    (when (bound-and-true-p highlight-symbol-mode)
-      (bind-key "M-n" 'highlight-symbol-next lispy-mode-map))
     (add-hook 'emacs-lisp-mode-hook 'enable-lispy)
     (add-hook 'clojure-mode-hook 'enable-lispy)))
 
@@ -192,7 +193,11 @@
   (("M-<tab>" . ace-window))
   :init
   (progn
+    (setq lispy-eval-display-style 'overlay)
     (setq aw-dispatch-always nil)))
+
+(use-package emmet-mode
+  :ensure t)
 
 (use-package helm-projectile
   :ensure t)
@@ -235,16 +240,23 @@
   :init
   (load-theme 'sanityinc-solarized-dark t))
 
+;; (use-package noctilux-theme
+;;   :ensure t
+;;   :init
+;;   (load-theme 'noctilux t))
+
 ;; (use-package color-theme-sanityinc-tomorrow
 ;;   :ensure t
 ;;   :init
-;;   (load-theme 'sanityinc-tomorrow-blue t))
+;;   (load-theme 'sanityinc-tomorrow-eightiess t))
 
 ;; (use-package zenburn-theme
 ;;   :ensure t
 ;;   :init
 ;;   (load-theme 'zenburn t))
 
+(setq org-agenda-files '("~/Work/Weekly"))
+(setq org-agenda-todo-list-sublevels nil)
 
 ;; =============================================================================
 ;; Git
@@ -257,12 +269,12 @@
 ;; Clojure
 
 (defun clojure-mode-init ()
-  (dolist (c (string-to-list ":_-?!#*"))
-    (modify-syntax-entry c "w" clojure-mode-syntax-table))
+  (subword-mode 1)
+  (setq clojure-defun-style-default-indent t)
   (clj-refactor-mode 1)
   (yas-minor-mode 1)
   (eldoc-mode 1)
-  (cljr-add-keybindings-with-prefix "C-c C-m"))
+  (cljr-add-keybindings-with-prefix "C-."))
 
 (use-package clj-refactor
   :ensure t
@@ -276,16 +288,32 @@
   (progn
     (add-hook 'clojure-mode-hook 'clojure-mode-init)
     (setq cider-lein-parameters "with-profile +emacs repl :headless")
-    (setq cider-cljs-lein-repl "(in-ns 'user) (cljs-repl)")
-    (setq clojure-defun-style-default-indent t)))
+    (setq cider-cljs-lein-repl "(in-ns 'user) (cljs-repl)")))
+
+;; =============================================================================
+(use-package markdown-mode
+  :ensure t)
 
 ;; ============================================================================
 ;; Org-mode setup
 (add-hook 'org-mode-hook
 	  (lambda ()
-	    (face-remap-add-relative 'default :family "Source Han Sans HW"
-				     :height 145)))
+	    (org-indent-mode 1)
+	    ;; (set-face-attribute 'default nil
+	    ;; 			:family "Source Han Sans"
+	    ;; 			:height 140
+	    ;; 			:weight 'medium)
+	    
+	    ;; (face-remap-add-relative 'default
+	    ;; 			     :family "Source Han Sans"
+	    ;; 			     :height 145)
+	    ))
 
 (server-start)
+;; (toggle-frame-maximized)
 
-(toggle-frame-maximized)
+
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
