@@ -18,8 +18,8 @@
 ;; Basic configurations.
 (set-face-attribute 'default nil
 		    :family "Terminus"
-		    :height 125
-		    :weight 'medium)
+		    :height 115
+		    :weight 'regular)
 
 ;; MAC OSX
 (setq mac-command-modifier 'super)
@@ -131,12 +131,12 @@
 
 ;; =============================================================================
 ;; Highlight Parentheses
-(use-package highlight-parentheses
-  :ensure t
-  :init
-  (progn
-    (add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
-    (add-hook 'clojure-mode-hook 'highlight-parentheses-mode)))
+;; (use-package highlight-parentheses
+;;   :ensure t
+;;   :init
+;;   (progn
+;;     (add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
+;;     (add-hook 'clojure-mode-hook 'highlight-parentheses-mode)))
 
 ;; =============================================================================
 ;; Highlight Symbol
@@ -235,15 +235,15 @@
 
 ;; =============================================================================
 ;; Theme
-(use-package color-theme-sanityinc-solarized
-  :ensure t
-  :init
-  (load-theme 'sanityinc-solarized-dark t))
-
-;; (use-package noctilux-theme
+;; (use-package color-theme-sanityinc-solarized
 ;;   :ensure t
 ;;   :init
-;;   (load-theme 'noctilux t))
+;;   (load-theme 'sanityinc-solarized-dark t))
+
+(use-package noctilux-theme
+  :ensure t
+  :init
+  (load-theme 'noctilux t))
 
 ;; (use-package color-theme-sanityinc-tomorrow
 ;;   :ensure t
@@ -270,7 +270,7 @@
 
 (defun clojure-mode-init ()
   (subword-mode 1)
-  (setq clojure-defun-style-default-indent t)
+  (setq clojure-defun-style-default-indent nil)
   (clj-refactor-mode 1)
   (yas-minor-mode 1)
   (eldoc-mode 1)
@@ -288,11 +288,17 @@
   (progn
     (add-hook 'clojure-mode-hook 'clojure-mode-init)
     (setq cider-lein-parameters "with-profile +emacs repl :headless")
+    (setq cider-boot-parameters "cider repl -s wait")
     (setq cider-cljs-lein-repl "(in-ns 'user) (cljs-repl)")))
 
 ;; =============================================================================
 (use-package markdown-mode
   :ensure t)
+
+;; =============================================================================
+(eval-after-load 'eshell
+  (use-package eshell-autojump
+    :ensure t))
 
 ;; ============================================================================
 ;; Org-mode setup
