@@ -263,7 +263,8 @@
 (use-package magit
   :ensure t
   :bind
-  (("C-z" . magit-dispatch-popup)))
+  (("C-z" . magit-dispatch-popup)
+   ("C-x g" . magit-status)))
 
 ;; =============================================================================
 ;; Clojure
