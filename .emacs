@@ -1,13 +1,29 @@
+;; Shortcuts
+;; 
+;; | function              | keybinding  |
+;; |-----------------------+-------------|
+;; | clojure refactor menu | control + . |
+;; | git menu              | command + . |
+;; | window operators      | control + o |
+;; | swith project         | command + p |
+;; | open file in project  | command + e |
+;; | open file             | command + f |
+;; | kill current buffer   | command + k |
+;; | save current file     | command + s |
+;; | swith buffer          | command + b |
+;; | close other window    | command + 1 |
+;; | close current window  | command + 0 |
+;; | swith window          | option + TAB|
+
+;; =============================================================================
+;; Initialize
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
-;; Load plugin with `use-package`
 (unless (package-installed-p 'use-package)
   (progn
-    ;; If there's no use-package, this should be the first launch
-    ;; So, refresh the package list
     (package-refresh-contents)
     (package-install 'use-package)))
 (require 'use-package)
@@ -15,11 +31,9 @@
 ;; =============================================================================
 ;; Basic configurations.
 (set-face-attribute 'default nil
-		    :family "Source Code Pro For Powerline"
+		    :family "Source Code Pro"
 		    :height 125
-		    :weight 'light)
-
-(print (font-family-list))
+		    :weight 'regular)
 
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
@@ -36,11 +50,13 @@
   (setq ring-bell-function 'ignore))
 
 (hl-line-mode)
+(show-paren-mode t)
 
 (add-hook 'prog-mode-hook
 	  (lambda ()
 	    (linum-mode 1)))
 
+;; =============================================================================
 ;; Eshell
 (add-hook
  'eshell-mode-hook
@@ -101,7 +117,8 @@
   :ensure t
   :init
   (progn
-    (add-hook 'prog-mode-hook 'eldoc-mode)))
+    (add-hook 'clojure-mode-hook #'eldoc-mode)
+    (add-hook 'emacs-lisp-mode-hook #'eldoc-mode)))
 
 ;; =============================================================================
 ;; Company
@@ -156,6 +173,14 @@
     (setq highlight-symbol-idle-delay 0.25)))
 
 ;; =============================================================================
+;; Exec Path From Shell
+(use-package exec-path-from-shell
+  :ensure t
+  :init
+  (when (memq window-system '(mac ns))
+    (exec-path-from-shell-initialize)))
+
+;; =============================================================================
 ;; Avy
 (use-package avy
   :ensure t
@@ -185,6 +210,7 @@
   :init
   (progn
     (setq lispy-eval-display-style 'overlay)
+    (setq lispy-no-space t)
     (add-hook 'emacs-lisp-mode-hook 'enable-lispy)
     (add-hook 'clojure-mode-hook 'enable-lispy)))
 
@@ -237,20 +263,20 @@
 (use-package color-theme-sanityinc-solarized
   :ensure t
   :init
-  (load-theme 'sanityinc-solarized-dark t))
+  (load-theme 'sanityinc-solarized-light t))
 
 ;; =============================================================================
 ;; Git
 (use-package magit
   :ensure t
   :bind
-  (("C-z" . magit-dispatch-popup)))
+  (("s-." . magit-dispatch-popup)))
 
 ;; =============================================================================
 ;; Clojure
 
 (defun clojure-mode-init ()
-  (setq clojure-defun-style-default-indent t)
+  (setq clojure-defun-style-default-indent nil)
   (subword-mode 1)
   (yas-minor-mode 1)
   (eldoc-mode 1))
@@ -274,8 +300,14 @@
   (progn
     (setq cider-lein-command "/usr/local/bin/lein")
     (setq cider-lein-parameters "with-profile +emacs repl :headless")
-    (setq cider-cljs-lein-repl "(in-ns 'user) (cljs-repl)")))
+    (setq cider-cljs-lein-repl "(in-ns 'boot.user) (start-repl)")))
 
+;; =============================================================================
+;; Emmet
+(use-package emmet-mode
+  :ensure t
+  :bind
+  (("C-j" . emmet-expand-line)))
 
 ;; ============================================================================
 ;; Org-mode setup
@@ -285,7 +317,12 @@
 	    (face-remap-add-relative 'default :family "Source Han Sans HW"
 				     :height 145)))
 
-(when window-system
-  (server-start)
-  (toggle-frame-maximized))
-
+;; =============================================================================
+;; Keybindings
+(bind-key "s-f" 'ido-find-file)
+(bind-key "s-e" 'projectile-find-file)
+(bind-key "s-b" 'ido-switch-buffer)
+(bind-key "s-s" 'save-buffer)
+(bind-key "s-p" 'projectile-switch-project)
+(bind-key "s-1" 'delete-other-windows)
+(bind-key "s-0" 'delete-window)
