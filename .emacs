@@ -318,6 +318,16 @@
 				     :height 145)))
 
 ;; =============================================================================
+;; Dired
+(defun dired-mode-init ()
+  (progn
+    (put 'dired-find-alternate-file 'disabled nil)
+    (bind-key "b" (lambda () (interactive)
+		    (find-alternate-file "..") dired-mode-map))))
+
+(add-hook 'dired-mode-hook #'dired-mode-init)
+
+;; =============================================================================
 ;; Keybindings
 (bind-key "s-f" 'ido-find-file)
 (bind-key "s-e" 'projectile-find-file)
