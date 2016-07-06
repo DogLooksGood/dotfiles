@@ -32,7 +32,7 @@
 ;; Basic configurations.
 (set-face-attribute 'default nil
 		    :family "Source Code Pro"
-		    :height 125
+		    :height 140
 		    :weight 'regular)
 
 (setq backup-directory-alist
@@ -52,9 +52,9 @@
 (hl-line-mode)
 (show-paren-mode t)
 
-(add-hook 'prog-mode-hook
-	  (lambda ()
-	    (linum-mode 1)))
+;; (add-hook 'prog-mode-hook
+;; 	  (lambda ()
+;; 	    (linum-mode 1)))
 
 ;; =============================================================================
 ;; Eshell
@@ -260,10 +260,20 @@
 
 ;; =============================================================================
 ;; Theme
-(use-package color-theme-sanityinc-solarized
+;; (use-package color-theme-sanityinc-solarized
+;;   :ensure t
+;;   :init
+;;   (load-theme 'sanityinc-solarized-light t))
+
+(use-package dracula-theme
   :ensure t
   :init
-  (load-theme 'sanityinc-solarized-light t))
+  (load-theme 'dracula t))
+
+;; (use-package color-theme-sanityinc-tomorrow
+;;   :ensure t
+;;   :init
+;;   (load-theme 'sanityinc-tomorrow-night t))
 
 ;; =============================================================================
 ;; Git
@@ -298,6 +308,7 @@
   :ensure t
   :init
   (progn
+    (setq cider-repl-display-help-banner t)
     (setq cider-lein-command "/usr/local/bin/lein")
     (setq cider-lein-parameters "with-profile +emacs repl :headless")
     (setq cider-cljs-lein-repl "(in-ns 'boot.user) (start-repl)")))
@@ -336,3 +347,4 @@
 (bind-key "s-p" 'projectile-switch-project)
 (bind-key "s-1" 'delete-other-windows)
 (bind-key "s-0" 'delete-window)
+(bind-key "s-d" 'ido-dired)
