@@ -36,6 +36,7 @@ NeoBundle 'tpope/vim-surround'                     " Surrend region with specify
 NeoBundle 'dhruvasagar/vim-table-mode'             " Toggle with <SPC>tm
 NeoBundle 'pelodelfuego/vim-swoop'                 " Multiple find & modify e.g. <SPC>l
 NeoBundle 'junegunn/vim-easy-align'                " Align text , TODO
+"NeoBundle 'bhurlow/vim-parinfer'
 
 " --------------------------------------------------------------------------------
 "  Syntax:
@@ -79,7 +80,7 @@ NeoBundle 'honza/vim-snippets'               " Template complete. e.g. <C-l>
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'ervandew/supertab'                " TAB Complete
 NeoBundle 'mattn/emmet-vim'                  " HTML e.g. <C-j>
-" NeoBundle 'artur-shaik/vim-javacomplete2'
+NeoBundle 'artur-shaik/vim-javacomplete2'
 
 " --------------------------------------------------------------------------------
 "  Theme:
@@ -132,7 +133,7 @@ set completeopt-=preview
 " --------------------------------------------------------------------------------
 "  Theme:
 " --------------------------------------------------------------------------------
-colorscheme solarized
+" colorscheme solarized
 " colorscheme github
 
 set background=dark
@@ -191,7 +192,7 @@ au BufNewFile,BufRead .fishrc set filetype=fish
 "  File: 
 " --------------------------------------------------------------------------------
 " Wild ignore file extensions
-set wildignore+=*/tmp/*,*/dist/*,*/node_modules/*,*/log/*,*/target/*,*/out/* 
+set wildignore+=*/tmp/*,*/dist/*,*/node_modules/*,*/log/*,*/target/*,*/out/*,*/android/*,*/ios/*
 set wildignore+=*.pyc,*.bak,*~,*.swp
 
 " NERDTree ignore
@@ -284,11 +285,8 @@ let g:dwm_map_keys = 0
 " --------------------------------------------------------------------------------
 "  JavaComplete2:
 " --------------------------------------------------------------------------------
-augroup JC2
-    au!
-    au FileType java set omnifunc=javacomplete#Complete
-    au FileType java let b:SuperTabDefaultCompletionType = "<c-x><c-o><c-p>"
-augroup END
+au FileType java setlocal omnifunc=javacomplete#Complete
+au FileType java let b:SuperTabDefaultCompletionType = "<c-x><c-o><c-p>"
 
 " ================================================================================
 "  Keybindings:

@@ -28,17 +28,30 @@
     (package-install 'use-package)))
 (require 'use-package)
 
+(setq use-package-always-defer t
+      use-package-always-ensure t)
+
 ;; =============================================================================
 ;; Basic configurations.
 (set-face-attribute 'default nil
-		    :family "Source Code Pro"
-		    :height 140
+		    :family "Fira Code"
+		    :height 160
 		    :weight 'regular)
 
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
+
+(setq-default line-spacing 4)
+
+(prefer-coding-system 'utf-8)
+(setq buffer-file-coding-system 'utf-8-unix)
+(setq default-file-name-coding-system 'utf-8-unix)
+(setq default-keyboard-coding-system 'utf-8-unix)
+(setq default-process-coding-system '(utf-8-unix . utf-8-unix))
+(setq default-sendmail-coding-system 'utf-8-unix)
+(setq default-terminal-coding-system 'utf-8-unix)
 
 (when window-system
   (setq mac-command-modifier 'super)
@@ -51,6 +64,9 @@
 
 (hl-line-mode)
 (show-paren-mode t)
+
+(set-frame-parameter (selected-frame) 'alpha '(100 . 95))
+(add-to-list 'default-frame-alist '(alpha . (100 . 95)))
 
 ;; (add-hook 'prog-mode-hook
 ;; 	  (lambda ()
@@ -190,8 +206,10 @@
 ;; =============================================================================
 ;; Lispy
 (defun enable-lispy ()
+  (eldoc-add-command-completions "lispy-")
   (lispy-mode 1)
-  (unbind-key "M-n" lispy-mode-map))
+  (unbind-key "M-n" lispy-mode-map)
+  (unbind-key "<spc>" lispy-mode-map))
 
 ;; Use ESC to escape from form
 (defun lispy-escape ()
@@ -206,11 +224,13 @@
   (:map lispy-mode-map
 	("<escape>" . lispy-escape)
 	("M-[" . lispy-left)
-	("M-]" . lispy-right))
+	("M-]" . lispy-right)
+	("C-j" . indent-new-comment-line))
   :init
   (progn
-    (setq lispy-eval-display-style 'overlay)
+    ;; (setq lispy-eval-display-style 'overlay)
     (setq lispy-no-space t)
+    (add-hook 'cider-repl-mode-hook 'enable-lispy)
     (add-hook 'emacs-lisp-mode-hook 'enable-lispy)
     (add-hook 'clojure-mode-hook 'enable-lispy)))
 
@@ -254,26 +274,20 @@
   ("z" ace-swap-window)
   ("i" ace-maximize-window)
   ("b" ido-switch-buffer)
+  ("t" projectile-find-file)
   ("q" nil "quit"))
 
 (bind-key "C-o" 'hydra-window/body)
 
 ;; =============================================================================
 ;; Theme
-;; (use-package color-theme-sanityinc-solarized
-;;   :ensure t
+;; (use-package idea-darkula-theme
 ;;   :init
-;;   (load-theme 'sanityinc-solarized-light t))
+;;   (load-theme 'idea-darkula t))
 
-(use-package dracula-theme
-  :ensure t
+(use-package spacemacs-theme
   :init
-  (load-theme 'dracula t))
-
-;; (use-package color-theme-sanityinc-tomorrow
-;;   :ensure t
-;;   :init
-;;   (load-theme 'sanityinc-tomorrow-night t))
+  (load-theme 'spacemacs-light t))
 
 ;; =============================================================================
 ;; Git
@@ -286,12 +300,11 @@
 ;; Clojure
 
 (defun clojure-mode-init ()
-  (setq clojure-defun-style-default-indent nil)
   (subword-mode 1)
-  (yas-minor-mode 1)
-  (eldoc-mode 1))
+  (yas-minor-mode 1))
 
-(add-hook 'clojure-mode-hook 'clojure-mode-init)
+(add-hook 'clojure-mode-hook #'clojure-mode-init)
+(add-hook 'clojure-mode-hook #'eldoc-mode)
 
 (use-package clj-refactor
   :ensure t
@@ -306,11 +319,14 @@
 
 (use-package cider
   :ensure t
+  :bind
+  (:map cider-mode-map
+	("s-e" . cider-eval-defun-at-point))
   :init
   (progn
-    (setq cider-repl-display-help-banner t)
+    (setq cider-repl-display-help-banner nil)
     (setq cider-lein-command "/usr/local/bin/lein")
-    (setq cider-lein-parameters "with-profile +emacs repl :headless")
+    ;; (setq cider-lein-parameters "with-profile +emacs repl :headless")
     (setq cider-cljs-lein-repl "(in-ns 'boot.user) (start-repl)")))
 
 ;; =============================================================================
@@ -318,10 +334,11 @@
 (use-package emmet-mode
   :ensure t
   :bind
-  (("C-j" . emmet-expand-line)))
+  (("C-M-j" . emmet-expand-line)))
 
 ;; ============================================================================
 ;; Org-mode setup
+(setq org-src-fontify-natively t)
 (add-hook 'org-mode-hook
 	  (lambda ()
 	    (org-indent-mode 1)
@@ -341,10 +358,32 @@
 ;; =============================================================================
 ;; Keybindings
 (bind-key "s-f" 'ido-find-file)
-(bind-key "s-e" 'projectile-find-file)
+(bind-key "s-t" 'projectile-find-file)
 (bind-key "s-b" 'ido-switch-buffer)
 (bind-key "s-s" 'save-buffer)
 (bind-key "s-p" 'projectile-switch-project)
 (bind-key "s-1" 'delete-other-windows)
 (bind-key "s-0" 'delete-window)
 (bind-key "s-d" 'ido-dired)
+(bind-key "s-g" 'goto-line)
+
+
+;; =============================================================================
+(server-start)
+(toggle-frame-maximized)
+
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (spacemacs-theme zenburn-theme web-mode use-package tern-auto-complete sublimity spacegray-theme solarized-theme smex rainbow-delimiters noctilux-theme moe-theme magit lispy js2-mode inf-clojure idea-darkula-theme highlight-symbol highlight-parentheses helm-projectile flycheck exec-path-from-shell emmet-mode darcula-theme company color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clj-refactor))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
