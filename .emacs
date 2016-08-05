@@ -1,25 +1,8 @@
-;; Shortcuts
-;; 
-;; | function              | keybinding  |
-;; |-----------------------+-------------|
-;; | clojure refactor menu | control + . |
-;; | git menu              | command + . |
-;; | window operators      | control + o |
-;; | swith project         | command + p |
-;; | open file in project  | command + e |
-;; | open file             | command + f |
-;; | kill current buffer   | command + k |
-;; | save current file     | command + s |
-;; | swith buffer          | command + b |
-;; | close other window    | command + 1 |
-;; | close current window  | command + 0 |
-;; | swith window          | option + TAB|
-
 ;; =============================================================================
 ;; Initialize
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
+	     '("melpa-cn" . "http://elpa.codefalling.com/melpa/"))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -38,12 +21,20 @@
 		    :height 160
 		    :weight 'regular)
 
+  
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+(setq mouse-wheel-progressive-speed nil)
+(setq mouse-wheel-follow-mouse 't)
+(setq scroll-step 1)
+
+(setq inhibit-startup-screen t)
+
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
-(setq-default line-spacing 4)
+(setq-default line-spacing 8)
 
 (prefer-coding-system 'utf-8)
 (setq buffer-file-coding-system 'utf-8-unix)
@@ -68,9 +59,14 @@
 (set-frame-parameter (selected-frame) 'alpha '(100 . 95))
 (add-to-list 'default-frame-alist '(alpha . (100 . 95)))
 
-;; (add-hook 'prog-mode-hook
-;; 	  (lambda ()
-;; 	    (linum-mode 1)))
+(add-hook 'prog-mode-hook
+	  (lambda ()
+	    (linum-mode 1)))
+
+(defun recent-buffer ()
+  "Switch to other buffer"
+  (interactive)
+  (switch-to-buffer (other-buffer)))
 
 ;; =============================================================================
 ;; Eshell
@@ -148,7 +144,7 @@
   :ensure t
   :bind
   (:map prog-mode-map
-   ("<tab>" . indent-or-complete)
+	("<tab>" . indent-or-complete)
    :map company-active-map
    ("<escape>" . company-abort)
    ("C-n" . company-select-next)
@@ -218,18 +214,34 @@
       (keyboard-escape-quit)
     (beginning-of-defun)))
 
+(defun lispy-beginning-of-buffer ()
+  (interactive)
+  (progn
+    (beginning-of-buffer)
+    (call-interactively 'lispy-forward)
+    (call-interactively 'lispy-backward)))
+
+(defun lispy-end-of-buffer ()
+  (interactive)
+  (progn
+    (end-of-buffer)
+    (lispy-escape)))
+
 (use-package lispy
   :ensure t
   :bind
   (:map lispy-mode-map
 	("<escape>" . lispy-escape)
+	("s-v" . lispy-yank)
+	("s-," . lispy-beginning-of-buffer)
+	("s-." . lispy-end-of-buffer)
 	("M-[" . lispy-left)
 	("M-]" . lispy-right)
 	("C-j" . indent-new-comment-line))
   :init
   (progn
-    ;; (setq lispy-eval-display-style 'overlay)
     (setq lispy-no-space t)
+    (setq mc/always-run-for-all t)
     (add-hook 'cider-repl-mode-hook 'enable-lispy)
     (add-hook 'emacs-lisp-mode-hook 'enable-lispy)
     (add-hook 'clojure-mode-hook 'enable-lispy)))
@@ -239,7 +251,7 @@
 (use-package ace-window
   :ensure t
   :bind
-  (("M-<tab>" . ace-window))
+  (("M-j" . ace-window))
   :init
   (progn
     (setq aw-dispatch-always nil)))
@@ -255,29 +267,25 @@
 (use-package hydra
   :ensure t)
 
-(defhydra hydra-zoom (global-map "<f2>")
-  "zoom"
-  ("+" text-scale-increase "in")
-  ("-" text-scale-decrease "out"))
-
 (defhydra hydra-window ()
   "window"
+  ("+" text-scale-increase "in")
+  ("-" text-scale-decrease "out")
   ("h" windmove-left)
   ("l" windmove-right)
   ("k" windmove-up)
   ("j" windmove-down)
-  ("x" delete-window)
+  ("w" delete-window)
   ("o" delete-other-windows)
   ("SPC" ace-window)
   ("v" split-window-right)
   ("s" split-window-below)
+  ("e" eshell)
   ("z" ace-swap-window)
   ("i" ace-maximize-window)
   ("b" ido-switch-buffer)
   ("t" projectile-find-file)
   ("q" nil "quit"))
-
-(bind-key "C-o" 'hydra-window/body)
 
 ;; =============================================================================
 ;; Theme
@@ -287,14 +295,7 @@
 
 (use-package spacemacs-theme
   :init
-  (load-theme 'spacemacs-light t))
-
-;; =============================================================================
-;; Git
-(use-package magit
-  :ensure t
-  :bind
-  (("s-." . magit-dispatch-popup)))
+  (load-theme 'spacemacs-dark t))
 
 ;; =============================================================================
 ;; Clojure
@@ -310,18 +311,37 @@
   :ensure t
   :bind
   (:map clojure-mode-map
-	("C-." . hydra-cljr-help-menu/body))
+	("s-R" . hydra-cljr-help-menu/body))
   :init
   (progn
     (add-hook 'clojure-mode-hook 'clj-refactor-mode))
   :config
   (cljr-add-keybindings-with-prefix "C-c C-m"))
 
+(defun lispy-cider-eval ()
+  (interactive)
+  (cond
+   ((lispy-left-p)
+    (progn (call-interactively 'special-lispy-different)
+	   (call-interactively 'cider-eval-last-sexp)
+	   (call-interactively 'special-lispy-different)))
+   ((lispy-right-p)
+    (call-interactively 'cider-eval-last-sexp))
+   (t (call-interactively 'self-insert-command))))
+
 (use-package cider
   :ensure t
   :bind
   (:map cider-mode-map
-	("s-e" . cider-eval-defun-at-point))
+	("e" . lispy-cider-eval)
+	("E" . lispy-eval)
+	("s-l" . cider-load-buffer)
+	("s-n" . cider-repl-set-ns)
+	("s-q" . cider-quit)
+	("s-e" . cider-eval-defun-at-point)
+	("s-<return>" . cider-eval-defun-at-point))
+  :config
+  (setq-local lispy-eval-display-style 'overlay)
   :init
   (progn
     (setq cider-repl-display-help-banner nil)
@@ -335,6 +355,13 @@
   :ensure t
   :bind
   (("C-M-j" . emmet-expand-line)))
+
+;; =============================================================================
+;; Undo-tree
+(use-package undo-tree
+  :ensure t
+  :init
+  (global-undo-tree-mode t))
 
 ;; ============================================================================
 ;; Org-mode setup
@@ -354,36 +381,41 @@
 		    (find-alternate-file "..") dired-mode-map))))
 
 (add-hook 'dired-mode-hook #'dired-mode-init)
-
 ;; =============================================================================
 ;; Keybindings
-(bind-key "s-f" 'ido-find-file)
-(bind-key "s-t" 'projectile-find-file)
-(bind-key "s-b" 'ido-switch-buffer)
-(bind-key "s-s" 'save-buffer)
-(bind-key "s-p" 'projectile-switch-project)
+
+(bind-key "s-;" 'other-window)
+(bind-key "s-o" 'ido-find-file)
+(bind-key "s-O" 'ido-find-file-read-only)
+(bind-key "s-p" 'hydra-window/body)
+(bind-key "s-w" 'kill-buffer-and-window)
+(bind-key "s-R" 'highlight-symbol-query-replace)
+(bind-key "s-f" 'swiper)
+(bind-key "s-k" 'scroll-down-command)
+(bind-key "s-j" 'scroll-up-command)
+(bind-key "s-t" 'projectile-find-file-dwim)
+(bind-key "s-P" 'projectile-switch-project)
 (bind-key "s-1" 'delete-other-windows)
 (bind-key "s-0" 'delete-window)
+(bind-key "s-z" 'undo-tree-undo)
+(bind-key "s-Z" 'undo-tree-redo)
 (bind-key "s-d" 'ido-dired)
+(bind-key "s-b" 'ido-switch-buffer)
+(bind-key "s-." 'end-of-buffer)
+(bind-key "s-," 'beginning-of-buffer)
+(bind-key "s-B" 'ido-switch-buffer-other-window)
+(bind-key "s-\\" 'recent-buffer)
+(bind-key "s-r" 'highlight-symbol-query-replace)
 (bind-key "s-g" 'goto-line)
-
+(bind-key "s-6" 'delete-indentation)
+(bind-key "s-/" 'pop-global-mark)
+(bind-key "s-m" 'set-mark-command)
+(bind-key "s-x" 'kill-region)
+(bind-key "s-c" 'kill-ring-save)
+(bind-key "s-i" 'quoted-insert)
 
 ;; =============================================================================
+
 (server-start)
 (toggle-frame-maximized)
 
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (spacemacs-theme zenburn-theme web-mode use-package tern-auto-complete sublimity spacegray-theme solarized-theme smex rainbow-delimiters noctilux-theme moe-theme magit lispy js2-mode inf-clojure idea-darkula-theme highlight-symbol highlight-parentheses helm-projectile flycheck exec-path-from-shell emmet-mode darcula-theme company color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clj-refactor))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
