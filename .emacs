@@ -18,14 +18,13 @@
 ;; Basic configurations.
 (set-face-attribute 'default nil
 		    :family "Fira Code"
-		    :height 160
+		    :height 130
 		    :weight 'regular)
 
   
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-follow-mouse 't)
-(setq scroll-step 1)
 
 (setq inhibit-startup-screen t)
 
@@ -34,7 +33,7 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
-(setq-default line-spacing 8)
+(setq-default line-spacing 2)
 
 (prefer-coding-system 'utf-8)
 (setq buffer-file-coding-system 'utf-8-unix)
@@ -59,9 +58,9 @@
 (set-frame-parameter (selected-frame) 'alpha '(100 . 95))
 (add-to-list 'default-frame-alist '(alpha . (100 . 95)))
 
-(add-hook 'prog-mode-hook
-	  (lambda ()
-	    (linum-mode 1)))
+;; (add-hook 'prog-mode-hook
+;; 	  (lambda ()
+;; 	    (linum-mode 1)))
 
 (defun recent-buffer ()
   "Switch to other buffer"
@@ -91,6 +90,19 @@
     (add-hook 'ido-setup-hook 'ido-define-keys)
     (add-to-list 'ido-ignore-buffers
 		 "*nrepl-messages .+*")))
+
+;; =============================================================================
+;; Sublimity
+(use-package sublimity
+  :init
+  (progn
+    ;; (require 'sublimity-scroll)
+    (require 'sublimity-attractive)
+    (sublimity-mode 1)))
+
+(use-package smooth-scrolling
+  :init
+  (setq smooth-scroll-margin 5))
 
 ;; =============================================================================
 ;; Smex
@@ -225,7 +237,17 @@
   (interactive)
   (progn
     (end-of-buffer)
-    (lispy-escape)))
+    (lispy-escape)
+    (special-lispy-view)))
+
+(use-package multiple-cursors
+  :bind
+  (:map mc/keymap
+	("<escape>" . mc/keyboard-quit)
+	("<backspace>" . backward-delete-char-untabify))
+  :init
+  (progn
+    (setq mc/always-run-for-all t)))
 
 (use-package lispy
   :ensure t
@@ -295,7 +317,7 @@
 
 (use-package spacemacs-theme
   :init
-  (load-theme 'spacemacs-dark t))
+  (load-theme 'spacemacs-light t))
 
 ;; =============================================================================
 ;; Clojure
@@ -381,6 +403,11 @@
 		    (find-alternate-file "..") dired-mode-map))))
 
 (add-hook 'dired-mode-hook #'dired-mode-init)
+
+;; =============================================================================
+;;
+(use-package helm-ag)
+
 ;; =============================================================================
 ;; Keybindings
 
@@ -400,6 +427,7 @@
 (bind-key "s-z" 'undo-tree-undo)
 (bind-key "s-Z" 'undo-tree-redo)
 (bind-key "s-d" 'ido-dired)
+(bind-key "s-a" 'helm-projectile-ag)
 (bind-key "s-b" 'ido-switch-buffer)
 (bind-key "s-." 'end-of-buffer)
 (bind-key "s-," 'beginning-of-buffer)
@@ -418,4 +446,7 @@
 
 (server-start)
 (toggle-frame-maximized)
+
+
+
 
