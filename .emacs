@@ -1,5 +1,3 @@
-;; =============================================================================
-;; Initialize
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa-cn" . "http://elpa.codefalling.com/melpa/"))
@@ -21,7 +19,8 @@
 		    :height 130
 		    :weight 'regular)
 
-  
+;; (fringe-mode '(0 . 0))
+
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-follow-mouse 't)
@@ -33,7 +32,7 @@
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
 
-(setq-default line-spacing 2)
+(setq-default line-spacing 5)
 
 (prefer-coding-system 'utf-8)
 (setq buffer-file-coding-system 'utf-8-unix)
@@ -42,6 +41,10 @@
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 (setq default-sendmail-coding-system 'utf-8-unix)
 (setq default-terminal-coding-system 'utf-8-unix)
+
+(add-hook 'prog-mode-hook
+	  (lambda ()
+	    (linum-mode t)))
 
 (when window-system
   (setq mac-command-modifier 'super)
@@ -57,10 +60,6 @@
 
 (set-frame-parameter (selected-frame) 'alpha '(100 . 95))
 (add-to-list 'default-frame-alist '(alpha . (100 . 95)))
-
-;; (add-hook 'prog-mode-hook
-;; 	  (lambda ()
-;; 	    (linum-mode 1)))
 
 (defun recent-buffer ()
   "Switch to other buffer"
@@ -96,9 +95,10 @@
 (use-package sublimity
   :init
   (progn
-    ;; (require 'sublimity-scroll)
-    (require 'sublimity-attractive)
-    (sublimity-mode 1)))
+    ;; (setq sublimity-attractive-centering-width 100)
+    ;; (require 'sublimity-attractive)
+    ;; (sublimity-mode 1)
+    ))
 
 (use-package smooth-scrolling
   :init
@@ -120,6 +120,9 @@
     (setq projectile-file-exists-remote-cache-expire nil)
     (setq projectile-mode-line "")
     (projectile-global-mode 1)))
+
+(use-package helm-projectile
+  :ensure t)
 
 (add-hook 'find-file-hook
           (lambda ()
@@ -219,8 +222,8 @@
   (unbind-key "M-n" lispy-mode-map)
   (unbind-key "<spc>" lispy-mode-map))
 
-;; Use ESC to escape from form
 (defun lispy-escape ()
+  "escape form by ESC"
   (interactive)
   (if (region-active-p)
       (keyboard-escape-quit)
@@ -240,10 +243,22 @@
     (lispy-escape)
     (special-lispy-view)))
 
+(defun lispy-escape-or-quit-mc ()
+  (interactive)
+  (if (bound-and-true-p multiple-cursors-mode)
+      (call-interactively 'mc/keyboard-quit)
+    (call-interactively 'lispy-escape)))
+
+(defun lispy-align ()
+  (interactive)
+  (if (or (lispy-left-p)
+	  (lispy-right-p))
+      (call-interactively 'clojure-align)
+    (call-interactively 'self-insert-command)))
+
 (use-package multiple-cursors
   :bind
   (:map mc/keymap
-	("<escape>" . mc/keyboard-quit)
 	("<backspace>" . backward-delete-char-untabify))
   :init
   (progn
@@ -253,8 +268,9 @@
   :ensure t
   :bind
   (:map lispy-mode-map
-	("<escape>" . lispy-escape)
+	("<escape>" . lispy-escape-or-quit-mc)
 	("s-v" . lispy-yank)
+	("A" . lispy-align)
 	("s-," . lispy-beginning-of-buffer)
 	("s-." . lispy-end-of-buffer)
 	("M-[" . lispy-left)
@@ -267,19 +283,6 @@
     (add-hook 'cider-repl-mode-hook 'enable-lispy)
     (add-hook 'emacs-lisp-mode-hook 'enable-lispy)
     (add-hook 'clojure-mode-hook 'enable-lispy)))
-
-;; =============================================================================
-;; Ace-window
-(use-package ace-window
-  :ensure t
-  :bind
-  (("M-j" . ace-window))
-  :init
-  (progn
-    (setq aw-dispatch-always nil)))
-
-(use-package helm-projectile
-  :ensure t)
 
 (use-package windmove
   :ensure t)
@@ -311,13 +314,23 @@
 
 ;; =============================================================================
 ;; Theme
-;; (use-package idea-darkula-theme
+;; (use-package spacemacs-theme
 ;;   :init
-;;   (load-theme 'idea-darkula t))
+;;   (load-theme 'spacemacs-light t))
 
-(use-package spacemacs-theme
+;; (use-package solarized-theme
+;;   :init
+;;   (progn
+;;     (setq solarized-use-less-bold t)
+;;     (load-theme 'solarized-dark t)))
+
+;; (use-package color-theme-sanityinc-solarized
+;;   :init
+;;   (load-theme 'sanityinc-solarized-dark t))
+
+(use-package color-theme-sanityinc-tomorrow
   :init
-  (load-theme 'spacemacs-light t))
+  (load-theme 'sanityinc-tomorrow-night t))
 
 ;; =============================================================================
 ;; Clojure
@@ -356,7 +369,6 @@
   :bind
   (:map cider-mode-map
 	("e" . lispy-cider-eval)
-	("E" . lispy-eval)
 	("s-l" . cider-load-buffer)
 	("s-n" . cider-repl-set-ns)
 	("s-q" . cider-quit)
@@ -368,15 +380,41 @@
   (progn
     (setq cider-repl-display-help-banner nil)
     (setq cider-lein-command "/usr/local/bin/lein")
-    ;; (setq cider-lein-parameters "with-profile +emacs repl :headless")
+    ;; (setq cider-lein-parameters "with-profile +dirac repl :headless")
     (setq cider-cljs-lein-repl "(in-ns 'boot.user) (start-repl)")))
 
 ;; =============================================================================
 ;; Emmet
+
+(defun hiccup-emmet-expand-line ()
+  (interactive)
+  (insert "|hic")
+  (call-interactively 'emmet-expand-line))
+
+(defun clojure-emmet-init ()
+  (emmet-mode t)
+  (bind-key "s-e" 'hiccup-emmet-expand-line))
+
+(defun html-emmet-init ()
+  (emmet-mode t)
+  (bind-key "s-e" 'emmet-expand-line))
+
 (use-package emmet-mode
   :ensure t
+  :init
+  (progn
+    (add-hook 'html-mode-hook #'html-emmet-init)
+    (add-hook 'clojure-mode-hook #'clojure-emmet-init)))
+
+;; =============================================================================
+(use-package neotree
+  :init
+  (progn
+    (setq neo-smart-open t)
+    (setq projectile-switch-project-action 'neotree-projectile-action)
+    (setq neo-theme 'nerd))
   :bind
-  (("C-M-j" . emmet-expand-line)))
+  ("s-T" . neotree-projectile-action))
 
 ;; =============================================================================
 ;; Undo-tree
@@ -392,20 +430,22 @@
 	  (lambda ()
 	    (org-indent-mode 1)
 	    (face-remap-add-relative 'default :family "Source Han Sans HW"
-				     :height 145)))
+				     :height 140)))
 
 ;; =============================================================================
 ;; Dired
 (defun dired-mode-init ()
   (progn
     (put 'dired-find-alternate-file 'disabled nil)
-    (bind-key "b" (lambda () (interactive)
+    (bind-key "<Return>" 'find-alternate-file dired-mode-map)
+    (bind-key "b" (lambda ()
+		    (interactive)
 		    (find-alternate-file "..") dired-mode-map))))
 
 (add-hook 'dired-mode-hook #'dired-mode-init)
 
 ;; =============================================================================
-;;
+;; Ag
 (use-package helm-ag)
 
 ;; =============================================================================
@@ -415,7 +455,7 @@
 (bind-key "s-o" 'ido-find-file)
 (bind-key "s-O" 'ido-find-file-read-only)
 (bind-key "s-p" 'hydra-window/body)
-(bind-key "s-w" 'kill-buffer-and-window)
+(bind-key "s-w" 'kill-buffer)
 (bind-key "s-R" 'highlight-symbol-query-replace)
 (bind-key "s-f" 'swiper)
 (bind-key "s-k" 'scroll-down-command)
@@ -447,6 +487,17 @@
 (server-start)
 (toggle-frame-maximized)
 
-
-
-
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized sanityinc-solarized-color-theme sanityinc-solarized-theme solarized-theme use-package undo-tree tao-theme sublimity spacemacs-theme smooth-scrolling smex rainbow-delimiters neotree lispy highlight-symbol highlight-parentheses helm-projectile helm-ag exec-path-from-shell emmet-mode company clj-refactor))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
