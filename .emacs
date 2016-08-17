@@ -16,14 +16,13 @@
 ;; Basic configurations.
 (set-face-attribute 'default nil
 		    :family "Fira Code"
-		    :height 130
+		    :height 120
 		    :weight 'regular)
-
-;; (fringe-mode '(0 . 0))
 
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-follow-mouse 't)
+(setq-default indicate-empty-lines t)
 
 (setq inhibit-startup-screen t)
 
@@ -314,9 +313,21 @@
 
 ;; =============================================================================
 ;; Theme
-;; (use-package spacemacs-theme
-;;   :init
-;;   (load-theme 'spacemacs-light t))
+(use-package spacemacs-theme
+  :init
+  (progn
+    (load-theme 'spacemacs-dark t)
+    (setq theme-type 'dark)))
+
+(defun toggle-theme ()
+  (interactive)
+  (if (eq theme-type 'dark)
+      (progn
+	(load-theme 'spacemacs-light t)
+	(setq theme-type 'light))
+    (progn
+	(load-theme 'spacemacs-dark t)
+	(setq theme-type 'dark))))
 
 ;; (use-package solarized-theme
 ;;   :init
@@ -328,9 +339,9 @@
 ;;   :init
 ;;   (load-theme 'sanityinc-solarized-dark t))
 
-(use-package color-theme-sanityinc-tomorrow
-  :init
-  (load-theme 'sanityinc-tomorrow-night t))
+;; (use-package color-theme-sanityinc-tomorrow
+;;   :init
+;;   (load-theme 'sanityinc-tomorrow-night t))
 
 ;; =============================================================================
 ;; Clojure
@@ -411,8 +422,7 @@
   :init
   (progn
     (setq neo-smart-open t)
-    (setq projectile-switch-project-action 'neotree-projectile-action)
-    (setq neo-theme 'nerd))
+    (setq neo-theme 'ascii))
   :bind
   ("s-T" . neotree-projectile-action))
 
@@ -461,6 +471,7 @@
 (bind-key "s-k" 'scroll-down-command)
 (bind-key "s-j" 'scroll-up-command)
 (bind-key "s-t" 'projectile-find-file-dwim)
+(bind-key "s-|" 'toggle-theme)
 (bind-key "s-P" 'projectile-switch-project)
 (bind-key "s-1" 'delete-other-windows)
 (bind-key "s-0" 'delete-window)
@@ -476,11 +487,12 @@
 (bind-key "s-r" 'highlight-symbol-query-replace)
 (bind-key "s-g" 'goto-line)
 (bind-key "s-6" 'delete-indentation)
-(bind-key "s-/" 'pop-global-mark)
 (bind-key "s-m" 'set-mark-command)
 (bind-key "s-x" 'kill-region)
 (bind-key "s-c" 'kill-ring-save)
 (bind-key "s-i" 'quoted-insert)
+(bind-key "s-m" 'point-to-register)
+(bind-key "s-/" 'jump-to-register)
 
 ;; =============================================================================
 
