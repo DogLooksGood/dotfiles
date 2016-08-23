@@ -8,7 +8,7 @@
     (package-refresh-contents)
     (package-install 'use-package)))
 (require 'use-package)
-
+ 
 (setq use-package-always-defer t
       use-package-always-ensure t)
 
@@ -16,8 +16,8 @@
 ;; Basic configurations.
 (set-face-attribute 'default nil
 		    :family "Fira Code"
-		    :height 120
-		    :weight 'regular)
+		    :height 160
+		    :weight 'light)
 
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
@@ -57,8 +57,8 @@
 (hl-line-mode)
 (show-paren-mode t)
 
-(set-frame-parameter (selected-frame) 'alpha '(100 . 95))
-(add-to-list 'default-frame-alist '(alpha . (100 . 95)))
+(set-frame-parameter (selected-frame) 'alpha '(95 . 95))
+(add-to-list 'default-frame-alist '(alpha . (95 . 95)))
 
 (defun recent-buffer ()
   "Switch to other buffer"
@@ -90,14 +90,7 @@
 		 "*nrepl-messages .+*")))
 
 ;; =============================================================================
-;; Sublimity
-(use-package sublimity
-  :init
-  (progn
-    ;; (setq sublimity-attractive-centering-width 100)
-    ;; (require 'sublimity-attractive)
-    ;; (sublimity-mode 1)
-    ))
+;; Smooth scrolling
 
 (use-package smooth-scrolling
   :init
@@ -159,10 +152,10 @@
   :bind
   (:map prog-mode-map
 	("<tab>" . indent-or-complete)
-   :map company-active-map
-   ("<escape>" . company-abort)
-   ("C-n" . company-select-next)
-   ("C-p" . company-select-previous))
+	:map company-active-map
+	("<escape>" . company-abort)
+	("C-n" . company-select-next)
+	("C-p" . company-select-previous))
   :init
   (progn
     (setq company-idle-delay nil)
@@ -214,6 +207,13 @@
   (("M-SPC" . avy-goto-word-or-subword-1)))
 
 ;; =============================================================================
+;; Snippets
+(use-package clojure-snippets
+  :config
+  (progn
+    (unbind-key "<tab>" yas-minor-mode-map)))
+
+;; =============================================================================
 ;; Lispy
 (defun enable-lispy ()
   (eldoc-add-command-completions "lispy-")
@@ -222,11 +222,14 @@
   (unbind-key "<spc>" lispy-mode-map))
 
 (defun lispy-escape ()
-  "escape form by ESC"
+  "escape form by ESC, handle special case for reader-conditional."
   (interactive)
   (if (region-active-p)
       (keyboard-escape-quit)
-    (beginning-of-defun)))
+    (progn
+      (beginning-of-defun)
+      (when (string= (buffer-substring-no-properties (point) (+ 2 (point))) "#?")
+	(forward-char 2)))))
 
 (defun lispy-beginning-of-buffer ()
   (interactive)
@@ -263,17 +266,28 @@
   (progn
     (setq mc/always-run-for-all t)))
 
+(defun lispy-tab-and-align ()
+  (interactive)
+  (if (or (lispy-left-p)
+	  (lispy-right-p))
+      (progn
+	(call-interactively 'lispy-tab)
+	(if (or (string= "clojure-mode" major-mode)
+		(string= "clojurescript-mode" major-mode)
+		(string= "clojurec-mode" major-mode))
+	    (call-interactively 'clojure-align)))
+    (call-interactively 'self-insert-command)))
+
 (use-package lispy
   :ensure t
   :bind
   (:map lispy-mode-map
 	("<escape>" . lispy-escape-or-quit-mc)
 	("s-v" . lispy-yank)
+	("i" . lispy-tab-and-align)
 	("A" . lispy-align)
-	("s-," . lispy-beginning-of-buffer)
-	("s-." . lispy-end-of-buffer)
-	("M-[" . lispy-left)
-	("M-]" . lispy-right)
+	("M-[" . lispy-beginning-of-buffer)
+	("M-]" . lispy-end-of-buffer)
 	("C-j" . indent-new-comment-line))
   :init
   (progn
@@ -305,53 +319,32 @@
   ("v" split-window-right)
   ("s" split-window-below)
   ("e" eshell)
+  ("\\" recent-buffer)
   ("z" ace-swap-window)
   ("i" ace-maximize-window)
   ("b" ido-switch-buffer)
   ("t" projectile-find-file)
   ("q" nil "quit"))
 
-;; =============================================================================
-;; Theme
-(use-package spacemacs-theme
-  :init
-  (progn
-    (load-theme 'spacemacs-dark t)
-    (setq theme-type 'dark)))
-
-(defun toggle-theme ()
-  (interactive)
-  (if (eq theme-type 'dark)
-      (progn
-	(load-theme 'spacemacs-light t)
-	(setq theme-type 'light))
-    (progn
-	(load-theme 'spacemacs-dark t)
-	(setq theme-type 'dark))))
-
-;; (use-package solarized-theme
+;; (use-package underwater-theme
 ;;   :init
-;;   (progn
-;;     (setq solarized-use-less-bold t)
-;;     (load-theme 'solarized-dark t)))
+;;   (load-theme 'underwater t))
+(load-theme 'deeper-blue t)
 
-;; (use-package color-theme-sanityinc-solarized
-;;   :init
-;;   (load-theme 'sanityinc-solarized-dark t))
-
-;; (use-package color-theme-sanityinc-tomorrow
-;;   :init
-;;   (load-theme 'sanityinc-tomorrow-night t))
 
 ;; =============================================================================
 ;; Clojure
+
+(use-package aggressive-indent)
 
 (defun clojure-mode-init ()
   (subword-mode 1)
   (yas-minor-mode 1))
 
 (add-hook 'clojure-mode-hook #'clojure-mode-init)
-(add-hook 'clojure-mode-hook #'eldoc-mode)
+;; (add-hook 'clojure-mode-hook #'eldoc-mode)
+(add-hook 'clojure-mode-hook #'aggressive-indent-mode)
+(add-hook 'cider-connected-hook #'global-eldoc-mode)
 
 (use-package clj-refactor
   :ensure t
@@ -444,13 +437,15 @@
 
 ;; =============================================================================
 ;; Dired
+(defun dired-up-level ()
+  (interactive)
+  (find-alternate-file ".."))
+
 (defun dired-mode-init ()
   (progn
     (put 'dired-find-alternate-file 'disabled nil)
     (bind-key "<Return>" 'find-alternate-file dired-mode-map)
-    (bind-key "b" (lambda ()
-		    (interactive)
-		    (find-alternate-file "..") dired-mode-map))))
+    (bind-key "b" 'dired-up-level dired-mode-map)))
 
 (add-hook 'dired-mode-hook #'dired-mode-init)
 
@@ -471,7 +466,7 @@
 (bind-key "s-k" 'scroll-down-command)
 (bind-key "s-j" 'scroll-up-command)
 (bind-key "s-t" 'projectile-find-file-dwim)
-(bind-key "s-|" 'toggle-theme)
+;; (bind-key "s-|" 'toggle-theme)
 (bind-key "s-P" 'projectile-switch-project)
 (bind-key "s-1" 'delete-other-windows)
 (bind-key "s-0" 'delete-window)
@@ -480,8 +475,8 @@
 (bind-key "s-d" 'ido-dired)
 (bind-key "s-a" 'helm-projectile-ag)
 (bind-key "s-b" 'ido-switch-buffer)
-(bind-key "s-." 'end-of-buffer)
-(bind-key "s-," 'beginning-of-buffer)
+(bind-key "s-]" 'end-of-buffer)
+(bind-key "s-[" 'beginning-of-buffer)
 (bind-key "s-B" 'ido-switch-buffer-other-window)
 (bind-key "s-\\" 'recent-buffer)
 (bind-key "s-r" 'highlight-symbol-query-replace)
@@ -491,12 +486,10 @@
 (bind-key "s-x" 'kill-region)
 (bind-key "s-c" 'kill-ring-save)
 (bind-key "s-i" 'quoted-insert)
-(bind-key "s-m" 'point-to-register)
-(bind-key "s-/" 'jump-to-register)
+(bind-key "s-," 'point-to-register)
+(bind-key "s-." 'jump-to-register)
 
 ;; =============================================================================
 
 (server-start)
 (toggle-frame-maximized)
-
-
