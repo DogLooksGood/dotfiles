@@ -80,7 +80,7 @@ NeoBundle 'honza/vim-snippets'               " Template complete. e.g. <C-l>
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'ervandew/supertab'                " TAB Complete
 NeoBundle 'mattn/emmet-vim'                  " HTML e.g. <C-j>
-NeoBundle 'artur-shaik/vim-javacomplete2'
+" NeoBundle 'artur-shaik/vim-javacomplete2'
 
 " --------------------------------------------------------------------------------
 "  Theme:
@@ -133,7 +133,7 @@ set completeopt-=preview
 " --------------------------------------------------------------------------------
 "  Theme:
 " --------------------------------------------------------------------------------
-" colorscheme solarized
+colorscheme solarized
 " colorscheme github
 
 set background=dark

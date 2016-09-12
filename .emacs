@@ -1,6 +1,7 @@
 (require 'package)
-(add-to-list 'package-archives
-	     '("melpa-cn" . "http://elpa.codefalling.com/melpa/"))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -12,12 +13,13 @@
 (setq use-package-always-defer t
       use-package-always-ensure t)
 
+(global-auto-revert-mode t)
 ;; =============================================================================
 ;; Basic configurations.
 (set-face-attribute 'default nil
-		    :family "Fira Code"
-		    :height 160
-		    :weight 'light)
+		    :family "Source Code Pro"
+		    :height 145
+		    :weight 'regular)
 
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
@@ -42,8 +44,8 @@
 (setq default-terminal-coding-system 'utf-8-unix)
 
 (add-hook 'prog-mode-hook
-	  (lambda ()
-	    (linum-mode t)))
+    (lambda ()
+      (linum-mode t)))
 
 (when window-system
   (setq mac-command-modifier 'super)
@@ -54,16 +56,49 @@
   (scroll-bar-mode -1)
   (setq ring-bell-function 'ignore))
 
-(hl-line-mode)
 (show-paren-mode t)
 
-(set-frame-parameter (selected-frame) 'alpha '(95 . 95))
-(add-to-list 'default-frame-alist '(alpha . (95 . 95)))
+(set-frame-parameter (selected-frame) 'alpha '(100 . 100))
+(add-to-list 'default-frame-alist '(alpha . (100 . 100)))
 
 (defun recent-buffer ()
   "Switch to other buffer"
   (interactive)
   (switch-to-buffer (other-buffer)))
+
+;; =============================================================================
+;; Hydra
+(use-package hydra
+  :ensure t)
+
+(defhydra hydra-commands (:color red)
+  "commands"
+  ("+" text-scale-increase)
+  ("-" text-scale-decrease)
+  ("f" swiper)
+  ("h" windmove-left)
+  ("l" windmove-right)
+  ("k" windmove-up)
+  ("j" windmove-down)
+  ("o" ido-find-file)
+  ("0" delete-window)
+  ("1" delete-other-windows)
+  ("SPC" ace-window)
+  ("v" split-window-right)
+  ("s" split-window-below)
+  ("e" eshell)
+  ("\\" recent-buffer)
+  ("z" ace-swap-window)
+  ("i" ace-maximize-window)
+  ("b" ido-switch-buffer)
+  ("w" kill-buffer)
+  ("t" projectile-find-file)
+  ("cl" cider-load-buffer)
+  ("q" nil))
+
+;; =============================================================================
+;; Json mode
+(use-package json-mode)
 
 ;; =============================================================================
 ;; Eshell
@@ -151,11 +186,11 @@
   :ensure t
   :bind
   (:map prog-mode-map
-	("<tab>" . indent-or-complete)
-	:map company-active-map
-	("<escape>" . company-abort)
-	("C-n" . company-select-next)
-	("C-p" . company-select-previous))
+   ("TAB" . indent-or-complete)
+   :map company-active-map
+   ("<escape>" . company-abort)
+   ("C-n" . company-select-next)
+   ("C-p" . company-select-previous))
   :init
   (progn
     (setq company-idle-delay nil)
@@ -172,12 +207,12 @@
 
 ;; =============================================================================
 ;; Highlight Parentheses
-(use-package highlight-parentheses
-  :ensure t
-  :init
-  (progn
-    (add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
-    (add-hook 'clojure-mode-hook 'highlight-parentheses-mode)))
+;; (use-package highlight-parentheses
+;;   :ensure t
+;;   :init
+;;   (progn
+;;     (add-hook 'emacs-lisp-mode-hook 'highlight-parentheses-mode)
+;;     (add-hook 'clojure-mode-hook 'highlight-parentheses-mode)))
 
 ;; =============================================================================
 ;; Highlight Symbol
@@ -186,9 +221,9 @@
   :init
   (progn
     (add-hook 'prog-mode-hook
-	      (lambda ()
-		(highlight-symbol-mode)
-		(highlight-symbol-nav-mode)))
+        (lambda ()
+         (highlight-symbol-mode)
+         (highlight-symbol-nav-mode)))
     (setq highlight-symbol-idle-delay 0.25)))
 
 ;; =============================================================================
@@ -254,14 +289,14 @@
 (defun lispy-align ()
   (interactive)
   (if (or (lispy-left-p)
-	  (lispy-right-p))
+       (lispy-right-p))
       (call-interactively 'clojure-align)
     (call-interactively 'self-insert-command)))
 
 (use-package multiple-cursors
   :bind
   (:map mc/keymap
-	("<backspace>" . backward-delete-char-untabify))
+   ("<backspace>" . backward-delete-char-untabify))
   :init
   (progn
     (setq mc/always-run-for-all t)))
@@ -269,13 +304,20 @@
 (defun lispy-tab-and-align ()
   (interactive)
   (if (or (lispy-left-p)
-	  (lispy-right-p))
+       (lispy-right-p))
       (progn
-	(call-interactively 'lispy-tab)
-	(if (or (string= "clojure-mode" major-mode)
-		(string= "clojurescript-mode" major-mode)
-		(string= "clojurec-mode" major-mode))
-	    (call-interactively 'clojure-align)))
+       (call-interactively 'lispy-tab)
+       (if (or (string= "clojure-mode" major-mode)
+            (string= "clojurescript-mode" major-mode)
+            (string= "clojurec-mode" major-mode))
+           (call-interactively 'clojure-align)))
+    (call-interactively 'self-insert-command)))
+
+(defun lispy-hydra ()
+  (interactive)
+  (if (or (lispy-right-p)
+	  (lispy-left-p))
+      (call-interactively 'hydra-commands/body)
     (call-interactively 'self-insert-command)))
 
 (use-package lispy
@@ -285,7 +327,7 @@
 	("<escape>" . lispy-escape-or-quit-mc)
 	("s-v" . lispy-yank)
 	("i" . lispy-tab-and-align)
-	("A" . lispy-align)
+	("p" . lispy-hydra)
 	("M-[" . lispy-beginning-of-buffer)
 	("M-]" . lispy-end-of-buffer)
 	("C-j" . indent-new-comment-line))
@@ -300,57 +342,26 @@
 (use-package windmove
   :ensure t)
 
-;; =============================================================================
-;; Hydra
-(use-package hydra
-  :ensure t)
-
-(defhydra hydra-window ()
-  "window"
-  ("+" text-scale-increase "in")
-  ("-" text-scale-decrease "out")
-  ("h" windmove-left)
-  ("l" windmove-right)
-  ("k" windmove-up)
-  ("j" windmove-down)
-  ("w" delete-window)
-  ("o" delete-other-windows)
-  ("SPC" ace-window)
-  ("v" split-window-right)
-  ("s" split-window-below)
-  ("e" eshell)
-  ("\\" recent-buffer)
-  ("z" ace-swap-window)
-  ("i" ace-maximize-window)
-  ("b" ido-switch-buffer)
-  ("t" projectile-find-file)
-  ("q" nil "quit"))
-
-;; (use-package underwater-theme
-;;   :init
-;;   (load-theme 'underwater t))
-(load-theme 'deeper-blue t)
-
 
 ;; =============================================================================
 ;; Clojure
 
-(use-package aggressive-indent)
+;; (use-package aggressive-indent)
 
 (defun clojure-mode-init ()
   (subword-mode 1)
   (yas-minor-mode 1))
 
 (add-hook 'clojure-mode-hook #'clojure-mode-init)
-;; (add-hook 'clojure-mode-hook #'eldoc-mode)
-(add-hook 'clojure-mode-hook #'aggressive-indent-mode)
-(add-hook 'cider-connected-hook #'global-eldoc-mode)
+;; (add-hook 'clojure-mode-hook #'aggressive-indent-mode)
+
+(global-eldoc-mode t)
 
 (use-package clj-refactor
   :ensure t
   :bind
   (:map clojure-mode-map
-	("s-R" . hydra-cljr-help-menu/body))
+   ("s-R" . hydra-cljr-help-menu/body))
   :init
   (progn
     (add-hook 'clojure-mode-hook 'clj-refactor-mode))
@@ -362,8 +373,8 @@
   (cond
    ((lispy-left-p)
     (progn (call-interactively 'special-lispy-different)
-	   (call-interactively 'cider-eval-last-sexp)
-	   (call-interactively 'special-lispy-different)))
+     (call-interactively 'cider-eval-last-sexp)
+     (call-interactively 'special-lispy-different)))
    ((lispy-right-p)
     (call-interactively 'cider-eval-last-sexp))
    (t (call-interactively 'self-insert-command))))
@@ -377,7 +388,9 @@
 	("s-n" . cider-repl-set-ns)
 	("s-q" . cider-quit)
 	("s-e" . cider-eval-defun-at-point)
-	("s-<return>" . cider-eval-defun-at-point))
+	("s-<return>" . cider-eval-defun-at-point)
+	:map cider-repl-mode-map
+	("s-l" . cider-repl-clear-buffer))
   :config
   (setq-local lispy-eval-display-style 'overlay)
   :init
@@ -385,7 +398,8 @@
     (setq cider-repl-display-help-banner nil)
     (setq cider-lein-command "/usr/local/bin/lein")
     ;; (setq cider-lein-parameters "with-profile +dirac repl :headless")
-    (setq cider-cljs-lein-repl "(in-ns 'boot.user) (start-repl)")))
+    (setq cider-cljs-lein-repl "(in-ns 'boot.user) (start-repl)")
+    ))
 
 ;; =============================================================================
 ;; Emmet
@@ -411,6 +425,7 @@
     (add-hook 'clojure-mode-hook #'clojure-emmet-init)))
 
 ;; =============================================================================
+;; Neotree
 (use-package neotree
   :init
   (progn
@@ -428,12 +443,17 @@
 
 ;; ============================================================================
 ;; Org-mode setup
+(use-package org
+  :ensure t
+  :pin manual)
+
 (setq org-src-fontify-natively t)
 (add-hook 'org-mode-hook
 	  (lambda ()
+	    (setq org-src-ask-before-returning-to-edit-buffer nil)
 	    (org-indent-mode 1)
 	    (face-remap-add-relative 'default :family "Source Han Sans HW"
-				     :height 140)))
+				     :height 160)))
 
 ;; =============================================================================
 ;; Dired
@@ -453,20 +473,50 @@
 ;; Ag
 (use-package helm-ag)
 
+;; Themes
+(use-package color-theme-solarized
+  :init
+  (progn
+    (setq solarized-bold t)
+    (setq solarized-italic nil)
+    (setq solarized-visibility 'high)
+    (set-frame-parameter nil 'background-mode 'dark)
+    (set-terminal-parameter nil 'background-mode 'dark)
+    (load-theme 'solarized t)))
+
+(setq theme-dark t)
+(defun toggle-theme ()
+  (interactive)
+  (if theme-dark
+      (progn
+	(setq solarized-bold t)
+	(setq solarized-italic nil)
+	(setq solarized-visibility 'high)
+	(set-terminal-parameter nil 'background-mode 'light)
+	(set-frame-parameter nil 'background-mode 'light)
+	(load-theme 'solarized t)
+	(setq theme-dark nil))
+    (progn
+      (setq solarized-bold t)
+      (setq solarized-italic nil)
+      (setq solarized-visibility 'high)
+      (set-frame-parameter nil 'background-mode 'dark)
+      (set-terminal-parameter nil 'background-mode 'dark)
+      (load-theme 'solarized t)
+      (setq theme-dark t))))
+
 ;; =============================================================================
 ;; Keybindings
-
 (bind-key "s-;" 'other-window)
 (bind-key "s-o" 'ido-find-file)
 (bind-key "s-O" 'ido-find-file-read-only)
-(bind-key "s-p" 'hydra-window/body)
+(bind-key "s-p" 'hydra-commands/body)
 (bind-key "s-w" 'kill-buffer)
 (bind-key "s-R" 'highlight-symbol-query-replace)
 (bind-key "s-f" 'swiper)
 (bind-key "s-k" 'scroll-down-command)
 (bind-key "s-j" 'scroll-up-command)
 (bind-key "s-t" 'projectile-find-file-dwim)
-;; (bind-key "s-|" 'toggle-theme)
 (bind-key "s-P" 'projectile-switch-project)
 (bind-key "s-1" 'delete-other-windows)
 (bind-key "s-0" 'delete-window)
@@ -474,10 +524,11 @@
 (bind-key "s-Z" 'undo-tree-redo)
 (bind-key "s-d" 'ido-dired)
 (bind-key "s-a" 'helm-projectile-ag)
+(bind-key "s-|" 'toggle-theme)
+(bind-key "s-B" 'ibuffer)
 (bind-key "s-b" 'ido-switch-buffer)
 (bind-key "s-]" 'end-of-buffer)
 (bind-key "s-[" 'beginning-of-buffer)
-(bind-key "s-B" 'ido-switch-buffer-other-window)
 (bind-key "s-\\" 'recent-buffer)
 (bind-key "s-r" 'highlight-symbol-query-replace)
 (bind-key "s-g" 'goto-line)
@@ -490,6 +541,6 @@
 (bind-key "s-." 'jump-to-register)
 
 ;; =============================================================================
-
 (server-start)
 (toggle-frame-maximized)
+
