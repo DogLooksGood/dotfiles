@@ -3,7 +3,6 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 
-
 (setq package-archives
       '(("gnu-cn" . "http://elpa.zilongshanren.com/gnu/")
         ("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
@@ -143,16 +142,10 @@
 
 ;; (use-package parinfer
 ;;   :bind
-;;   (:map parinfer-mode-map
-;;         ("<tab>" . parinfer-smart-tab:dwim-right)
-;;         ("S-<tab>" . parinfer-smart-tab:dwim-left)
-;;         ("C-," . parinfer-toggle-mode)
-;;    :map parinfer-region-mode-map
-;;         ("<tab>" . parinfer-smart-tab:dwim-right)
-;;         ("S-<tab>" . parinfer-smart-tab:dwim-left))
+;;   (("C-," . parinfer-toggle-mode))
 ;;   :init
-;;   (setq parinfer-lighters '(" PI:->" . " PI:()"))
-;;   (setq parinfer-extensions '(company pretty-parens smart-tab smart-yank))
+;;   (setq parinfer-lighters '(" ->" . " ()"))
+;;   (setq parinfer-extensions '(defaults pretty-parens smart-tab smart-yank))
 ;;   (add-hook 'emacs-lisp-mode-hook 'parinfer-mode)
 ;;   (add-hook 'clojure-mode-hook 'parinfer-mode))
 
@@ -183,7 +176,8 @@
   :init
   (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
   :config
-  (unbind-key "<tab>" yas-minor-mode-map))
+  (unbind-key "<tab>" yas-minor-mode-map)
+  (unbind-key "TAB" yas-minor-mode-map))
 
 (use-package clj-refactor
   :init
@@ -241,22 +235,18 @@
 ;; (if window-system
 ;;     (use-package solarized-theme
 ;;       :init
-;;       (set-frame-parameter (selected-frame) 'alpha '(95 95))
-;;       (add-to-list 'default-frame-alist '(alpha 95 95))
+;;       (set-frame-parameter (selected-frame) 'alpha '(100 100))
+;;       (add-to-list 'default-frame-alist '(alpha 100 100))
 ;;       (setq solarized-use-less-bold t)
 ;;       (setq solarized-high-contrast-mode-line t)
-;;       (load-theme 'solarized-light t))) 
+;;       (load-theme 'solarized-dark t)))
+
+(if window-system
+    (use-package niflheim-theme
+      :init
+      (load-theme 'niflheim t)))
 
 (add-to-list 'load-path "~/Git/parinfer-mode")
-
-(require 'parinfer)
-(setq parinfer-extensions
-      '(defaults pretty-parens smart-tab smart-yank))
-(add-hook 'emacs-lisp-mode-hook 'parinfer-mode)
-(add-hook 'clojure-mode-hook 'parinfer-mode)
-(setq parinfer-auto-switch-indent-mode t)
-(setq parinfer-lighters '(" PI:->" . " PI:()"))
-(bind-key "C-'" 'parinfer-toggle-mode parinfer-mode-map)
 
 (use-package circe
   :init
@@ -268,22 +258,15 @@
            :sasl-password "s1t2s3d4d5"
            :channels ("#clojure" "#emacs")))))
 
-(load-theme 'niflheim t)
-
 ;; -----------------------------------------------------------------------------
 ;; Custom
 ;; -----------------------------------------------------------------------------
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (niflheim-theme flatland-black-theme use-package spacemacs-theme solarized-theme smartparens smart-mode-line rainbow-delimiters powerline paper-theme org-plus-contrib org-mime org-bullets magit lispy key-seq highlight-symbol exec-path-from-shell evil emmet-mode counsel-projectile company color-theme-sanityinc-tomorrow clj-refactor circe benchmark-init aggressive-indent))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+(require 'parinfer)
+(setq parinfer-extensions
+      '(defaults pretty-parens smart-tab smart-yank))
+(add-hook 'emacs-lisp-mode-hook 'parinfer-mode)
+(add-hook 'clojure-mode-hook 'parinfer-mode)
+(setq parinfer-auto-switch-indent-mode t)
+(setq parinfer-lighters '(" PI:->" . " PI:()"))
+(bind-key "C-'" 'parinfer-toggle-mode parinfer-mode-map)
