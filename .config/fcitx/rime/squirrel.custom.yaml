@@ -1,0 +1,7 @@
+patch:
+  style:
+    color_scheme: dark_temple
+    horizontal: false
+    inline_preedit: true
+    corner_radius: 0
+    font_point: 18
