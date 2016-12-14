@@ -1,0 +1,26 @@
+Emacs.menuBar: off
+Emacs.verticalScrollBars: off
+Emacs.toolBar: off
+
+URxvt.depth: 32
+URxvt.background: rgba:0000/0000/0000/dddd
+URxvt.foreground: #BBBBBBBBBBBB
+URxvt.color0: #0000001A1B1B
+URxvt.color1: #CCCC00000000
+URxvt.color2: #4E4E9A9A0606
+URxvt.color3: #C4C4A0A00000
+URxvt.color4: #34346565A4A4
+URxvt.color5: #757550507B7B
+URxvt.color6: #060698209A9A
+URxvt.color7: #D3D3D7D7CFCF
+URxvt.color8: #555557575353
+URxvt.color9: #EFEF29292929
+URxvt.color10: #8A8AE2E23434
+URxvt.color11: #FCFCE9E94F4F
+URxvt.color12: #72729F9FCFCF
+URxvt.color13: #ADAD7F7FA8A8
+URxvt.color14: #3434E2E2E2E2
+URxvt.color15: #EEEEEEEEECEC
+
+URxvt.scrollBar: off
+URxvt.font: xft:M+ 1mn:size=13:style=regular:antialias=true
