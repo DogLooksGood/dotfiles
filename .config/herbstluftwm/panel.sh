@@ -118,7 +118,9 @@ hc pad $monitor $panel_height
         echo -n "^bg()^fg() ${windowtitle//^/^^}"
 
         # small adjustments
-	right="$(acpi -b) $separator^bg() $date $separator"
+	wifi_quality=$(iwconfig wlp4s0 | grep Quality | awk '{print $2}' | sed 's/.\+=//g')
+	wifi_profile=$(iwconfig wlp4s0|head -n 1|awk "{print $4}"|cut -d ":" -f 2|sed "s/\"//g" | sed "s/ //g")
+	right="$wifi_profile $wifi_quality $separator^fg() $(acpi -b) $separator^bg() $date $separator"
         right_text_only=$(echo -n "$right" | sed 's.\^[^(]*([^)]*)..g')
         # get width of right aligned text.. and add some space..
         width=$($textwidth "$font" "$right_text_only    ")
