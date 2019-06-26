@@ -1,0 +1,9 @@
+#!/bin/bash
+
+file="$1"
+
+if [ -z $file ]; then
+  emacsclient -c
+else
+  emacsclient "$1"
+fi

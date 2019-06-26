@@ -1,0 +1,470 @@
+# Polybar Settings
+#   Author: Shitianshu
+
+[color]
+
+; bg = #151318
+; fg = #aaa
+bg = #eee
+fg = #151318
+bi = #00acc1
+be = #00acc1
+bf = #43a047
+bn = #43a047
+bm = #edb822
+bd = #e53935
+bu = #bd2c40
+uf = #df775f
+ff = #eee
+fu = #000
+
+
+
+[module/date]
+type = internal/date
+
+interval = 1.0
+
+time = %d %b %a %H:%M:%S
+
+format = <label>
+
+label = %time%
+
+
+
+[module/memory]
+
+type = internal/memory
+
+interval = 3.0
+
+format = <label>
+
+format-prefix = 
+
+label = " %gb_used%"
+
+
+
+[module/cpu]
+
+type = internal/cpu
+
+interval = 0.5
+
+format = <label>
+
+format-prefix = 
+
+label = " %percentage:2:3%%"
+
+
+
+[module/i3]
+
+type = internal/i3
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-default = 
+
+format = <label-state> <label-mode>
+
+label-mode = %mode%
+label-mode-padding = 1
+label-mode-background = ${color.bu}
+
+label-focused = %icon%
+label-focused-foreground = ${color.ff}
+label-focused-background = ${color.bf}
+label-focused-padding = 1
+
+label-visible = %icon% %output%
+label-visible-underline = #ff0000
+label-visible-padding = 1
+
+label-urgent = %icon%
+label-urgent-foreground = ${color.fu}
+label-urgent-background = ${color.bu}
+label-urgent-padding = 1
+
+label-unfocused = %icon%
+label-unfocused-padding = 1
+
+label-separator = |
+label-separator-padding = 1
+label-separator-foreground = ${color.bf}
+
+
+
+[module/battery]
+
+type = internal/battery
+
+full-at = 99
+battery = BAT0
+adapter = ACAD
+
+poll-interval = 2
+time-format = %H:%M
+
+format-charging = <animation-charging> <label-charging>
+
+format-discharging = <ramp-capacity> <label-discharging>
+
+label-charging = %percentage%%
+
+label-discharging = %percentage%%
+
+label-full =  Fully Charged
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
+
+ramp-capacity-0-foreground = ${color.uf}
+ramp-capacity-1-foreground = ${color.uf}
+ramp-capacity-2-foreground = ${color.uf}
+
+
+bar-capacity-width = 10
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-5 = 
+animation-charging-6 = 
+animation-charging-7 = 
+animation-charging-8 = 
+
+animation-charging-framerate = 750
+
+
+[module/temperature]
+type = internal/temperature
+
+interval = 0.5
+
+warn-temperature = 60
+
+units = true
+
+format = <ramp> <label>
+
+format-warn = <ramp> <label-warn>
+
+label = %temperature-c%
+
+label-warn = "%temperature-c%"
+label-warn-foreground = #f00
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+
+
+
+[module/pulseaudio]
+
+type = internal/pulseaudio
+
+format-volume = <ramp-volume> <bar-volume>
+
+format-muted = <label-muted>
+
+label-volume = %percentage%%
+
+format-muted-prefix = 婢
+label-muted = " Muted"
+label-muted-foreground = #666
+
+ramp-volume-0 = 奄
+ramp-volume-1 = 奔
+ramp-volume-2 = 奔
+ramp-volume-3 = 奔
+ramp-volume-4 = 墳
+
+ramp-headphones-0 = 
+ramp-headphones-1 = ﳌ
+
+
+bar-volume-width = 5
+bar-volume-gradient = false
+
+bar-volume-indicator = |
+bar-volume-indicator-foreground = ${color.bi}
+bar-volume-indicator-font = 2
+
+bar-volume-fill = ━
+bar-volume-foreground-0 = ${color.bn}
+bar-volume-foreground-1 = ${color.bn}
+bar-volume-foreground-2 = ${color.bn}
+bar-volume-foreground-3 = ${color.bn}
+bar-volume-foreground-4 = ${color.bm}
+bar-volume-foreground-5 = ${color.bm}
+bar-volume-foreground-6 = ${color.bm}
+bar-volume-foreground-7 = ${color.bd}
+bar-volume-foreground-8 = ${color.bd}
+bar-volume-fill-font = 2
+
+bar-volume-empty = ┉
+bar-volume-empty-foreground = ${color.be}
+bar-volume-empty-font = 2
+
+
+
+[module/backlight]
+type = internal/xbacklight
+
+card = intel_backlight
+
+format = <ramp> <bar>
+
+label = %percentage%%
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+
+bar-width = 5
+bar-gradient = false
+
+bar-indicator = |
+bar-indicator-foreground = ${color.bi}
+bar-indicator-font = 2
+
+bar-fill = ━
+bar-foreground-0 = ${color.bn}
+bar-foreground-1 = ${color.bn}
+bar-foreground-2 = ${color.bn}
+bar-foreground-3 = ${color.bm}
+bar-foreground-4 = ${color.bm}
+bar-foreground-5 = ${color.bd}
+bar-foreground-6 = ${color.bd}
+bar-foreground-7 = ${color.bd}
+bar-foreground-8 = ${color.bd}
+bar-fill-font = 2
+
+bar-empty = ┉
+bar-empty-foreground = ${color.be}
+bar-empty-font = 2
+
+
+
+[module/network]
+type = internal/network
+interface = wlp2s0
+
+interval = 1.0
+
+accumulate-stats = true
+
+unknown-as-up = true
+
+format-connected = <ramp-signal> <label-connected>
+
+format-disconnected = <label-disconnected>
+
+format-packetloss = <animation-packetloss> <label-connected>
+
+label-connected = "%essid% %downspeed:8% %upspeed:8%   %local_ip%"
+label-connected-foreground = ${color.fg}
+
+label-disconnected = 睊 "Not Connected"
+label-disconnected-foreground = #66ffffff
+
+label-packetloss = %essid%
+label-packetloss-foreground = #eefafafa
+
+ramp-signal-0 = 直
+ramp-signal-1 = 直
+ramp-signal-2 = 直
+ramp-signal-3 = 直
+ramp-signal-4 = 直
+
+
+
+[module/mpd]
+type = internal/mpd
+
+; Available tags:
+;   <label-song> (default)
+;   <label-time>
+;   <bar-progress>
+;   <toggle> - gets replaced with <icon-(pause|play)>
+;   <toggle-stop> - gets replaced with <icon-(stop|play)>
+;   <icon-random>
+;   <icon-repeat>
+;   <icon-repeatone> (deprecated)
+;   <icon-single> - Toggle playing only a single song. Replaces <icon-repeatone>
+;   <icon-consume>
+;   <icon-prev>
+;   <icon-stop>
+;   <icon-play>
+;   <icon-pause>
+;   <icon-next>
+;   <icon-seekb>
+;   <icon-seekf>
+format-online = <label-time> <icon-prev> <icon-pause> <icon-play> <icon-next> <label-song>
+
+format-offline = <label-offline>
+
+label-song = ﱘ %title%
+
+label-time = %elapsed% / %total%
+
+icon-pause = 懶
+
+icon-prev = 玲
+
+icon-next = 怜
+
+icon-play = 契
+
+icon-single = ﯩ
+
+label-offline = mpd is offline
+
+
+
+[module/launcher]
+type = custom/text
+content = 
+
+; "content" has the same properties as "format-NAME"
+;; content-background = ${color.ac}
+;; content-foreground = ${color.mf}
+content-padding = 1
+
+click-left = rofi -show combi
+click-right = rofi -show combi
+
+
+
+[module/lock]
+
+type = custom/text
+content =
+
+; "content" has the same properties as "format-NAME"
+;; content-background = ${color.ac}
+;; content-foreground = ${color.mf}
+content-padding = 1
+
+click-left = i3lock -i ~/Pictures/backgrounds/lock.png &
+click-right = i3lock -i ~/Pictures/backgrounds/lock.png &
+
+
+
+
+[module/menu]
+type = custom/menu
+expand-right = true
+
+menu-0-0 = Bluetooth
+menu-0-0-exec = menu-open-1
+menu-0-1 = Wireless
+menu-0-1-exec = nmguish
+menu-0-2 = Pulseaudio
+menu-0-2-exec = pavucontrol
+menu-0-3 = Lock
+menu-0-3-exec = i3lock -i ~/Pictures/backgrounds/lock.png &
+
+menu-1-0 = Manager
+menu-1-0-exec = blueman-manager
+menu-1-1 = Browse
+menu-1-1-exec = blueman-browse
+
+label-open = "  "
+label-close = Close
+
+; Optional item separator
+; Default: none
+label-separator = " | "
+
+
+
+[bar/top]
+
+width = 100%
+height = 60
+
+dpi = 172
+
+background = ${color.bg}
+foreground = ${color.fg}
+
+padding = 1
+
+font-0 = "NotoSansMono Nerd Font-10;2"
+; font-0 = "Iosevka SS08:size=10;2"
+; font-1 = "FontAwesome:size=10;2"
+; font-2 = "Material Icons:size=10;2"
+
+modules-left = i3
+modules-center = date
+modules-right = pulseaudio backlight cpu memory temperature battery
+
+separater =
+
+module-margin-left = 1
+module-margin-right = 1
+
+tray-position = none
+
+bottom = false
+
+[bar/bottom]
+
+width = 100%
+height = 60
+
+dpi = 172
+
+background = ${color.bg}
+foreground = ${color.fg}
+
+padding = 1
+
+font-0 = "NotoSansMono Nerd Font-10;2"
+; font-0 = "Inconsolata:size=10;2"
+; font-1 = "Material Icons:size=10;2"
+; font-2 = "FontAwesome:size=10;2"
+
+modules-left = mpd
+
+modules-center =
+
+modules-right = network
+
+separater =
+
+center-fixed = true
+
+module-margin-left = 1
+module-margin-right = 1
+
+tray-position = none
+
+bottom = true
