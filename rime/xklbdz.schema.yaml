@@ -1,0 +1,181 @@
+﻿# Rime schema settings
+# encoding: utf-8
+
+schema:
+  schema_id: xklbdz
+  name: 星空两笔单字
+  version: "1.1"
+  author:
+    - 发明人 大牛
+
+punctuator:
+  full_shape:
+    ' ' : { commit: '　' }
+    ',' : { commit: ， }
+    '.' : { commit: 。 }
+    '<' : [ 《, 〈, «, ‹ ]
+    '>' : [ 》, 〉, », › ]
+    '/' : [ ／, ÷ ]
+    '?' : { commit: ？ }
+    ';' : { commit: ； }
+    ':' : { commit: ： }
+    '''' : { pair: [ '‘', '’' ] }
+    '"' : { pair: [ '“', '”' ] }
+    '\' : [ 、, ＼ ]
+    '|' : [ ·, ｜, '§', '¦' ]
+    '`' : ｀
+    '~' : ～
+    '!' : { commit: ！ }
+    '@' : [ ＠, ☯ ]
+#    '#' : [ ＃, ⌘ ]
+    '%' : [ ％, '°', '℃' ]
+    '$' : [ ￥, '$', '€', '£', '¥', '¢', '¤' ]
+    '^' : { commit: …… }
+    '&' : ＆
+    '*' : [ ＊, ·, ・, ×, ※, ❂ ]
+    '(' : （
+    ')' : ）
+    '-' : －
+    '_' : ——
+    '+' : ＋
+    '=' : ＝
+    '[' : [ 「, 【, 〔, ［ ]
+    ']' : [ 」, 】, 〕, ］ ]
+    '{' : [ 『, 〖, ｛ ]
+    '}' : [ 』, 〗, ｝ ]
+  half_shape:
+    ',' : { commit: ， }
+    '.' : { commit: 。 }
+    '<' : { commit: 《 }
+    '>' : { commit: 》 }
+  #  '/' : { commit: 、 }
+    '?' : { commit: ？ }
+    ';' : { commit: ； }
+    ':' : { commit: ： }
+    '''' : { pair: [ '‘', '’' ] }
+    '"' : { pair: [ '“', '”' ] }
+    '\' : 、
+#    '|' : [ ·, '|', ｜, '§', '¦' ]
+    '`' : '`'
+    '~' : [ '~', ～ ]
+    '!' : { commit: ！ }
+    '@' : '@'
+#    '#' : '#'
+#    '%' : [ '%', ％, '°', '℃' ]
+#    '$' : [ ￥, '$', '€', '£', '¥', '¢', '¤' ]
+    '^' : { commit: …… }
+    '&' : '&'
+#    '*' : [ '*', ＊, ·, ・, ×, ※, ❂ ]
+    '(' : （
+    ')' : ）
+    '-' : '-'
+    '_' : ——
+    '+' : '+'
+    '=' : '='
+    '[' : [ 【,「  ]
+    ']' : [ 】,」  ]
+    '{' : ｛
+    '}' : ｝
+
+switches:
+  - name: ascii_mode
+    reset: 0
+    states: [ 中文, 西文 ]
+  - name: full_shape
+    states: [ 半角, 全角 ]
+  - name: jmfj
+    states: [ 汉字, 漢字 ]
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - table_translator
+#    - reverse_lookup_translator
+#    - history_translator@history
+  filters:
+    - simplifier
+    - uniquifier
+    - simplifier@emoji_cn
+    - simplifier@jmfj
+    - simplifier@bmma
+
+speller:
+  auto_select: true
+  # auto_select_qnique_candidate: true #空码自动顶
+  alphabet: 'zyxwvutsrqponmlkjihgfedcba:'
+  initials: ':abcdefghijklmnopqrstuvwxyz'
+  #algebra:
+  #  - derive/([bpmfdtnlgkhjqxzcsrywe][a-z][viuoa])[viuoa]+/$1/ #顶简为全码
+
+translator:
+  dictionary: xklbdz.extended
+  enable_charset_filter: false
+  enable_completion: true
+  enable_encoder: true
+  enable_sentence: false
+  enable_user_dict: false
+  encode_commit_history: true
+  max_phrase_length: 6
+
+history:
+  input: u
+  size: 1
+  initial_quality: 10000
+
+emoji_cn:
+  opencc_config: emoji.json
+  option_name: emoji_cn
+  tips: all
+jmfj:
+  opencc_config: s2t.json
+  option_name: jmfj
+bmma:
+  opencc_config: pinyin.json
+  option_name: bmma
+  show_in_comment: true
+  comment_format:
+    - xform/'/ /
+
+custom_phrase:
+  dictionary: ""
+  user_dict: custom_phrase
+  db_class: stabledb
+  enable_sentence: false
+
+reverse_lookup:
+  dictionary: jdyb6cx
+  comment_format:
+    - xform/^/〔/
+    - xform/$/〕/
+
+# punctuator:
+#  import_preset: symbols
+
+key_binder:
+  bindings:
+    - {accept: minus, send: Page_Up, when: has_menu}
+    - {accept: equal, send: Page_Down, when: has_menu}
+    - { when: has_menu, accept: "&", toggle: emoji_cn}
+    - { when: has_menu, accept: "^", toggle: bmma}
+recognizer:
+  import_preset: default
+  patterns:
+    reverse_lookup: "[a-z`]*`+[a-z`]*"
+    punct: "^/([0-9]0?|[a-z]+)$"
+    #retention: "[a-z;]{1,2}"
+    retention: "^[bpmfdtnlgkhjqxzscrywv][a-z][aeiou]{0, 3}"
