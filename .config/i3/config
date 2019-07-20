@@ -135,8 +135,8 @@ bindsym $mod+Shift+2 move container to workspace $ws8
 bindsym $mod+Shift+plus move container to workspace $ws9
 
 # move workspace container between monitors
-bindsym $mod+comma move workspace to output right
-bindsym $mod+period move workspace to output left
+bindsym $mod+dollar exec ~/.config/i3/moveworkspace.py
+
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -183,12 +183,22 @@ bindsym $mod+x exec arandr
 
 bindsym $mod+Shift+x exec xrandr --output eDP1 --auto
 
-bindsym --release $mod+semicolon exec scrot -s -q 100 -e 'mv $f ~/Pictures/screenshots/'
+bindsym $mod+semicolon exec maim -s | xclip -selection clipboard -t image/png
+
+bindsym $mod+Shift+semicolon exec maim -s ~/Pictures/screenshots/$(date +%s).png
+
+# bindsym $mod+Shift+semicolon exec maim ~/Pictures/screenshots/$(date +%s).png
+
+
+# Color Settings
+
+client.focused          #43a047 #43a047 #FFFFFF #27EE27
+client.focused_inactive #333333 #333333 #FFFFFF #3399FF
+client.unfocused        #333333 #333333 #FFFFFF #3399FF
 
 # Gaps setup
 
-for_window [class=".*"] border pixel 1
-
+for_window [class=".*"] border pixel 2
 gaps inner 20
 
 smart_gaps on
@@ -199,6 +209,8 @@ smart_borders on
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
+exec --no-startup-id /usr/lib/kdeconnectd
+
 exec emacs --daemon &
 
 exec fcitx &
@@ -207,4 +219,4 @@ exec copyq &
 
 exec mpd &
 
-exec compton &
+# exec compton &

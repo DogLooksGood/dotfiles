@@ -3,8 +3,6 @@
 
 [color]
 
-; bg = #151318
-; fg = #aaa
 bg = #eee
 fg = #151318
 bi = #00acc1
@@ -25,7 +23,7 @@ type = internal/date
 
 interval = 1.0
 
-time = %d %b %a %H:%M:%S
+time = %a %H:%M:%S
 
 format = <label>
 
@@ -65,38 +63,27 @@ label = " %percentage:2:3%%"
 
 type = internal/i3
 
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-5 = 6;
-ws-icon-6 = 7;
-ws-icon-7 = 8;
-ws-icon-8 = 9;
-ws-icon-default = 
-
 format = <label-state> <label-mode>
 
 label-mode = %mode%
 label-mode-padding = 1
 label-mode-background = ${color.bu}
 
-label-focused = %icon%
+label-focused = %index%
 label-focused-foreground = ${color.ff}
 label-focused-background = ${color.bf}
 label-focused-padding = 1
 
-label-visible = %icon% %output%
+label-visible = %index% %output%
 label-visible-underline = #ff0000
 label-visible-padding = 1
 
-label-urgent = %icon%
+label-urgent = %index%
 label-urgent-foreground = ${color.fu}
 label-urgent-background = ${color.bu}
 label-urgent-padding = 1
 
-label-unfocused = %icon%
+label-unfocused = %index%
 label-unfocused-padding = 1
 
 label-separator = |
@@ -187,7 +174,7 @@ ramp-4 = 
 
 type = internal/pulseaudio
 
-format-volume = <ramp-volume> <bar-volume>
+format-volume = <ramp-volume> <label-volume>
 
 format-muted = <label-muted>
 
@@ -237,7 +224,7 @@ type = internal/xbacklight
 
 card = intel_backlight
 
-format = <ramp> <bar>
+format = <ramp> <label>
 
 label = %percentage%%
 
@@ -276,7 +263,7 @@ bar-empty-font = 2
 type = internal/network
 interface = wlp2s0
 
-interval = 1.0
+interval = 0.5
 
 accumulate-stats = true
 
@@ -289,13 +276,10 @@ format-disconnected = <label-disconnected>
 format-packetloss = <animation-packetloss> <label-connected>
 
 label-connected = "%essid% %downspeed:8% %upspeed:8%   %local_ip%"
-label-connected-foreground = ${color.fg}
 
 label-disconnected = 睊 "Not Connected"
-label-disconnected-foreground = #66ffffff
 
 label-packetloss = %essid%
-label-packetloss-foreground = #eefafafa
 
 ramp-signal-0 = 直
 ramp-signal-1 = 直
@@ -346,19 +330,13 @@ icon-single = ﯩ
 
 label-offline = mpd is offline
 
+
 
 
-[module/launcher]
-type = custom/text
-content = 
-
-; "content" has the same properties as "format-NAME"
-;; content-background = ${color.ac}
-;; content-foreground = ${color.mf}
-content-padding = 1
-
-click-left = rofi -show combi
-click-right = rofi -show combi
+[module/title]
+type = internal/xwindow
+label = %title%
+label-maxlen = 50
 
 
 
@@ -403,68 +381,60 @@ label-close = Close
 ; Default: none
 label-separator = " | "
 
+
 
 
-[bar/top]
+[bar/common]
 
 width = 100%
-height = 60
+height = 48
 
 dpi = 172
 
-background = ${color.bg}
-foreground = ${color.fg}
-
-padding = 1
-
-font-0 = "NotoSansMono Nerd Font-10;2"
-; font-0 = "Iosevka SS08:size=10;2"
-; font-1 = "FontAwesome:size=10;2"
-; font-2 = "Material Icons:size=10;2"
-
-modules-left = i3
-modules-center = date
-modules-right = pulseaudio backlight cpu memory temperature battery
-
-separater =
-
-module-margin-left = 1
-module-margin-right = 1
-
-tray-position = none
-
-bottom = false
-
-[bar/bottom]
-
-width = 100%
-height = 60
-
-dpi = 172
-
-background = ${color.bg}
-foreground = ${color.fg}
-
-padding = 1
-
-font-0 = "NotoSansMono Nerd Font-10;2"
-; font-0 = "Inconsolata:size=10;2"
-; font-1 = "Material Icons:size=10;2"
-; font-2 = "FontAwesome:size=10;2"
-
-modules-left = mpd
-
-modules-center =
-
-modules-right = network
+border-size=0
+border-color=#FFF
 
 separater =
 
 center-fixed = true
 
+font-0 = "NotoSansMono Nerd Font-9;1"
+
 module-margin-left = 1
 module-margin-right = 1
 
-tray-position = none
+padding = 1
+
+
+
+[bar/top]
+
+inherit = bar/common
+
+background = ${color.fg}
+foreground = ${color.bg}
+
+
+modules-left = launcher i3
+modules-center = date
+modules-right = pulseaudio backlight battery network
+
+bottom = false
+
+[bar/bottom]
+
+inherit = bar/common
+
+
+background = ${color.fg}
+foreground = ${color.bg}
+
+
+modules-left = mpd
+modules-center =
+modules-right = network
+
+module-margin-left = 1
+module-margin-right = 1
 
 bottom = true
