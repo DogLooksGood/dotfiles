@@ -1,0 +1,57 @@
+{:aliases
+ {;; https://github.com/cognitect-labs/test-runner
+  :test
+  {:extra-deps {com.cognitect/test-runner
+                {:git/url "https://github.com/cognitect-labs/test-runner"
+                 :sha     "3cb0a9daf1cb746259dc8309b218f9211ad3b33b"}}
+   :main-opts  ["-m" "cognitect.test-runner"
+                "-d" "test"
+                "-d" "src/test/clojure"]}
+
+  ;; https://github.com/Olical/depot
+  :outdated
+  {:extra-deps {olical/depot {:mvn/version "RELEASE"}}
+   :main-opts  ["-m" "depot.outdated.main"]}
+
+  ;; https://github.com/nrepl/nrepl
+  :nrepl
+  {:extra-deps {nrepl {:mvn/version "RELEASE"}}
+   :main-opts  ["-m" "nrepl.cmdline"]}
+
+  ;; https://github.com/hugoduncan/criterium/
+  ;; Usage:
+  ;;   (require '[criterium.core :refer [bench]])
+  ;;   (bench (your-expression))
+  :bench
+  {:extra-deps {criterium {:mvn/version "RELEASE"}}}
+
+  ;; https://github.com/clojure-goes-fast/clj-memory-meter
+  ;; Usage:
+  ;;   (require '[clj-memory-meter.core :as mm])
+  ;;   (mm/measure (your-expression))
+  :measure
+  {:extra-deps {com.clojure-goes-fast/clj-memory-meter {:mvn/version "RELEASE"}}}
+
+  ;; https://github.com/bhauman/rebel-readline
+  :rebel
+  {:extra-deps {com.bhauman/rebel-readline {:mvn/version "RELEASE"}}
+   :main-opts  ["-m" "rebel-readline.main"]}
+
+  :rebel-cljs
+  {:extra-deps {com.bhauman/rebel-readline-cljs {:mvn/version "RELEASE"}}
+   :main-opts  ["-m" "rebel-readline.cljs.main"]}
+
+  ;; https://github.com/jonase/eastwood
+  :lint
+  {:extra-deps {jonase/eastwood {:mvn/version "RELEASE"}}
+   :main-opts ["-m" "eastwood.lint" "{:source-paths,[\"src\"],:test-paths,[\"test\"]}"]}
+
+  ;; https://github.com/seancorfield/clj-new
+  :new
+  {:extra-deps {seancorfield/clj-new {:mvn/version "RELEASE"}}
+   :main-opts  ["-m" "clj-new.create"]}
+
+  ;; https://github.com/tonsky/uberdeps
+  :uber
+  {:extra-deps {uberdeps {:mvn/version "RELEASE"}}
+   :main-opts ["-m" "uberdeps.uberjar"]}}}
