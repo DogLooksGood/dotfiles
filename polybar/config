@@ -3,11 +3,12 @@
 
 [color]
 
-bg = #eee
-fg = #151318
+bg = #0A7782
+fg = #eeeeee
 bi = #00acc1
 be = #00acc1
 bf = #43a047
+;; bf = #6E3F6D
 bn = #43a047
 bm = #edb822
 bd = #e53935
@@ -65,25 +66,36 @@ type = internal/i3
 
 format = <label-state> <label-mode>
 
+ws-icon-0 = 0;λ
+ws-icon-1 = 1;Ξ
+ws-icon-2 = 2;Ε
+ws-icon-3 = 3;Γ
+ws-icon-4 = 4;Α
+ws-icon-5 = 5;-
+ws-icon-6 = 6;-
+ws-icon-7 = 7;-
+ws-icon-8 = 8;-
+ws-icon-9 = 9;-
+
 label-mode = %mode%
 label-mode-padding = 1
 label-mode-background = ${color.bu}
 
-label-focused = %index%
+label-focused = %icon%
 label-focused-foreground = ${color.ff}
 label-focused-background = ${color.bf}
 label-focused-padding = 1
 
-label-visible = %index% %output%
+label-visible = %icon% %output%
 label-visible-underline = #ff0000
 label-visible-padding = 1
 
-label-urgent = %index%
+label-urgent = %icon%
 label-urgent-foreground = ${color.fu}
 label-urgent-background = ${color.bu}
 label-urgent-padding = 1
 
-label-unfocused = %index%
+label-unfocused = %icon%
 label-unfocused-padding = 1
 
 label-separator = |
@@ -398,7 +410,7 @@ separater =
 
 center-fixed = true
 
-font-0 = "NotoSansMono Nerd Font-9;1"
+font-0 = "NotoSansMono Nerd Font:size=9;1"
 
 module-margin-left = 1
 module-margin-right = 1
@@ -411,9 +423,8 @@ padding = 1
 
 inherit = bar/common
 
-background = ${color.fg}
-foreground = ${color.bg}
-
+background = ${color.bg}
+foreground = ${color.fg}
 
 modules-left = launcher i3
 modules-center = date
