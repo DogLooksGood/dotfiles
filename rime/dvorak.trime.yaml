@@ -1,0 +1,394 @@
+# Trime custom style settings
+# encoding: utf-8
+
+config_version: "3.0"
+name: Dvorak
+author: ShiTianshu
+
+#键盘高度
+height:
+  1: &jpgd1 30 #表情键盘
+  2: &jpgd2 24 #颜文字键盘1
+  3: &jpgd3 24 #颜文字键盘2
+  4: &jpgd4 40 #主键盘
+  5: &jpgd5 39.5 #符号键盘
+  6: &hgap 4 #键盘横缝大小
+  7: &sgap 4 #键盘竖缝大小
+
+#键盘高度
+round_corner:
+  1: &round1 6 #按键圆角半径
+  2: &round2 5 #候选窗口圆角
+  3: &round3 0 #回车键圆角
+
+#界面风格、功能开关
+style:
+  auto_caps: false #自動句首大寫:true|false|ascii
+  background_dim_amount: 0.5
+  candidate_font: han.ttf  #候选字体
+  candidate_padding: 5  #候选项内边距
+  candidate_spacing: 0.5  #候选间距
+  candidate_text_size: 18  #候选字号
+  candidate_use_cursor: true #高亮候选项
+  candidate_view_height: 28 #候选区高度
+  color_scheme: default #配色方案
+  comment_font: comment.ttf #编码提示字体
+  comment_height: 14 #编码提示区高度
+  comment_on_top: true #编码提示在上方或右侧
+  comment_text_size: 12 #编码提示字号
+  hanb_font: hanb.ttf #扩充字体
+  horizontal: true #水平模式
+  horizontal_gap: *hgap #键水平间距
+
+  layout:
+    position: fixed #候选窗口位置：left|right|left_up|right_up|fixed|bottom_left|bottom_right|top_left|top_right(left、right需要Android5.0以上)
+    min_length: 4 #候选窗口最小词长
+    max_length: 14 #超过字数则换行
+    sticky_lines: 1 #固顶行数
+    max_entries: 8 #候选窗口最大词条数
+    border: 2 #候选窗口边框宽度
+    max_width: 360 #最大宽度，超过则自动换行
+    max_height: 300 #最大高度
+    min_width: 0 #最小宽度
+    min_height: 50 #最小高度
+    margin_x: 5 #水平边距
+    margin_y: 5 #竖直边距
+    line_spacing: 0 #候选词的行间距(px)
+    line_spacing_multiplier: 1.2 #候选词的行间距(倍数)
+    spacing: 1 #与预编辑或边缘的距离
+    round_corner: *round2 #候选窗口圆角
+    alpha: 0xff #透明度(0-255)
+    elevation: 2 #阴影(>=Android5.0)
+    background: background.png #颜色或者backgrounds目录下的图片文档名
+    movable: false #是否可移动窗口，或仅移动一次 true|false|once
+    all_phrases: false #显示所有长词
+  window: #悬浮窗口组件
+#    - {start: "", move: 'ㄓ ', end: ""}
+    - {start: "", composition: "%s", end: "", letter_spacing: 0.12} #letter_spacing需要Android5.0
+    - {start: "\n", label: "%s.", candidate: "%s", comment: "%s", end: "", sep: "☁️️"}
+  key_font: symbol.ttf #键盘字体
+  key_height: *jpgd4 #键高
+  key_long_text_size: 18 #长标签字号
+  key_text_size: 24 #键字号
+  key_width: 10.0 #键宽，占屏幕宽的百分比
+  keyboards: [.default, letter, default, number] #键盘配置
+  label_text_size: 22 #标签字号
+  label_font: label.ttf #编标签字体
+  latin_font: latin.ttf #西文本体
+  latin_locale: en_US #西文语言
+  locale: zh_CN #缺省语言 zh_TW,zh_CN,zh_HK,""
+  preview_font: latin.ttf #按键提示字体
+  preview_height: 56 #按键提示高度
+  preview_offset: -32 #按键提示纵向偏移
+  preview_text_size: 40 #按键提示字号
+  proximity_correction: true #按键纠错
+  reset_ascii_mode: false #显示键盘时重置为中文状态
+  round_corner: *round1 #按键圆角半径
+  shadow_radius: 0.0 #按键阴影半径
+  speech_opencc_config: none #语音输入简繁转换
+  symbol_font: symbol.ttf #符号字体
+  symbol_text_size: 10 #符号字号
+  text_font: latin.ttf #编码字体
+  #text_height: 32 #编码区高度
+  text_size: 14 #编码区字号
+  vertical_correction: -5
+  vertical_gap: *sgap #键盘行距
+
+fallback_colors:
+  candidate_text_color: text_color
+  comment_text_color: candidate_text_color
+  border_color: back_color
+  candidate_separator_color: border_color
+  hilited_text_color: text_color
+  hilited_back_color: back_color
+  hilited_candidate_text_color: hilited_text_color
+  hilited_candidate_back_color: hilited_back_color
+  hilited_comment_text_color: comment_text_color
+  text_back_color: back_color
+  hilited_key_back_color: hilited_candidate_back_color
+  hilited_key_text_color: hilited_candidate_text_color
+  hilited_key_symbol_color: hilited_comment_text_color
+  hilited_off_key_back_color: hilited_key_back_color
+  hilited_on_key_back_color: hilited_key_back_color
+  hilited_off_key_text_color: hilited_key_text_color
+  hilited_on_key_text_color: hilited_key_text_color
+  key_back_color: back_color
+  key_border_color: border_color
+  key_text_color: candidate_text_color
+  key_symbol_color: comment_text_color
+  keyboard_back_color: border_color
+  label_color: candidate_text_color
+  off_key_back_color: key_back_color
+  off_key_text_color: key_text_color
+  on_key_back_color: hilited_key_back_color
+  on_key_text_color: hilited_key_text_color
+  preview_back_color: key_text_color
+  preview_text_color: key_back_color
+  shadow_color: border_color
+
+#颜色
+colors:
+  1: &color1 0xff000000
+  2: &color2 0xffffffff
+  3: &color3 0xffe1e3e7
+  4: &color4 0xffacb2c2
+  5: &color5 0xff131313
+  6: &color6 0xff3266a0
+  7: &color7 0x00
+  8: &color8 0xff838383
+
+#配色方案
+preset_color_schemes:
+  default:
+    name: "Dark"  #方案名称
+    author: ShiTianshu #作者信息
+    back_color: 0xff333333
+    candidate_separator_color: 0xff999999
+    candidate_text_color: 0xfffafafa
+    comment_text_color: 0xff999999
+    hilited_back_color: 0xfffa5555
+    hilited_candidate_back_color: 0xff484848
+    hilited_candidate_text_color: 0xfffafa55
+    hilited_comment_text_color: 0xfffa5555
+    hilited_key_back_color: 0xff666666
+    hilited_key_symbol_color: 0xfffafa55
+    hilited_key_text_color: 0xfffafa55
+    hilited_off_key_back_color: 0xfffa5555
+    hilited_off_key_text_color: 0xfffa5555
+    hilited_text_color: 0xfffa5555
+    key_back_color: 0xff454545
+    key_border_color: 0xff000000
+    key_symbol_color: 0xffacacac
+    key_text_color: 0xffe8e8e8
+    keyboard_back_color: 0xff333333
+    label_color: *color6 #标签
+    off_key_back_color: *color4  #按键关闭状态背景
+    off_key_text_color: *color8 #按键关闭状态文本
+    preview_back_color: 0x66000000
+    preview_text_color: 0x66fafafa
+    text_color: 0x90333333
+    text_back_color: 0xfffafafa
+    bkg: *color2 #空格键背景色
+    tkg: *color1 #空格键文字颜色
+    benter: *color6 #回车键背景色
+    tenter: *color2 #回车键文字颜色
+    bgn: 0xff5e3f6b
+    tgn: 0xfffafafa
+    bbs: 0xffa03030
+    tbs: 0xfffafafa
+
+  light:
+    name: "Light"
+    author: ShiTianshu
+    back_color: 0xfffafafa
+    candidate_separator_color: 0xff999999
+    candidate_text_color: 0xff333333
+    comment_text_color: 0xff666666
+    hilited_back_color: 0xfffa5555
+    hilited_candidate_back_color: 0xffc8c8c8
+    hilited_candidate_text_color: 0xfffa5555
+    hilited_comment_text_color: 0xfffa5555
+    hilited_key_back_color: 0xffff9999
+    hilited_key_symbol_color: 0xff3060f0
+    hilited_key_text_color: 0xff000000
+    hilited_off_key_back_color: 0xfffa5555
+    hilited_off_key_text_color: 0xfffa5555
+    hilited_text_color: 0xfffa5555
+    key_back_color: 0xefefef
+    border_color: 0xff000000
+    key_symbol_color: 0xff505050
+    key_text_color: 0xff333333
+    keyboard_back_color: 0xffa0a0a0
+    label_color: *color6 #标签
+    off_key_back_color: *color4  #按键关闭状态背景
+    off_key_text_color: *color8 #按键关闭状态文本
+    preview_back_color: 0x66000000
+    preview_text_color: 0x66fafafa
+    text_color: 0x90903030
+    text_back_color: 0xfffafafa
+    bgn: 0xff5e3f6b
+    tgn: 0xffffffff
+    bbs: 0xffe04545
+    tbs: 0xffffffff
+
+#键盘布局
+preset_keyboards:
+  default:
+    author: "ShiTianshu"
+    name: 默认布局
+    width: 10
+    ascii_mode: 0
+    keys:
+      - {width: 9, click: space, long_click: Candidate_switch}
+      - {width: 9, click: ','}
+      - {width: 9, click: '.'}
+      - {width: 9, swipe_up: 'P', click: 'p', long_click: "~"}
+      - {width: 9, swipe_up: 'Y', click: 'y', long_click: ":"}
+      - {width: 10, swipe_up: 'F', click: 'f', long_click: '"'}
+      - {width: 9, swipe_up: 'G', click: 'g', long_click: '`'}
+      - {width: 9, swipe_up: 'C', click: 'c', long_click: '?'}
+      - {width: 9, swipe_up: 'R', click: 'r', long_click: "^"}
+      - {width: 9, swipe_up: 'L', click: 'l', long_click: "|"}
+      - {width: 10, click: BackSpace, key_back_color: bbs, key_text_color: tbs}
+
+      - {width: 5}
+      - {width: 9, swipe_up: 'A', click: 'a', long_click: Escape}
+      - {width: 9, swipe_up: 'O', click: 'o', long_click: '{Tab}'}
+      - {width: 9, swipe_up: 'E', click: 'e', long_click: cut}
+      - {width: 9, swipe_up: 'U', click: 'u', long_click: copy}
+      - {width: 9, swipe_up: 'I', click: 'i', long_click: paste}
+      - {width: 9, swipe_up: 'D', click: 'd', long_click: ';'}
+      - {width: 9, swipe_up: 'H', click: 'h', long_click: "'"}
+      - {width: 9, swipe_up: 'T', click: 't', long_click: "#"}
+      - {width: 9, swipe_up: 'N', click: 'n', long_click: "/"}
+      - {width: 9, swipe_up: 'S', click: 's', long_click: '@'}
+      - {width: 5}
+
+      - {width: 9, click: Shift_L, key_back_color: bgn, key_text_color: tgn}
+      - {width: 9, swipe_up: 'Q', click: 'q', long_click: "$"}
+      - {width: 9, swipe_up: 'J', click: 'j', long_click: '-'}
+      - {width: 9, swipe_up: 'K', click: 'k', long_click: '_'}
+      - {width: 9, swipe_up: 'X', click: 'x', long_click: '<'}
+      - {width: 10, swipe_up: 'B', click: 'b', long_click: '>'}
+      - {width: 9, swipe_up: 'M', click: 'm', long_click: "&"}
+      - {width: 9, swipe_up: 'W', click: 'w', long_click: "%"}
+      - {width: 9, swipe_up: 'V', click: 'v', long_click: "!"}
+      - {width: 9, swipe_up: 'Z', click: 'z', long_click: \}
+      - {click: Return, width: 10, key_back_color: bgn, key_text_color: tgn}
+
+      - {width: 10, click: '7', long_click: "[", key_back_color: bgn, key_text_color: tgn}
+      - {width: 10, click: '5', long_click: "{", key_back_color: bgn, key_text_color: tgn}
+      - {width: 10, click: '3', long_click: "}", key_back_color: bgn, key_text_color: tgn}
+      - {width: 10, click: '1', long_click: "(", key_back_color: bgn, key_text_color: tgn}
+      - {width: 10, click: '9', long_click: "=", key_back_color: bgn, key_text_color: tgn}
+      - {width: 10, click: '0', long_click: "*", key_back_color: bgn, key_text_color: tgn}
+      - {width: 10, click: '2', long_click: ")", key_back_color: bgn, key_text_color: tgn}
+      - {width: 10, click: '4', long_click: "+", key_back_color: bgn, key_text_color: tgn}
+      - {width: 10, click: '6', long_click: "]", key_back_color: bgn, key_text_color: tgn}
+      - {width: 10, click: '8', long_click: "!", key_back_color: bgn, key_text_color: tgn}
+
+  number:
+    author: "ShiTianshu"
+    name: 数字+
+    width: 16.6
+    ascii_mode: 1
+    keys:
+      - {click: '{}{Left}{Keyboard_default}', key_back_color: bgn, key_text_color: tgn}
+      - {click: '+', long_click: '#', key_back_color: bgn, key_text_color: tgn}
+      - {click: 1}
+      - {click: 2}
+      - {click: 3}
+      - {click: BackSpace, key_back_color: bbs, key_text_color: tbs}
+
+      - {click: '[]{Left}{Keyboard_default}', key_back_color: bgn, key_text_color: tgn}
+      - {click: '-', long_click: '%', key_back_color: bgn, key_text_color: tgn}
+      - {click: 4}
+      - {click: 5}
+      - {click: 6}
+      - {click: space1, key_back_color: bgn, key_text_color: tgn}
+
+      - {click: '(){Left}{Keyboard_default}', key_back_color: bgn, key_text_color: tgn}
+      - {click: '*', long_click: '±', key_back_color: bgn, key_text_color: tgn}
+      - {click: 7, long_click: select_all}
+      - {click: 8, long_click: copy}
+      - {click: 9, long_click: paste}
+      - {label: 中文, click: Mode_switch, key_back_color: bgn, key_text_color: tgn}
+
+      - {click: Keyboard_default, long_click: ':', key_back_color: bgn, key_text_color: 'tgn'}
+      - {click: '/', long_click: \, key_back_color: bgn, key_text_color: tgn}
+      - {click: ., key_back_color: bgn, key_text_color: tgn}
+      - {click: 0, long_click: cut}
+      - {click: '=', long_click: '≠', key_back_color: bgn, key_text_color: tgn}
+      - {click: Return, long_click: Menu, key_back_color: bgn, key_text_color: tgn}
+
+android_keys:
+  __include: trime:/android_keys
+
+preset_keys:
+  # 安卓
+  BRIGHTNESS_DOWN: {label: 亮度-, send: BRIGHTNESS_DOWN}
+  BRIGHTNESS_UP: {label: 亮度+, send: BRIGHTNESS_UP}
+  CALCULATOR: {label: 计算机, send: CALCULATOR}
+  CALENDAR: {label: 日历, send: CALENDAR}
+  CONTACTS: {label: 电话簿, send: CONTACTS}
+  ENVELOPE: {label: 信箱, send: ENVELOPE}
+  EXPLORER: {label: 浏览器, send: EXPLORER}
+  MUSIC: {label: 音乐, send: MUSIC}
+  POWER: {label: 电源, send: POWER}
+  SEARCH: {label: 搜寻, send: Find}
+  SLEEP: {label: 休眠, send: SLEEP}
+  VOICE_ASSIST: {label: 语音, functional: true, send: VOICE_ASSIST}
+  VOLUME_DOWN: {label: 音量-, send: VOLUME_DOWN}
+  VOLUME_UP: {label: 音量+, send: VOLUME_UP}
+  VOLUME_MUTE: {label: 静音, send: VOLUME_MUTE}
+  # 编辑
+  Shift_L: {label: "↑", preview: '↑', functional: false, send: Shift_L}
+  Return: {label: "⏎", preview: '⏎', functional: false, send: Return}
+  Hide: {label: 隐藏, send: BACK}
+  BackSpace: {label: "⌫", preview: '⇦', repeatable: true, functional: false, send: BackSpace}
+  space: {repeatable: false, preview: ' ', functional: false, label: ' ', send: space}
+  space1: {repeatable: false, label: '空格', functional: false, send: space}
+  Clear: {label: 全清, send: Clear}
+  Escape: {label: "Esc", functional: false, send: Escape}
+  Home: {label: 行首, send: Home, functional: false}
+  Insert: {label: 插入, send: Insert}
+  Delete: {label: 删除, send: Delete, functional: false}
+  End: {label: 行尾, send: End, functional: false}
+  Page_Up: {label: 上页, send: Page_Up, functional: false}
+  Page_Down: {label: 下页, send: Page_Down, functional: false}
+  Left: {label: '←', send: Left, repeatable: true, functional: false}
+  Down: {label: '↓', send: Down, functional: false}
+  Up: {label: '↑', send: Up, functional: false}
+  Right: {label: '→', send: Right, repeatable: true, functional: false}
+  select_all: {label: 全选, functional: false, send: Control+a}
+  cut: {label: 剪切, functional: false, send: Control+x}
+  copy: {label: 复制, functional: false, send: Control+c}
+  paste: {label: 粘贴, functional: false, send: Control+v}
+  paste_text: {label: 貼上文本, send: Control+Shift+Alt+v} #>=Android 6.0
+  share_text: {label: 分享文本, send: Control+Alt+s} #>=Android 6.0
+  redo: {label: 重做, functional: false, send: Control+y} #>=Android 6.0
+  undo: {label: 撤銷, functional: false, send: Control+z} #>=Android 6.0
+  delimiter: {label: 分词, text: ''''}
+  x1: {text: '{Home}{Right}{Right}', label: 单字, functional: false}
+  x2: {text: '{Home}{Right}{Right}{Right}{Right}', label: 二字, functional: false}
+  x3: {text: '{Home}{Right}{Right}{Right}{Right}{Right}{Right}', label: 三字, functional: false}
+  x4: {text: '{Home}{Right}{Right}{Right}{Right}{Right}{Right}{Right}{Right}', label: 四字, functional: false}
+ # x1: {text: '{Home}{Right}{Right}', label: 单字, functional: false}
+  # rime组合键
+  F4: {label: 方案菜单, send: F4}
+  BackToPreviousSyllable: {label: 删音节, send: Control+BackSpace}
+  CommitRawInput: {label: 编码, send: Control+Return}
+  CommitScriptText: {label: 编码, send: Shift+Return}
+  CommitComment: {label: 编码, send: Control+Shift+Return}
+  DeleteCandidate: {label: 删词, send: Control+Delete, functional: false}
+  Candidate_switch: {toggle: _hide_candidate, send: Mode_switch, states: [ 候选, 无候选 ]}
+  # rime状态
+  Mode_switch: {toggle: ascii_mode, functional: false, send: Mode_switch, states: [ 中文, 西文 ]}
+  Zenkaku_Hankaku: {toggle: full_shape, send: Mode_switch, states: [ 半角, 全角 ]}
+  Henkan: {toggle: simplification, send: Mode_switch, states: [ 汉字, 汉字 ]}
+  Charset_switch: {toggle: extended_charset, send: Mode_switch, states: [ 常用, 增广 ]}
+  Punct_switch: {toggle: ascii_punct, send: Mode_switch, states: [ 。，, ．， ]}
+  # trime设置
+  IME_switch: {label: 🌐, send: LANGUAGE_SWITCH} #彈出對話框選擇輸入法
+  IME_last: {label: 上一输入法, send: LANGUAGE_SWITCH, select: .last} #直接切換到上一輸入法
+  IME_next: {label: 下一输入法, send: LANGUAGE_SWITCH, select: .next} #直接切換到下一輸入法
+  Keyboard_letter: {label: 字母, functional: true, send: Eisu_toggle, select: default}
+  Keyboard_default: {label: 返回, functional: false, send: Eisu_toggle, select: .default}
+  Keyboard_switch: {label: 键盘, functional: true, send: Eisu_toggle, select: .next}
+  Keyboard_number: {label: "123", functional: false, send: Eisu_toggle, select: number}
+  Keyboard_symbols: {label: 更多, functional: false, send: Eisu_toggle, select: symbols}
+  Keyboard_move: {label: ❖, functional: true, send: Eisu_toggle, select: move}
+  Keyboard_next: {label: 后退, functional: false, send: Eisu_toggle, select: .next}
+  Keyboard_last: {label: 后退, functional: false, send: Eisu_toggle, select: .last}
+  Keyboard_last_lock: {label: 返回, send: Eisu_toggle, select: .last_lock} #直接切換到下一键盘
+  Schema_switch: {label: 下一方案, functional: false, send: Control+Shift+1}
+  Schema_Eng: {label: En, functional: true, send: Control+Shift+0}
+  Theme_settings: {label: 主题, send: SETTINGS, option: "theme"}
+  Color_switch: {label: 配色, functional: false, send: PROG_RED}
+  Help: {label: 说明, send: Help}
+  Info: {label: 关于, send: INFO}
+  Menu: {label: 菜单, functional: false, send: Menu}
+  Settings: {label: 设置, functional: false, send: SETTINGS}
+  Left1: {label: '⇦', send: Control+Left, repeatable: true, functional: false}
+  Right1: {label: '⇨', send: Control+Right, repeatable: true, functional: false}
+  Shift_L2: {label: 选择, preview: '⇪', functional: false, send: Shift_L}

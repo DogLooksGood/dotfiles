@@ -1,1 +1,5 @@
 #TabsToolbar { visibility: collapse !important; }
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+/*Prevents White pre-load flash*/
+tabbrowser tabpanels { background-color: black !important; }

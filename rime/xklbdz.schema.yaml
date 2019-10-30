@@ -85,6 +85,13 @@ switches:
     states: [ 半角, 全角 ]
   - name: jmfj
     states: [ 汉字, 漢字 ]
+  - name: _hide_key_hint
+    states: [ 提示, 简洁 ]
+    reset: 1
+  - options: [ _key_Left ]
+    states: [ " ⟵ " ]
+  - options: [ _key_Right ]
+    states: [ " ⟶ " ]
 
 engine:
   processors:
@@ -106,7 +113,7 @@ engine:
     - punct_translator
     - table_translator
 #    - reverse_lookup_translator
-#    - history_translator@history
+    - history_translator@history
   filters:
     - simplifier
     - uniquifier
@@ -163,6 +170,9 @@ reverse_lookup:
     - xform/^/〔/
     - xform/$/〕/
 
+menu:
+  page_size: 8
+
 # punctuator:
 #  import_preset: symbols
 
@@ -179,3 +189,8 @@ recognizer:
     punct: "^/([0-9]0?|[a-z]+)$"
     #retention: "[a-z;]{1,2}"
     retention: "^[bpmfdtnlgkhjqxzscrywv][a-z][aeiou]{0, 3}"
+
+history:
+  input: i
+  size: 1
+  initial_quality: 1
