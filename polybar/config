@@ -3,12 +3,11 @@
 
 [color]
 
-bg = #0A7782
-fg = #eeeeee
+fg = ${xrdb:Polybar.foreground:#000000}
+bg = ${xrdb:Polybar.background:#000000}
 bi = #00acc1
 be = #00acc1
-bf = #43a047
-;; bf = #6E3F6D
+bf = ${xrdb:Polybar.highlight:#000000}
 bn = #43a047
 bm = #edb822
 bd = #e53935
@@ -24,11 +23,13 @@ type = internal/date
 
 interval = 1.0
 
-time = %a %H:%M:%S
+time =  %a %H:%M:%S
 
 format = <label>
 
 label = %time%
+
+time-alt =  %A, %d %B %Y
 
 
 
@@ -42,7 +43,7 @@ format = <label>
 
 format-prefix = 
 
-label = " %gb_used%"
+label = " %percentage_used%%"
 
 
 
@@ -56,7 +57,7 @@ format = <label>
 
 format-prefix = 
 
-label = " %percentage:2:3%%"
+label = "%percentage:2:3%%"
 
 
 
@@ -66,40 +67,51 @@ type = internal/i3
 
 format = <label-state> <label-mode>
 
-ws-icon-0 = 0;λ
-ws-icon-1 = 1;Ξ
-ws-icon-2 = 2;Ε
-ws-icon-3 = 3;Γ
-ws-icon-4 = 4;Α
-ws-icon-5 = 5;-
-ws-icon-6 = 6;-
-ws-icon-7 = 7;-
-ws-icon-8 = 8;-
-ws-icon-9 = 9;-
+ws-icon-0 = 1;1
+ws-icon-1 = 2;2
+ws-icon-2 = 3;3
+ws-icon-3 = 4;4
+ws-icon-4 = 5;5
+ws-icon-5 = 6;6
+ws-icon-6 = 7;7
+ws-icon-7 = 8;8
+ws-icon-8 = 9;9
+ws-icon-9 = 0;0
+
+; ws-icon-0 = 0;
+; ws-icon-1 = 1;
+; ws-icon-2 = 2;
+; ws-icon-3 = 3;
+; ws-icon-4 = 4;
+; ws-icon-5 = 5;
+; ws-icon-6 = 6;-
+; ws-icon-7 = 7;-
+; ws-icon-8 = 8;-
+; ws-icon-9 = 9;-
 
 label-mode = %mode%
 label-mode-padding = 1
 label-mode-background = ${color.bu}
 
-label-focused = %icon%
+label-focused = " %icon% "
 label-focused-foreground = ${color.ff}
 label-focused-background = ${color.bf}
 label-focused-padding = 1
 
-label-visible = %icon% %output%
+label-visible = " %icon% " %output%
 label-visible-underline = #ff0000
 label-visible-padding = 1
 
-label-urgent = %icon%
+label-urgent = " %icon% "
 label-urgent-foreground = ${color.fu}
 label-urgent-background = ${color.bu}
 label-urgent-padding = 1
 
-label-unfocused = %icon%
+label-unfocused = " %icon% "
 label-unfocused-padding = 1
 
-label-separator = |
-label-separator-padding = 1
+label-separator =
+label-separator-padding = 0
 label-separator-foreground = ${color.bf}
 
 
@@ -123,7 +135,7 @@ label-charging = %percentage%%
 
 label-discharging = %percentage%%
 
-label-full =  Fully Charged
+label-full = Fully Charged
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -193,7 +205,7 @@ format-muted = <label-muted>
 label-volume = %percentage%%
 
 format-muted-prefix = 婢
-label-muted = " Muted"
+label-muted = "Muted"
 label-muted-foreground = #666
 
 ramp-volume-0 = 奄
@@ -281,15 +293,17 @@ accumulate-stats = true
 
 unknown-as-up = true
 
-format-connected = <ramp-signal> <label-connected>
+format-connected = <ramp-signal><label-connected>
 
 format-disconnected = <label-disconnected>
 
-format-packetloss = <animation-packetloss> <label-connected>
+format-packetloss = <animation-packetloss><label-connected>
 
-label-connected = "%essid% %downspeed:8% %upspeed:8%   %local_ip%"
+;; label-connected = "%essid% %downspeed:8% %upspeed:8%   %local_ip%"
 
-label-disconnected = 睊 "Not Connected"
+label-connected = "%essid% %local_ip%"
+
+label-disconnected = 睊"Not Connected"
 
 label-packetloss = %essid%
 
@@ -304,24 +318,6 @@ ramp-signal-4 = 直
 [module/mpd]
 type = internal/mpd
 
-; Available tags:
-;   <label-song> (default)
-;   <label-time>
-;   <bar-progress>
-;   <toggle> - gets replaced with <icon-(pause|play)>
-;   <toggle-stop> - gets replaced with <icon-(stop|play)>
-;   <icon-random>
-;   <icon-repeat>
-;   <icon-repeatone> (deprecated)
-;   <icon-single> - Toggle playing only a single song. Replaces <icon-repeatone>
-;   <icon-consume>
-;   <icon-prev>
-;   <icon-stop>
-;   <icon-play>
-;   <icon-pause>
-;   <icon-next>
-;   <icon-seekb>
-;   <icon-seekf>
 format-online = <label-time> <icon-prev> <icon-pause> <icon-play> <icon-next> <label-song>
 
 format-offline = <label-offline>
@@ -352,6 +348,12 @@ label-maxlen = 50
 
 
 
+[module/bar]
+
+type = custom/text
+
+content = "|"
+
 [module/lock]
 
 type = custom/text
@@ -364,7 +366,6 @@ content-padding = 1
 
 click-left = i3lock -i ~/Pictures/backgrounds/lock.png &
 click-right = i3lock -i ~/Pictures/backgrounds/lock.png &
-
 
 
 
@@ -396,56 +397,38 @@ label-separator = " | "
 
 
 
-[bar/common]
+[bar/default]
+
+wm-name = "polybar"
 
 width = 100%
-height = 48
+height = 44
 
-dpi = 172
-
-border-size=0
-border-color=#FFF
-
-separater =
+dpi = 196
 
 center-fixed = true
 
 font-0 = "NotoSansMono Nerd Font:size=9;1"
 
-module-margin-left = 1
-module-margin-right = 1
+module-margin-left = 0
+module-margin-right = 0
 
 padding = 1
 
-
-
-[bar/top]
-
-inherit = bar/common
+separator = "  "
 
 background = ${color.bg}
 foreground = ${color.fg}
 
-modules-left = launcher i3
+tray-position = none
+tray-padding = 5
+tray-maxsize = 30
+
+modules-left = i3 title
 modules-center = date
 modules-right = pulseaudio backlight battery network
 
+border-bottom-size = 4
+border-bottom-color = ${color.bf}
+
 bottom = false
-
-[bar/bottom]
-
-inherit = bar/common
-
-
-background = ${color.fg}
-foreground = ${color.bg}
-
-
-modules-left = mpd
-modules-center =
-modules-right = network
-
-module-margin-left = 1
-module-margin-right = 1
-
-bottom = true

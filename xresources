@@ -1,0 +1,69 @@
+Xft.dpi: 210
+
+URxvt.foreground:   #cbe3e7
+URxvt.background:   rgba:1b00/1800/2c00/cc00
+URxvt.cursorColor:  #fbfcfc
+URxvt.color0:       #100e23
+URxvt.color8:       #565575
+URxvt.color1:       #ff8080
+URxvt.color9:       #ff5458
+URxvt.color2:       #95ffa4
+URxvt.color10:      #62d196
+URxvt.color3:       #ffe9aa
+URxvt.color11:      #ffb378
+URxvt.color4:       #91ddff
+URxvt.color12:      #65b2ff
+URxvt.color5:       #c991e1
+URxvt.color13:      #906cff
+URxvt.color6:       #aaffe4
+URxvt.color14:      #63f2f1
+URxvt.color7:       #cbe3e7
+URxvt.color15:      #a6b3cc
+
+URxvt*scrollBar:         false
+URxvt*scrollBar_right:   false
+
+URxvt*transparent:       false
+
+URxvt*depth: 32
+
+URxvt.font: xft:IBM Plex Mono:pixelsize=30
+!! URxvt.font: xft:consolas:pixelsize=28
+URxvt.letterSpace: 0
+
+URxvt.internalBorder:  40
+
+*antialias:  true
+*autohint:   true
+
+!! URxvt Plugins
+URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select
+
+!! url-select
+URxvt.keysym.M-u:	perl:url-select:select_next
+URxvt.url-select.launcher: firefox
+URxvt.url-select.underline: true
+URxvt.matcher.button:	1
+
+!! keyboard-select:
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+
+!! resize-font
+URxvt.resize-font.smaller:	C-Down
+URxvt.resize-font.bigger:	C-Up
+
+Emacs.menuBar: off
+Emacs.verticalScrollBars: off
+Emacs.toolBar: off
+Emacs*background: #1a1a1a
+Emacs.internalBorder: 30
+
+Polybar.background: #e0171717
+Polybar.foreground: #ffffff
+Polybar.highlight: #16a085
+
+i3wm.highlight: #16a085
+i3wm.inactive: #777777
+
+!! Cursor size
+Xcursor.size: 54
