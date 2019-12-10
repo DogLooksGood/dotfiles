@@ -1,24 +1,47 @@
 Xft.dpi: 210
 
-URxvt.foreground:   #cbe3e7
-URxvt.background:   rgba:1b00/1800/2c00/cc00
-URxvt.cursorColor:  #fbfcfc
-URxvt.color0:       #100e23
-URxvt.color8:       #565575
-URxvt.color1:       #ff8080
-URxvt.color9:       #ff5458
-URxvt.color2:       #95ffa4
-URxvt.color10:      #62d196
-URxvt.color3:       #ffe9aa
-URxvt.color11:      #ffb378
-URxvt.color4:       #91ddff
-URxvt.color12:      #65b2ff
-URxvt.color5:       #c991e1
-URxvt.color13:      #906cff
-URxvt.color6:       #aaffe4
-URxvt.color14:      #63f2f1
-URxvt.color7:       #cbe3e7
-URxvt.color15:      #a6b3cc
+! -------------------------------------------------------------
+! URxvt Color Theme Start
+! -------------------------------------------------------------
+URxvt.background: rgba:0000/2b00/3600/ef00
+*foreground: #839496
+
+!! black dark/light
+*color0: #073642
+*color8: #002b36
+
+!! red dark/light
+*color1: #dc322f
+*color9: #cb4b16
+
+!! green dark/light
+*color2: #859900
+*color10: #586e75
+
+!! yellow dark/light
+*color3: #b58900
+*color11: #657b83
+
+!! blue dark/light
+*color4: #268bd2
+*color12: #839496
+
+!! magenta dark/light
+*color5: #d33682
+*color13: #6c71c4
+
+!! cyan dark/light
+*color6: #2aa198
+*color14: #93a1a1
+
+!! white dark/light
+*color7: #eee8d5
+*color15: #fdf6e3
+
+! -------------------------------------------------------------
+! URxvt Color Theme End
+! -------------------------------------------------------------
+
 
 URxvt*scrollBar:         false
 URxvt*scrollBar_right:   false
@@ -27,8 +50,7 @@ URxvt*transparent:       false
 
 URxvt*depth: 32
 
-URxvt.font: xft:IBM Plex Mono:pixelsize=30
-!! URxvt.font: xft:consolas:pixelsize=28
+URxvt.font: xft:dejavu sans mono:pixelsize=30
 URxvt.letterSpace: 0
 
 URxvt.internalBorder:  40
@@ -55,15 +77,16 @@ URxvt.resize-font.bigger:	C-Up
 Emacs.menuBar: off
 Emacs.verticalScrollBars: off
 Emacs.toolBar: off
-Emacs*background: #1a1a1a
-Emacs.internalBorder: 30
+Emacs.internalBorder: 40
 
-Polybar.background: #e0171717
-Polybar.foreground: #ffffff
-Polybar.highlight: #16a085
+Polybar.background: #c0d0d0d0
+Polybar.foreground: #000000
+Polybar.highlight: #171717
+Polybar.highlight.text: #ffffff
 
-i3wm.highlight: #16a085
-i3wm.inactive: #777777
+i3wm.highlight: #35c090
+i3wm.highlight.text: #000000
+i3wm.inactive: #171717
 
 !! Cursor size
 Xcursor.size: 54

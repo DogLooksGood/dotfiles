@@ -54,4 +54,22 @@
   ;; https://github.com/tonsky/uberdeps
   :uber
   {:extra-deps {uberdeps {:mvn/version "RELEASE"}}
-   :main-opts ["-m" "uberdeps.uberjar"]}}}
+   :main-opts ["-m" "uberdeps.uberjar"]}
+
+  ;; https://github.com/kachayev/nasus
+  ;; Zero-configuration command-line async HTTP files server
+  :nasus
+  {:extra-deps {nasus {:mvn/version "0.1.5"}}
+   :main-opts ["-m" "http.server"]}
+
+  :socket
+  {:jvm-opts ["-Dclojure.server.repl={:port,50505,:accept,clojure.core.server/repl}"]}
+
+  ;; https://github.com/clojure/tools.deps.graph
+  :graph
+  {:extra-deps {org.clojure/tools.deps.graph {:mvn/version "0.1.14"}}
+   :main-opts ["-m" "clojure.tools.deps.graph"]}
+
+  ;; Generate shadow-cljs build report.
+  :shadow-report
+  {:main-opts ["-m" "shadow.cljs.build-report" "app" "report.html"]}}}

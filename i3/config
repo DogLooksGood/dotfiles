@@ -57,10 +57,16 @@ bindsym $mod+space exec rofi -show combi
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+# Launch file manager
+bindsym $mod+m exec pcmanfm
+
+# Launch Firefox
+bindsym $mod+b exec firefox
+
 # change focus
-bindsym $mod+d focus left
-bindsym $mod+h focus down
-bindsym $mod+t focus up
+bindsym $mod+h focus left
+bindsym $mod+t focus down
+bindsym $mod+c focus up
 bindsym $mod+n focus right
 
 # alternatively, you can use the cursor keys:
@@ -70,9 +76,9 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+d move left
-bindsym $mod+Shift+h move down
-bindsym $mod+Shift+t move up
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+t move down
+bindsym $mod+Shift+c move up
 bindsym $mod+Shift+n move right
 
 # alternatively, you can use the cursor keys:
@@ -103,7 +109,7 @@ bindsym $mod+Tab focus mode_toggle
 
 # focus the parent container
 # bindsym $mod+p focus parent
-bindsym $mod+c focus child
+# bindsym $mod+c focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -124,32 +130,41 @@ bindsym $mod+braceleft workspace $ws3
 bindsym $mod+braceright workspace $ws4
 bindsym $mod+parenleft workspace $ws5
 bindsym $mod+equal workspace $ws6
-
 # bindsym $mod+asterisk workspace $ws6
 # bindsym $mod+parenright workspace $ws7
 # bindsym $mod+plus workspace $ws8
 # bindsym $mod+bracketright workspace $ws9
 
+# bindsym $mod+1 workspace $ws1
+# bindsym $mod+2 workspace $ws2
+# bindsym $mod+3 workspace $ws3
+# bindsym $mod+4 workspace $ws4
+# bindsym $mod+5 workspace $ws5
+# bindsym $mod+6 workspace $ws6
+
+# programmer dvorak
+
 # move focused container to workspace
 
+# programmer dvorak
 bindsym $mod+Shift+ampersand move container to workspace $ws1
 bindsym $mod+Shift+bracketleft move container to workspace $ws2
 bindsym $mod+Shift+braceleft move container to workspace $ws3
 bindsym $mod+Shift+braceright move container to workspace $ws4
 bindsym $mod+Shift+1 move container to workspace $ws5
 bindsym $mod+Shift+9 move container to workspace $ws6
-
-# bindsym $mod+Shift+asterisk move container to workspace $ws6
-# bindsym $mod+Shift+2 move container to workspace $ws7
-# bindsym $mod+Shift+plus move container to workspace $ws8
-# bindsym $mod+Shift+bracketright move container to workspace $ws9
+# bindsym $mod+Shift+1 move container to workspace $ws1
+# bindsym $mod+Shift+2 move container to workspace $ws2
+# bindsym $mod+Shift+3 move container to workspace $ws3
+# bindsym $mod+Shift+4 move container to workspace $ws4
+# bindsym $mod+Shift+5 move container to workspace $ws5
+# bindsym $mod+Shift+6 move container to workspace $ws6
 
 # move workspace container between monitors
 bindsym $mod+dollar exec ~/.config/i3/moveworkspace.py
 
-
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -159,14 +174,10 @@ bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym d resize shrink width 2 px or 2 ppt
-        bindsym h resize grow height 2 px or 2 ppt
-        bindsym t resize shrink height 2 px or 2 ppt
-        bindsym n resize grow width 2 px or 2 ppt
+        bindsym minus resize shrink width 2 px or 2 ppt
+        bindsym plus resize grow width 2 px or 2 ppt
+        bindsym Shift+minus resize shrink height 2 px or 2 ppt
+        bindsym Shift+plus resize grow height 2 px or 2 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 2 px or 2 ppt
@@ -204,32 +215,39 @@ bindsym $mod+Shift+apostrophe exec maim -s ~/Pictures/screenshots/$(date +%s).pn
 
 set_from_resource $active i3wm.highlight "#000000"
 set_from_resource $inactive i3wm.inactive "#000000"
+set_from_resource $activetext i3wm.highlight.text "#000000"
 set $default "#ffffff"
 set $indicator "#3399ff"
 
-client.focused          $active   $active   $default $active
+client.focused          $active   $active   $activetext $active
 client.focused_inactive $inactive $inactive $default $inactive
 client.unfocused        $inactive $inactive $default $indicator
 
+# Assignment
+assign [class="^firefox$"] 3
+
 # Gaps setup
 for_window [class=".*"] border pixel 1
-gaps inner 10
-gaps outer 10
-smart_gaps inverse_outer
-# smart_borders on
-
-# border_radius 8
+gaps inner 8
+smart_borders on
+smart_gaps on
 
 bindsym $mod+s			gaps inner current plus 5
 bindsym $mod+Shift+s	gaps inner current minus 5
 bindsym $mod+z			gaps outer current plus 5
 bindsym $mod+Shift+z	gaps outer current minus 5
 
+for_window [class=".*"] title_format "│%title"
+
+# LS command is a pain on dvorak layout.
+# bind a command to solve it.
+bindsym --release $mod+d exec "sleep 0.1;xdotool type 'ls -lha';xdotool key Return"
+
 # Initialize
 
 exec compton &
 
-exec xset r rate 150 50
+exec_always xset r rate 225 50
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
@@ -242,5 +260,7 @@ exec fcitx &
 exec copyq &
 
 exec mpd &
+
+exec redshift -l39:116
 
 exec_always feh --bg-fill $HOME/Pictures/wp
