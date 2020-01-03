@@ -17,7 +17,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 7
 
 # hidpi support
 # exec xrandr --dpi 196
@@ -48,7 +48,7 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+Return exec emc
 
 # kill focused window
-bindsym $mod+q kill
+bindsym $mod+w kill
 
 # start dmenu (a program launcher)
 bindsym $mod+space exec rofi -show combi
@@ -113,52 +113,43 @@ bindsym $mod+Tab focus mode_toggle
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws0 "0"
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
+
+set $nk1 parenleft
+set $nk2 parenright
+set $nk3 braceright
+set $nk4 plus
+set $nk5 braceleft
+set $nk6 bracketright
+set $nk7 bracketleft
+set $nk8 exclam
+set $nk9 equal
+set $nk0 asterisk
 
 # switch to workspace
 
-bindsym $mod+ampersand workspace $ws1
-bindsym $mod+bracketleft workspace $ws2
-bindsym $mod+braceleft workspace $ws3
-bindsym $mod+braceright workspace $ws4
-bindsym $mod+parenleft workspace $ws5
-bindsym $mod+equal workspace $ws6
-# bindsym $mod+asterisk workspace $ws6
-# bindsym $mod+parenright workspace $ws7
-# bindsym $mod+plus workspace $ws8
-# bindsym $mod+bracketright workspace $ws9
-
-# bindsym $mod+1 workspace $ws1
-# bindsym $mod+2 workspace $ws2
-# bindsym $mod+3 workspace $ws3
-# bindsym $mod+4 workspace $ws4
-# bindsym $mod+5 workspace $ws5
-# bindsym $mod+6 workspace $ws6
-
-# programmer dvorak
+bindsym $mod+$nk1 workspace 1
+bindsym $mod+$nk2 workspace 2
+bindsym $mod+$nk3 workspace 3
+bindsym $mod+$nk4 workspace 4
+bindsym $mod+$nk5 workspace 5
+bindsym $mod+$nk6 workspace 6
+bindsym $mod+$nk7 workspace 7
+bindsym $mod+$nk8 workspace 8
+bindsym $mod+$nk9 workspace 9
+bindsym $mod+$nk0 workspace 0
 
 # move focused container to workspace
 
-# programmer dvorak
-bindsym $mod+Shift+ampersand move container to workspace $ws1
-bindsym $mod+Shift+bracketleft move container to workspace $ws2
-bindsym $mod+Shift+braceleft move container to workspace $ws3
-bindsym $mod+Shift+braceright move container to workspace $ws4
-bindsym $mod+Shift+1 move container to workspace $ws5
-bindsym $mod+Shift+9 move container to workspace $ws6
-# bindsym $mod+Shift+1 move container to workspace $ws1
-# bindsym $mod+Shift+2 move container to workspace $ws2
-# bindsym $mod+Shift+3 move container to workspace $ws3
-# bindsym $mod+Shift+4 move container to workspace $ws4
-# bindsym $mod+Shift+5 move container to workspace $ws5
-# bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+$nk1 move container to workspace 1
+bindsym $mod+Shift+$nk2 move container to workspace 2
+bindsym $mod+Shift+$nk3 move container to workspace 3
+bindsym $mod+Shift+$nk4 move container to workspace 4
+bindsym $mod+Shift+$nk5 move container to workspace 5
+bindsym $mod+Shift+$nk6 move container to workspace 6
+bindsym $mod+Shift+$nk7 move container to workspace 7
+bindsym $mod+Shift+$nk8 move container to workspace 8
+bindsym $mod+Shift+$nk9 move container to workspace 9
+bindsym $mod+Shift+$nk0 move container to workspace 0
 
 # move workspace container between monitors
 bindsym $mod+dollar exec ~/.config/i3/moveworkspace.py
@@ -168,7 +159,8 @@ bindsym $mod+dollar exec ~/.config/i3/moveworkspace.py
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+q exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -199,7 +191,7 @@ bindsym $mod+k exec copyq menu
 
 bindsym $mod+x exec arandr
 
-bindsym $mod+w sticky toggle
+bindsym $mod+s sticky toggle
 
 # In case the wrong operate disable the primary display
 #   We bind a shortcut to enable the primary display, eDP1
@@ -211,12 +203,11 @@ bindsym $mod+Shift+apostrophe exec maim -s ~/Pictures/screenshots/$(date +%s).pn
 
 # Color Settings
 
-# green "#16a085"
-
+set_from_resource $default i3wm.default "#ffffff"
 set_from_resource $active i3wm.highlight "#000000"
 set_from_resource $inactive i3wm.inactive "#000000"
 set_from_resource $activetext i3wm.highlight.text "#000000"
-set $default "#ffffff"
+
 set $indicator "#3399ff"
 
 client.focused          $active   $active   $activetext $active
@@ -224,30 +215,23 @@ client.focused_inactive $inactive $inactive $default $inactive
 client.unfocused        $inactive $inactive $default $indicator
 
 # Assignment
-assign [class="^firefox$"] 3
+# assign [class="^firefox$"] 4
 
 # Gaps setup
 for_window [class=".*"] border pixel 1
-gaps inner 8
+gaps inner 6
 smart_borders on
 smart_gaps on
 
-bindsym $mod+s			gaps inner current plus 5
-bindsym $mod+Shift+s	gaps inner current minus 5
-bindsym $mod+z			gaps outer current plus 5
-bindsym $mod+Shift+z	gaps outer current minus 5
-
 for_window [class=".*"] title_format "│%title"
-
-# LS command is a pain on dvorak layout.
-# bind a command to solve it.
-bindsym --release $mod+d exec "sleep 0.1;xdotool type 'ls -lha';xdotool key Return"
 
 # Initialize
 
-exec compton &
+exec picom &
 
-exec_always xset r rate 225 50
+exec_always xmodmap $HOME/.Xmodmap
+
+exec_always xset r rate 165 45
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
@@ -257,10 +241,13 @@ exec emacs --daemon &
 
 exec fcitx &
 
-exec copyq &
+# use clipboard management from fcitx
+# exec copyq &
 
 exec mpd &
 
 exec redshift -l39:116
+
+exec dunst
 
 exec_always feh --bg-fill $HOME/Pictures/wp

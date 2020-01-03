@@ -1,0 +1,41 @@
+#! /bin/sh
+
+# auto startup
+
+picom &
+
+copyq &
+
+pkill sxhkd
+
+sxhkd -m -1 &
+
+# bspwm setup
+
+bspc monitor -d 7 5 3 1 9 0 2 4 6 8
+
+bspc config border_width         4
+bspc config window_gap          12
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc config active_border_color \#000000
+bspc config focused_border_color $(xrdb -query | grep "bspwm.focused" | cut -f2)
+bspc config normal_border_color $(xrdb -query | grep "bspwm.normal" | cut -f2)
+
+bspc rule -a Screenkey manage=off
+bspc rule -a Emacs state=tiled
+
+fcitx &
+
+feh --bg-fill $HOME/Pictures/wp
+
+xmodmap $HOME/.Xmodmap
+
+xset r rate 150 50
+
+$HOME/.config/polybar/launch.sh
+
+xsetroot -cursor_name left_ptr

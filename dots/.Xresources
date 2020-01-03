@@ -3,63 +3,62 @@ Xft.dpi: 210
 ! -------------------------------------------------------------
 ! URxvt Color Theme Start
 ! -------------------------------------------------------------
-URxvt.background: rgba:0000/2b00/3600/ef00
-*foreground: #839496
 
-!! black dark/light
-*color0: #073642
-*color8: #002b36
-
-!! red dark/light
-*color1: #dc322f
-*color9: #cb4b16
-
-!! green dark/light
-*color2: #859900
-*color10: #586e75
-
-!! yellow dark/light
-*color3: #b58900
-*color11: #657b83
-
-!! blue dark/light
-*color4: #268bd2
-*color12: #839496
-
-!! magenta dark/light
-*color5: #d33682
-*color13: #6c71c4
-
-!! cyan dark/light
-*color6: #2aa198
-*color14: #93a1a1
-
-!! white dark/light
-*color7: #eee8d5
-*color15: #fdf6e3
+! special colors
+URxvt.foreground:  #d0d0d0
+URxvt.background:  [90]#1A1A1A
+URxvt.cursorColor:  #d0d0d0
+!! black
+URxvt.color0:      #000000
+URxvt.color8:      #808080
+!! red
+URxvt.color1:      #D65946
+URxvt.color9:      #D65946
+!! green
+URxvt.color2:      #6AAF50
+URxvt.color10:     #6AAF50
+!! yellow
+URxvt.color3:      #BABA36
+URxvt.color11:     #BABA36
+!! blue
+URxvt.color4:      #598BC1
+URxvt.color12:     #598BC1
+!! magenta
+URxvt.color5:      #AB75C3
+URxvt.color13:     #AB75C3
+!! cyan
+URxvt.color6:      #8FBC8F
+URxvt.color14:     #8FBC8F
+! white
+URxvt.color7:      #d0d0d0
+URxvt.color15:     #ffffff
 
 ! -------------------------------------------------------------
 ! URxvt Color Theme End
 ! -------------------------------------------------------------
 
+URxvt.scrollBar:         false
+URxvt.scrollBar_right:   false
 
-URxvt*scrollBar:         false
-URxvt*scrollBar_right:   false
+URxvt.transparent:       false
 
-URxvt*transparent:       false
+URxvt.depth: 32
 
-URxvt*depth: 32
-
-URxvt.font: xft:dejavu sans mono:pixelsize=30
+URxvt.font: xft:ibm plex mono:pixelsize=26
 URxvt.letterSpace: 0
 
-URxvt.internalBorder:  40
+URxvt.internalBorder:  30
 
 *antialias:  true
 *autohint:   true
 
 !! URxvt Plugins
 URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select
+
+!! quick ls
+URxvt.keysym.M-h: exa -l --git\n
+URxvt.keysym.M-d: exa -la --git\n
+URxvt.keysym.M-t: exa -T --git-ignore\n
 
 !! url-select
 URxvt.keysym.M-u:	perl:url-select:select_next
@@ -77,16 +76,23 @@ URxvt.resize-font.bigger:	C-Up
 Emacs.menuBar: off
 Emacs.verticalScrollBars: off
 Emacs.toolBar: off
-Emacs.internalBorder: 40
+Emacs.internalBorder: 16
+Emacs.font: ibm plex mono-9
 
-Polybar.background: #c0d0d0d0
-Polybar.foreground: #000000
-Polybar.highlight: #171717
-Polybar.highlight.text: #ffffff
+Polybar.border: #000000
+Polybar.background: #171717
+Polybar.foreground: #FFFFFF
+Polybar.highlight: #93E0E3
+Polybar.highlight.text: #000000
 
-i3wm.highlight: #35c090
-i3wm.highlight.text: #000000
-i3wm.inactive: #171717
+bspwm.normal: #000000
+bspwm.focused: #999999
+
+i3wm.default: #666666
+i3wm.highlight: #93E0E3
+i3wm.highlight.text: #171717
+i3wm.inactive: #666666
 
 !! Cursor size
-Xcursor.size: 54
+Xcursor.size: 36
+Xcursor.theme: redglass
