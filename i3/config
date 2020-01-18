@@ -45,7 +45,7 @@ bindsym $mod+Return exec urxvt
 # bindsym $mod+Return exec i3-sensible-terminal
 
 # start a emacs client
-bindsym $mod+Shift+Return exec emc
+bindsym $mod+Shift+Return exec emacsclient -c
 
 # kill focused window
 bindsym $mod+w kill
@@ -187,7 +187,7 @@ bindsym $mod+r mode "resize"
 
 # software keybindings
 
-bindsym $mod+k exec copyq menu
+bindsym $mod+k exec urxvt -e "kak"
 
 bindsym $mod+x exec arandr
 
@@ -197,7 +197,7 @@ bindsym $mod+s sticky toggle
 #   We bind a shortcut to enable the primary display, eDP1
 
 bindsym $mod+Shift+x exec xrandr --output eDP1 --auto
-bindsym $mod+Shift+k exec xmodmap ~/.Xmodmap
+bindsym $mod+Shift+k exec xmodmap ~/.Xmodmap && exec_always xset r rate 165 45
 bindsym $mod+apostrophe exec maim -s | xclip -selection clipboard -t image/png
 bindsym $mod+Shift+apostrophe exec maim -s ~/Pictures/screenshots/$(date +%s).png
 
@@ -219,11 +219,11 @@ client.unfocused        $inactive $inactive $default $indicator
 
 # Gaps setup
 for_window [class=".*"] border pixel 1
-gaps inner 6
-smart_borders on
-smart_gaps on
+# gaps inner 6
+# smart_borders on
+# smart_gaps on
 
-for_window [class=".*"] title_format "│%title"
+for_window [class=".*"] title_format "⏵%title"
 
 # Initialize
 
@@ -236,8 +236,6 @@ exec_always xset r rate 165 45
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 exec --no-startup-id /usr/lib/kdeconnectd
-
-exec emacs --daemon &
 
 exec fcitx &
 

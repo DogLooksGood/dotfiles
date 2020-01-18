@@ -107,27 +107,26 @@ ws-icon-6 = 7;7
 ws-icon-7 = 8;8
 ws-icon-8 = 9;9
 ws-icon-9 = 0;0
-ws-icon-10 = 10;10
 
 label-mode = %mode%
 label-mode-padding = 1
 label-mode-background = ${color.bu}
 
-label-focused = "%name%"
+label-focused = "%icon%"
 label-focused-foreground = ${color.ff}
 label-focused-background = ${color.bf}
 label-focused-padding = 1
 
-label-visible = "%name%" %output%
+label-visible = "%icon%" %output%
 label-visible-underline = #ff0000
 label-visible-padding = 1
 
-label-urgent = "%name%"
+label-urgent = "%icon%"
 label-urgent-foreground = ${color.fu}
 label-urgent-background = ${color.bu}
 label-urgent-padding = 1
 
-label-unfocused = "%name%"
+label-unfocused = "%icon%"
 label-unfocused-padding = 1
 
 label-separator =
@@ -424,6 +423,7 @@ tail = true
 [bar/default]
 
 wm-name = "polybar"
+wm-restack = bspwm
 
 width = 100%
 height = 36
@@ -450,11 +450,11 @@ tray-maxsize = 30
 
 ; radius = 22
 
-modules-left = i3 title
+modules-left = bspwm title
 modules-center = date
 modules-right = pulseaudio backlight battery network
 
-border-bottom-size = 4
+border-bottom-size = 1
 border-bottom-color = ${color.bc}
 
 bottom = false

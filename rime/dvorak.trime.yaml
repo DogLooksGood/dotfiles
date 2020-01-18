@@ -224,7 +224,7 @@ preset_keyboards:
       - {width: 9, click: '.'}
       - {width: 9, swipe_up: 'P', click: 'p', long_click: "~"}
       - {width: 9, swipe_up: 'Y', click: 'y', long_click: ":"}
-      - {width: 10, swipe_up: 'F', click: 'f', long_click: '"'}
+      - {width: 9, swipe_up: 'F', click: 'f', long_click: '"'}
       - {width: 9, swipe_up: 'G', click: 'g', long_click: '`'}
       - {width: 9, swipe_up: 'C', click: 'c', long_click: '?'}
       - {width: 9, swipe_up: 'R', click: 'r', long_click: "^"}
@@ -249,7 +249,7 @@ preset_keyboards:
       - {width: 9, swipe_up: 'J', click: 'j', long_click: '-'}
       - {width: 9, swipe_up: 'K', click: 'k', long_click: '_'}
       - {width: 9, swipe_up: 'X', click: 'x', long_click: '<'}
-      - {width: 10, swipe_up: 'B', click: 'b', long_click: '>'}
+      - {width: 9, swipe_up: 'B', click: 'b', long_click: '>'}
       - {width: 9, swipe_up: 'M', click: 'm', long_click: "&"}
       - {width: 9, swipe_up: 'W', click: 'w', long_click: "%"}
       - {width: 9, swipe_up: 'V', click: 'v', long_click: "!"}

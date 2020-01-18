@@ -12,12 +12,12 @@ sxhkd -m -1 &
 
 # bspwm setup
 
-bspc monitor -d 7 5 3 1 9 0 2 4 6 8
+bspc monitor -d 0 1 2 3 4 5 6 7 8 9
 
-bspc config border_width         4
-bspc config window_gap          12
+bspc config border_width         1
+bspc config window_gap           0
 
-bspc config split_ratio          0.52
+bspc config split_ratio          0.55
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
@@ -39,3 +39,5 @@ xset r rate 150 50
 $HOME/.config/polybar/launch.sh
 
 xsetroot -cursor_name left_ptr
+
+emacs -nw -daemon

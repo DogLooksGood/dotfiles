@@ -5,33 +5,33 @@ Xft.dpi: 210
 ! -------------------------------------------------------------
 
 ! special colors
-URxvt.foreground:  #d0d0d0
-URxvt.background:  [90]#1A1A1A
-URxvt.cursorColor:  #d0d0d0
+URxvt.foreground:  #A8A8A8
+URxvt.background:  #1A1A1A
+URxvt.cursorColor:  #FFFFFF
 !! black
-URxvt.color0:      #000000
-URxvt.color8:      #808080
+*color0:      #000000
+*color8:      #808080
 !! red
-URxvt.color1:      #D65946
-URxvt.color9:      #D65946
+*color1:      #D65946
+*color9:      #D65946
 !! green
-URxvt.color2:      #6AAF50
-URxvt.color10:     #6AAF50
+*color2:      #6AAF50
+*color10:     #6AAF50
 !! yellow
-URxvt.color3:      #BABA36
-URxvt.color11:     #BABA36
+*color3:      #BABA36
+*color11:     #BABA36
 !! blue
-URxvt.color4:      #598BC1
-URxvt.color12:     #598BC1
+*color4:      #598BC1
+*color12:     #598BC1
 !! magenta
-URxvt.color5:      #AB75C3
-URxvt.color13:     #AB75C3
+*color5:      #AB75C3
+*color13:     #AB75C3
 !! cyan
-URxvt.color6:      #8FBC8F
-URxvt.color14:     #8FBC8F
+*color6:      #8FBC8F
+*color14:     #8FBC8F
 ! white
-URxvt.color7:      #d0d0d0
-URxvt.color15:     #ffffff
+*color7:      #d0d0d0
+*color15:     #ffffff
 
 ! -------------------------------------------------------------
 ! URxvt Color Theme End
@@ -44,10 +44,12 @@ URxvt.transparent:       false
 
 URxvt.depth: 32
 
-URxvt.font: xft:ibm plex mono:pixelsize=26
+URxvt.font: xft:pt mono:pixelsize=28
+! Disable bold font.
+URxvt.boldFont:
 URxvt.letterSpace: 0
 
-URxvt.internalBorder:  30
+URxvt.internalBorder: 30
 
 *antialias:  true
 *autohint:   true
@@ -56,9 +58,9 @@ URxvt.internalBorder:  30
 URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select
 
 !! quick ls
-URxvt.keysym.M-h: exa -l --git\n
-URxvt.keysym.M-d: exa -la --git\n
-URxvt.keysym.M-t: exa -T --git-ignore\n
+URxvt.keysym.M-h: ls -lh\n
+URxvt.keysym.M-d: ls -lha\n
+URxvt.keysym.Escape: 
 
 !! url-select
 URxvt.keysym.M-u:	perl:url-select:select_next
@@ -73,6 +75,7 @@ URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.resize-font.smaller:	C-Down
 URxvt.resize-font.bigger:	C-Up
 
+Emacs.background: #000000
 Emacs.menuBar: off
 Emacs.verticalScrollBars: off
 Emacs.toolBar: off
@@ -80,18 +83,18 @@ Emacs.internalBorder: 16
 Emacs.font: ibm plex mono-9
 
 Polybar.border: #000000
-Polybar.background: #171717
-Polybar.foreground: #FFFFFF
-Polybar.highlight: #93E0E3
-Polybar.highlight.text: #000000
+Polybar.background: #EAEAEA
+Polybar.foreground: #000000
+Polybar.highlight: #3366AA
+Polybar.highlight.text: #FFFFFF
 
 bspwm.normal: #000000
-bspwm.focused: #999999
+bspwm.focused: #000000
 
-i3wm.default: #666666
-i3wm.highlight: #93E0E3
+i3wm.default: #333333
+i3wm.highlight: #3366AA
 i3wm.highlight.text: #171717
-i3wm.inactive: #666666
+i3wm.inactive: #999999
 
 !! Cursor size
 Xcursor.size: 36
