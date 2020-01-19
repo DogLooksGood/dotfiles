@@ -6,7 +6,7 @@ Xft.dpi: 210
 
 ! special colors
 URxvt.foreground:  #A8A8A8
-URxvt.background:  #1A1A1A
+URxvt.background:  [100]#1A1A1A
 URxvt.cursorColor:  #FFFFFF
 !! black
 *color0:      #000000
@@ -57,10 +57,20 @@ URxvt.internalBorder: 30
 !! URxvt Plugins
 URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select
 
-!! quick ls
-URxvt.keysym.M-h: ls -lh\n
-URxvt.keysym.M-d: ls -lha\n
+!! Quick commands, dont rely on alias or any setup on the remote server.
+URxvt.keysym.M-h: ls -lh --color=auto\n
+URxvt.keysym.M-d: ls -lhA --color=auto\n
 URxvt.keysym.Escape: 
+URxvt.keysym.M-g: grep --color=auto -r --include \\*.
+URxvt.keysym.M-p: ps aux|grep --color=auto ""
+URxvt.keysym.M-w: find . -name ""
+URxvt.keysym.M-n: netstat -tulpn|grep --color=auto ""
+URxvt.keysym.M-e: env TERM=xterm-256color emacsclient -nw -c .
+URxvt.keysym.M-m: free -hw
+URxvt.keysym.M-t: htop\n
+URxvt.keysym.M-s: git status\n
+URxvt.keysym.M-c: git commit -m ""
+URxvt.keysym.M-l: git log\n
 
 !! url-select
 URxvt.keysym.M-u:	perl:url-select:select_next
@@ -91,10 +101,10 @@ Polybar.highlight.text: #FFFFFF
 bspwm.normal: #000000
 bspwm.focused: #000000
 
-i3wm.default: #333333
-i3wm.highlight: #3366AA
-i3wm.highlight.text: #171717
-i3wm.inactive: #999999
+i3wm.default: #000000
+i3wm.highlight: #000000
+i3wm.highlight.text: #aaaaaa
+i3wm.inactive: #666666
 
 !! Cursor size
 Xcursor.size: 36

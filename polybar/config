@@ -450,7 +450,7 @@ tray-maxsize = 30
 
 ; radius = 22
 
-modules-left = bspwm title
+modules-left = i3 bspwm title
 modules-center = date
 modules-right = pulseaudio backlight battery network
 

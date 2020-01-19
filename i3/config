@@ -10,6 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $alt Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -45,7 +46,7 @@ bindsym $mod+Return exec urxvt
 # bindsym $mod+Return exec i3-sensible-terminal
 
 # start a emacs client
-bindsym $mod+Shift+Return exec emacsclient -c
+bindsym $mod+$alt+Return exec emacsclient -c
 
 # kill focused window
 bindsym $mod+w kill
@@ -76,16 +77,16 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+t move down
-bindsym $mod+Shift+c move up
-bindsym $mod+Shift+n move right
+bindsym $mod+$alt+h move left
+bindsym $mod+$alt+t move down
+bindsym $mod+$alt+c move up
+bindsym $mod+$alt+n move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+$alt+Left move left
+bindsym $mod+$alt+Down move down
+bindsym $mod+$alt+Up move up
+bindsym $mod+$alt+Right move right
 
 # split in horizontal orientation
 bindsym $mod+backslash split h
@@ -102,7 +103,7 @@ bindsym $mod+o layout stacking
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+Tab floating toggle
+bindsym $mod+$alt+Tab floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+Tab focus mode_toggle
@@ -140,27 +141,27 @@ bindsym $mod+$nk0 workspace 0
 
 # move focused container to workspace
 
-bindsym $mod+Shift+$nk1 move container to workspace 1
-bindsym $mod+Shift+$nk2 move container to workspace 2
-bindsym $mod+Shift+$nk3 move container to workspace 3
-bindsym $mod+Shift+$nk4 move container to workspace 4
-bindsym $mod+Shift+$nk5 move container to workspace 5
-bindsym $mod+Shift+$nk6 move container to workspace 6
-bindsym $mod+Shift+$nk7 move container to workspace 7
-bindsym $mod+Shift+$nk8 move container to workspace 8
-bindsym $mod+Shift+$nk9 move container to workspace 9
-bindsym $mod+Shift+$nk0 move container to workspace 0
+bindsym $mod+$alt+$nk1 move container to workspace 1
+bindsym $mod+$alt+$nk2 move container to workspace 2
+bindsym $mod+$alt+$nk3 move container to workspace 3
+bindsym $mod+$alt+$nk4 move container to workspace 4
+bindsym $mod+$alt+$nk5 move container to workspace 5
+bindsym $mod+$alt+$nk6 move container to workspace 6
+bindsym $mod+$alt+$nk7 move container to workspace 7
+bindsym $mod+$alt+$nk8 move container to workspace 8
+bindsym $mod+$alt+$nk9 move container to workspace 9
+bindsym $mod+$alt+$nk0 move container to workspace 0
 
 # move workspace container between monitors
 bindsym $mod+dollar exec ~/.config/i3/moveworkspace.py
 
 # reload the configuration file
-# bindsym $mod+Shift+c reload
+# bindsym $mod+$alt+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+$alt+r restart
 # exit i3 (logs you out of your X session)
-# bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+q exit
+# bindsym $mod+$alt+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+$alt+q exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -168,8 +169,8 @@ mode "resize" {
 
         bindsym minus resize shrink width 2 px or 2 ppt
         bindsym plus resize grow width 2 px or 2 ppt
-        bindsym Shift+minus resize shrink height 2 px or 2 ppt
-        bindsym Shift+plus resize grow height 2 px or 2 ppt
+        bindsym $alt+minus resize shrink height 2 px or 2 ppt
+        bindsym $alt+plus resize grow height 2 px or 2 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 2 px or 2 ppt
@@ -196,10 +197,10 @@ bindsym $mod+s sticky toggle
 # In case the wrong operate disable the primary display
 #   We bind a shortcut to enable the primary display, eDP1
 
-bindsym $mod+Shift+x exec xrandr --output eDP1 --auto
-bindsym $mod+Shift+k exec xmodmap ~/.Xmodmap && exec_always xset r rate 165 45
+bindsym $mod+$alt+x exec xrandr --output eDP1 --auto
+bindsym $mod+$alt+k exec xmodmap ~/.Xmodmap && exec_always xset r rate 165 45
 bindsym $mod+apostrophe exec maim -s | xclip -selection clipboard -t image/png
-bindsym $mod+Shift+apostrophe exec maim -s ~/Pictures/screenshots/$(date +%s).png
+bindsym $mod+$alt+apostrophe exec maim -s ~/Pictures/screenshots/$(date +%s).png
 
 # Color Settings
 
@@ -219,9 +220,9 @@ client.unfocused        $inactive $inactive $default $indicator
 
 # Gaps setup
 for_window [class=".*"] border pixel 1
-# gaps inner 6
-# smart_borders on
-# smart_gaps on
+gaps inner 12
+smart_borders on
+smart_gaps on
 
 for_window [class=".*"] title_format "⏵%title"
 
