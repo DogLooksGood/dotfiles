@@ -422,17 +422,20 @@ tail = true
 
 [bar/default]
 
+monitor = ${env:MONITOR:}
+
 wm-name = "polybar"
 wm-restack = bspwm
 
 width = 100%
-height = 36
+height = 50
 
 dpi = 220
 
 center-fixed = true
 
-font-0 = "NotoSansMono Nerd Font:size=7;1"
+font-0 = "terminus(ttf):size=8;1"
+font-1 = "NotoSansMono Nerd Font:size=7;1"
 
 module-margin-left = 0
 module-margin-right = 0
@@ -454,7 +457,7 @@ modules-left = i3 bspwm title
 modules-center = date
 modules-right = pulseaudio backlight battery network
 
-border-bottom-size = 1
-border-bottom-color = ${color.bc}
+border-top-size = 1
+border-top-color = ${color.bc}
 
-bottom = false
+bottom = true

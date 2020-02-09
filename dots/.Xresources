@@ -4,34 +4,40 @@ Xft.dpi: 210
 ! URxvt Color Theme Start
 ! -------------------------------------------------------------
 
-! special colors
-URxvt.foreground:  #A8A8A8
-URxvt.background:  [100]#1A1A1A
-URxvt.cursorColor:  #FFFFFF
-!! black
-*color0:      #000000
-*color8:      #808080
-!! red
-*color1:      #D65946
-*color9:      #D65946
-!! green
-*color2:      #6AAF50
-*color10:     #6AAF50
-!! yellow
-*color3:      #BABA36
-*color11:     #BABA36
-!! blue
-*color4:      #598BC1
-*color12:     #598BC1
-!! magenta
-*color5:      #AB75C3
-*color13:     #AB75C3
-!! cyan
-*color6:      #8FBC8F
-*color14:     #8FBC8F
-! white
-*color7:      #d0d0d0
-*color15:     #ffffff
+*.background: #171717
+*.foreground: #A8A8A8
+
+!black
+*color0: #383c4a
+*color8: #404552
+
+!red
+*color1: #9A4138
+*color9: #E7766B
+
+!green
+*color2: #4BEC90
+*color10: #3CBF75
+
+!yellow
+*color3: #D8D782
+*color11: #CFCD63
+
+!blue
+*color4: #5294e2
+*color12: #579CEF
+
+!magenta
+*color5: #CE50DD
+*color13: #E7766B
+
+!cyan
+*color6: #6BE5E7
+*color14: #90FDFF
+
+!white
+*color7: #CCCCCC
+*color15: #FFFFFF
 
 ! -------------------------------------------------------------
 ! URxvt Color Theme End
@@ -44,33 +50,47 @@ URxvt.transparent:       false
 
 URxvt.depth: 32
 
-URxvt.font: xft:pt mono:pixelsize=28
+URxvt.font: xft:unifont:pixelsize=32
+
 ! Disable bold font.
 URxvt.boldFont:
 URxvt.letterSpace: 0
 
-URxvt.internalBorder: 30
+! Add internal borders
+URxvt.internalBorder: 20
 
 *antialias:  true
 *autohint:   true
+
+URxvt.title: URxvt
 
 !! URxvt Plugins
 URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select
 
 !! Quick commands, dont rely on alias or any setup on the remote server.
-URxvt.keysym.M-h: ls -lh --color=auto\n
-URxvt.keysym.M-d: ls -lhA --color=auto\n
+URxvt.keysym.M-h: ls -lhb --color=auto\n
 URxvt.keysym.Escape: 
 URxvt.keysym.M-g: grep --color=auto -r --include \\*.
 URxvt.keysym.M-p: ps aux|grep --color=auto ""
 URxvt.keysym.M-w: find . -name ""
 URxvt.keysym.M-n: netstat -tulpn|grep --color=auto ""
-URxvt.keysym.M-e: env TERM=xterm-256color emacsclient -nw -c .
-URxvt.keysym.M-m: free -hw
-URxvt.keysym.M-t: htop\n
+URxvt.keysym.M-m: emacsclient -nw -c .
 URxvt.keysym.M-s: git status\n
 URxvt.keysym.M-c: git commit -m ""
 URxvt.keysym.M-l: git log\n
+URxvt.keysym.M-r: history | grep ""
+
+! Disable ISO 14755 unicode input so we can use Ctrl-Shift bindings
+URxvt.iso14755:        false
+URxvt.iso14755_52:     false
+
+! ! Disable Ctrl-Alt-c & Ctrl-Alt-v bindings (optional)
+! URxvt.keysym.C-M-c:    builtin-string:
+! URxvt.keysym.C-M-v:    builtin-string:
+
+! Bind Ctrl-Shift-c & Ctrl-Shift-v to copy and paste
+URxvt.keysym.C-S-0x43: eval:selection_to_clipboard
+URxvt.keysym.C-S-0x56: eval:paste_clipboard
 
 !! url-select
 URxvt.keysym.M-u:	perl:url-select:select_next
@@ -93,18 +113,18 @@ Emacs.internalBorder: 16
 Emacs.font: ibm plex mono-9
 
 Polybar.border: #000000
-Polybar.background: #EAEAEA
-Polybar.foreground: #000000
+Polybar.background: #171717
+Polybar.foreground: #E8E8E8
 Polybar.highlight: #3366AA
 Polybar.highlight.text: #FFFFFF
 
 bspwm.normal: #000000
 bspwm.focused: #000000
 
-i3wm.default: #000000
-i3wm.highlight: #000000
-i3wm.highlight.text: #aaaaaa
-i3wm.inactive: #666666
+i3wm.default: #EEEEEE
+i3wm.highlight: #3366AA
+i3wm.highlight.text: #ffffff
+i3wm.inactive: #000000
 
 !! Cursor size
 Xcursor.size: 36

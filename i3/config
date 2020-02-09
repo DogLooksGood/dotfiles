@@ -52,7 +52,7 @@ bindsym $mod+$alt+Return exec emacsclient -c
 bindsym $mod+w kill
 
 # start dmenu (a program launcher)
-bindsym $mod+space exec rofi -show combi
+bindsym $mod+space exec --no-startup-id "rofi -combi-modi window,drun,run -show combi -modi combi -font 'unifont 24'"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -153,7 +153,7 @@ bindsym $mod+$alt+$nk9 move container to workspace 9
 bindsym $mod+$alt+$nk0 move container to workspace 0
 
 # move workspace container between monitors
-bindsym $mod+dollar exec ~/.config/i3/moveworkspace.py
+bindsym $mod+dollar exec ~/.config/i3/i3-display-swap.sh
 
 # reload the configuration file
 # bindsym $mod+$alt+c reload
@@ -188,8 +188,6 @@ bindsym $mod+r mode "resize"
 
 # software keybindings
 
-bindsym $mod+k exec urxvt -e "kak"
-
 bindsym $mod+x exec arandr
 
 bindsym $mod+s sticky toggle
@@ -199,30 +197,30 @@ bindsym $mod+s sticky toggle
 
 bindsym $mod+$alt+x exec xrandr --output eDP1 --auto
 bindsym $mod+$alt+k exec xmodmap ~/.Xmodmap && exec_always xset r rate 165 45
-bindsym $mod+apostrophe exec maim -s | xclip -selection clipboard -t image/png
+bindsym $mod+apostrophe exec maim -u -s | xclip -selection clipboard -t image/png
 bindsym $mod+$alt+apostrophe exec maim -s ~/Pictures/screenshots/$(date +%s).png
 
 # Color Settings
 
-set_from_resource $default i3wm.default "#ffffff"
-set_from_resource $active i3wm.highlight "#000000"
-set_from_resource $inactive i3wm.inactive "#000000"
-set_from_resource $activetext i3wm.highlight.text "#000000"
-
-set $indicator "#3399ff"
-
-client.focused          $active   $active   $activetext $active
-client.focused_inactive $inactive $inactive $default $inactive
-client.unfocused        $inactive $inactive $default $indicator
+# set $default "#EEEEEE"
+# set $active "#3366AA"
+# set $inactive "000000"
+# set $activetext "FFFFFF"
+#
+# set $indicator "#3399ff"
+#
+# client.focused          $active   $active   $activetext $active
+# client.focused_inactive $inactive $inactive $default $inactive
+# client.unfocused        $inactive $inactive $default $indicator
 
 # Assignment
 # assign [class="^firefox$"] 4
 
 # Gaps setup
 for_window [class=".*"] border pixel 1
-gaps inner 12
+# gaps inner 12
 smart_borders on
-smart_gaps on
+# smart_gaps on
 
 for_window [class=".*"] title_format "⏵%title"
 
@@ -246,7 +244,5 @@ exec fcitx &
 exec mpd &
 
 exec redshift -l39:116
-
-exec dunst
 
 exec_always feh --bg-fill $HOME/Pictures/wp
