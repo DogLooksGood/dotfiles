@@ -1,4 +1,4 @@
-Xft.dpi: 210
+Xft.dpi: 192
 
 ! -------------------------------------------------------------
 ! URxvt Color Theme Start
@@ -59,7 +59,7 @@ URxvt.letterSpace: 0
 ! Add internal borders
 URxvt.internalBorder: 20
 
-*antialias:  true
+Emacs.antialias:  false
 *autohint:   true
 
 URxvt.title: URxvt
@@ -69,16 +69,10 @@ URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select
 
 !! Quick commands, dont rely on alias or any setup on the remote server.
 URxvt.keysym.M-h: ls -lhb --color=auto\n
-URxvt.keysym.Escape: 
-URxvt.keysym.M-g: grep --color=auto -r --include \\*.
-URxvt.keysym.M-p: ps aux|grep --color=auto ""
-URxvt.keysym.M-w: find . -name ""
-URxvt.keysym.M-n: netstat -tulpn|grep --color=auto ""
-URxvt.keysym.M-m: emacsclient -nw -c .
-URxvt.keysym.M-s: git status\n
-URxvt.keysym.M-c: git commit -m ""
-URxvt.keysym.M-l: git log\n
-URxvt.keysym.M-r: history | grep ""
+URxvt.keysym.C-M-g: grep --color=auto -r --include \\*.
+URxvt.keysym.C-M-p: ps aux|grep --color=auto ""
+URxvt.keysym.C-M-w: find . -name ""
+URxvt.keysym.C-M-n: netstat -tulpn|grep --color=auto ""
 
 ! Disable ISO 14755 unicode input so we can use Ctrl-Shift bindings
 URxvt.iso14755:        false
@@ -111,20 +105,6 @@ Emacs.verticalScrollBars: off
 Emacs.toolBar: off
 Emacs.internalBorder: 16
 Emacs.font: ibm plex mono-9
-
-Polybar.border: #000000
-Polybar.background: #171717
-Polybar.foreground: #E8E8E8
-Polybar.highlight: #3366AA
-Polybar.highlight.text: #FFFFFF
-
-bspwm.normal: #000000
-bspwm.focused: #000000
-
-i3wm.default: #EEEEEE
-i3wm.highlight: #3366AA
-i3wm.highlight.text: #ffffff
-i3wm.inactive: #000000
 
 !! Cursor size
 Xcursor.size: 36
