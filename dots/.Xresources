@@ -59,7 +59,7 @@ URxvt.letterSpace: 0
 ! Add internal borders
 URxvt.internalBorder: 20
 
-Emacs.antialias:  false
+Emacs.antialias:  true
 *autohint:   true
 
 URxvt.title: URxvt
@@ -99,13 +99,13 @@ URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.resize-font.smaller:	C-Down
 URxvt.resize-font.bigger:	C-Up
 
-Emacs.background: #000000
+Emacs.background: #211F23
 Emacs.menuBar: off
 Emacs.verticalScrollBars: off
 Emacs.toolBar: off
 Emacs.internalBorder: 16
-Emacs.font: ibm plex mono-9
+Emacs.useXIM: off
 
 !! Cursor size
-Xcursor.size: 36
-Xcursor.theme: redglass
+Xcursor.size: 48
+Xcursor.theme: Pop

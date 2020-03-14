@@ -38,7 +38,7 @@ window:
    y: 15
 
   # Spread additional padding evenly around the terminal content.
-  dynamic_padding: true
+  dynamic_padding: false
 
   # Window decorations
   #
@@ -109,7 +109,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: cascadia code
+    family: unifont
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -148,7 +148,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 9.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -189,8 +189,10 @@ font:
 colors:
   # Default colors
   primary:
-    background: '0x000000'
+    background: '0x171717'
     foreground: '0xcccccc'
+  selection:
+    background: '0x404040'
   # Normal colors
   normal:
     black:   '0x000000'
@@ -246,7 +248,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1.0
+background_opacity: 1
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -491,36 +493,13 @@ key_bindings:
   - { key: V,        mods: Alt, action: Paste            }
   - { key: C,        mods: Alt, action: Copy             }
   - { key: Insert,   mods: Shift,         action: PasteSelection   }
-  #- { key: Key0,     mods: Control,       action: ResetFontSize    }
-  #- { key: Equals,   mods: Control,       action: IncreaseFontSize }
   - { key: Add,      mods: Control,       action: IncreaseFontSize }
-  #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
   - { key: Minus,    mods: Control,       action: DecreaseFontSize }
-  - { key: Escape,    chars: "" }
-  # (Windows only)
-  #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
-
-  # (macOS only)
-  #- { key: Key0,   mods: Command,         action: ResetFontSize    }
-  #- { key: Equals, mods: Command,         action: IncreaseFontSize }
-  #- { key: Add,    mods: Command,         action: IncreaseFontSize }
-  #- { key: Minus,  mods: Command,         action: DecreaseFontSize }
-  #- { key: K,      mods: Command,         action: ClearHistory     }
-  #- { key: K,      mods: Command,         chars: "\x0c"            }
-  #- { key: V,      mods: Command,         action: Paste            }
-  #- { key: C,      mods: Command,         action: Copy             }
-  #- { key: H,      mods: Command,         action: Hide             }
-  #- { key: M,      mods: Command,         action: Minimize         }
-  #- { key: Q,      mods: Command,         action: Quit             }
-  #- { key: W,      mods: Command,         action: Quit             }
-  #- { key: F,      mods: Command|Control, action: ToggleFullscreen }
-
-  #- { key: Paste,                    action: Paste                            }
-  #- { key: Copy,                     action: Copy                             }
-  #- { key: L,         mods: Control, action: ClearLogNotice                   }
-  - { key: H,         mods: Alt, chars: "ls -lh\n"                          }
-  - { key: D,         mods: Alt, chars: "ls -lha\n"                         }
-  - { key: PageUp,    mods: Alt,   action: ScrollPageUp,   mode: ~Alt       }
-  - { key: PageDown,  mods: Alt,   action: ScrollPageDown, mode: ~Alt       }
-  #- { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
-  #- { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
+  - { key: Escape,   chars: "" }
+  - { key: H,        mods: Alt, chars: "ls -lh\n"                                }
+  - { key: G,        mods: Alt|Control, chars: "grep --color=auto -r --include \\*."     }
+  - { key: P,        mods: Alt|Control, chars: "ps aux|grep --color=auto \"\""         }
+  - { key: W,        mods: Alt|Control, chars: "find . -name \"\""                     }
+  - { key: N,        mods: Alt|Control, chars: "netstat -tulpn|grep --color=auto \"\"" }
+  - { key: PageUp,    mods: Alt,   action: ScrollPageUp,   mode: ~Alt            }
+  - { key: PageDown,  mods: Alt,   action: ScrollPageDown, mode: ~Alt            }

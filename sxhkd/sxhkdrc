@@ -8,6 +8,10 @@
 super + Return
 	urxvt
 
+# emacs
+super + g
+    emacs --dump-file='/home/tianshu/.emacs.d/emacs.pdmp'
+
 # program launcher
 super + @space
 	rofi -show combi

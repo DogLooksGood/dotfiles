@@ -219,42 +219,47 @@ preset_keyboards:
     width: 10
     ascii_mode: 0
     keys:
-      - {width: 9, click: space, long_click: Candidate_switch}
-      - {width: 9, click: ','}
-      - {width: 9, click: '.'}
-      - {width: 9, swipe_up: 'P', click: 'p', long_click: "~"}
-      - {width: 9, swipe_up: 'Y', click: 'y', long_click: ":"}
-      - {width: 9, swipe_up: 'F', click: 'f', long_click: '"'}
-      - {width: 9, swipe_up: 'G', click: 'g', long_click: '`'}
-      - {width: 9, swipe_up: 'C', click: 'c', long_click: '?'}
-      - {width: 9, swipe_up: 'R', click: 'r', long_click: "^"}
-      - {width: 9, swipe_up: 'L', click: 'l', long_click: "|"}
-      - {width: 10, click: BackSpace, key_back_color: bbs, key_text_color: tbs}
+      - {width: 20, click: space, long_click: '{Tab}'}
+      - {width: 10, click: '$', long_click: '~'}
+      - {width: 10, click: '&', long_click: '%'}
+      - {width: 10, click: '#', long_click: '`'}
+      - {width: 10, click: '/', long_click: '?'}
+      - {width: 10, click: '@', long_click: '^'}
+      - {width: 10, click: '-', long_click: '_'}
+      - {width: 20, click: BackSpace, key_back_color: bbs, key_text_color: tbs}
 
-      - {width: 5}
-      - {width: 9, swipe_up: 'A', click: 'a', long_click: Escape}
-      - {width: 9, swipe_up: 'O', click: 'o', long_click: '{Tab}'}
-      - {width: 9, swipe_up: 'E', click: 'e', long_click: cut}
-      - {width: 9, swipe_up: 'U', click: 'u', long_click: copy}
-      - {width: 9, swipe_up: 'I', click: 'i', long_click: paste}
-      - {width: 9, swipe_up: 'D', click: 'd', long_click: ';'}
-      - {width: 9, swipe_up: 'H', click: 'h', long_click: "'"}
-      - {width: 9, swipe_up: 'T', click: 't', long_click: "#"}
-      - {width: 9, swipe_up: 'N', click: 'n', long_click: "/"}
-      - {width: 9, swipe_up: 'S', click: 's', long_click: '@'}
-      - {width: 5}
+      - {width: 10, click: ';', long_click: ':'}
+      - {width: 10, click: ',', long_click: '<'}
+      - {width: 10, click: '.', long_click: '>'}
+      - {width: 10, swipe_up: 'P', click: 'p'}
+      - {width: 10, swipe_up: 'Y', click: 'y'}
+      - {width: 10, swipe_up: 'F', click: 'f'}
+      - {width: 10, swipe_up: 'G', click: 'g'}
+      - {width: 10, swipe_up: 'C', click: 'c', long_click: copy}
+      - {width: 10, swipe_up: 'R', click: 'r'}
+      - {width: 10, swipe_up: 'L', click: 'l'}
 
-      - {width: 9, click: Shift_L, key_back_color: bgn, key_text_color: tgn}
-      - {width: 9, swipe_up: 'Q', click: 'q', long_click: "$"}
-      - {width: 9, swipe_up: 'J', click: 'j', long_click: '-'}
-      - {width: 9, swipe_up: 'K', click: 'k', long_click: '_'}
-      - {width: 9, swipe_up: 'X', click: 'x', long_click: '<'}
-      - {width: 9, swipe_up: 'B', click: 'b', long_click: '>'}
-      - {width: 9, swipe_up: 'M', click: 'm', long_click: "&"}
-      - {width: 9, swipe_up: 'W', click: 'w', long_click: "%"}
-      - {width: 9, swipe_up: 'V', click: 'v', long_click: "!"}
-      - {width: 9, swipe_up: 'Z', click: 'z', long_click: \}
-      - {click: Return, width: 10, key_back_color: bgn, key_text_color: tgn}
+      - {width: 10, swipe_up: 'A', click: 'a'}
+      - {width: 10, swipe_up: 'O', click: 'o'}
+      - {width: 10, swipe_up: 'E', click: 'e'}
+      - {width: 10, swipe_up: 'U', click: 'u'}
+      - {width: 10, swipe_up: 'I', click: 'i'}
+      - {width: 10, swipe_up: 'D', click: 'd'}
+      - {width: 10, swipe_up: 'H', click: 'h'}
+      - {width: 10, swipe_up: 'T', click: 't'}
+      - {width: 10, swipe_up: 'N', click: 'n'}
+      - {width: 10, swipe_up: 'S', click: 's'}
+
+      - {width: 10, click: "'", long_click: '"'}
+      - {width: 10, swipe_up: 'Q', click: 'q'}
+      - {width: 10, swipe_up: 'J', click: 'j'}
+      - {width: 10, swipe_up: 'K', click: 'k'}
+      - {width: 10, swipe_up: 'X', click: 'x', long_click: cut}
+      - {width: 10, swipe_up: 'B', click: 'b'}
+      - {width: 10, swipe_up: 'M', click: 'm'}
+      - {width: 10, swipe_up: 'W', click: 'w'}
+      - {width: 10, swipe_up: 'V', click: 'v', long_click: paste}
+      - {width: 10, swipe_up: 'Z', click: 'z'}
 
       - {width: 10, click: '7', long_click: "[", key_back_color: bgn, key_text_color: tgn}
       - {width: 10, click: '5', long_click: "{", key_back_color: bgn, key_text_color: tgn}
@@ -267,6 +272,14 @@ preset_keyboards:
       - {width: 10, click: '6', long_click: "]", key_back_color: bgn, key_text_color: tgn}
       - {width: 10, click: '8', long_click: "!", key_back_color: bgn, key_text_color: tgn}
 
+      - {width: 20, click: Mode_switch, long_click: Candidate_switch, key_back_color: bgn, key_text_color: tgn}
+      - {width: 10, click: Left, key_back_color: bgn, key_text_color: tgn}
+      - {width: 10, click: Down, key_back_color: bgn, key_tex_color: tgn}
+      - {width: 10, click: Up, key_back_color: bgn, key_tex_color: tgn}
+      - {width: 10, click: Right, key_back_color: bgn, key_tex_color: tgn}
+      - {width: 20, click: Shift_L, key_back_color: bgn, key_text_color: tgn}
+      - {width: 20, click: Return, key_back_color: bgn, key_text_color: tgn, long_click: Mode_switch}
+      
   number:
     author: "ShiTianshu"
     name: 数字+

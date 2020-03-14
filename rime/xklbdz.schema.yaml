@@ -10,76 +10,70 @@ schema:
 
 punctuator:
   full_shape:
-    ' ' : { commit: '　' }
-    ',' : { commit: ， }
-    '.' : { commit: 。 }
-    '<' : [ 《, 〈, «, ‹ ]
-    '>' : [ 》, 〉, », › ]
-    '/' : [ ／, ÷ ]
-    '?' : { commit: ？ }
-    ';' : { commit: ； }
-    ':' : { commit: ： }
-    '''' : { pair: [ '‘', '’' ] }
-    '"' : { pair: [ '“', '”' ] }
-    '\' : [ 、, ＼ ]
-    '|' : [ ·, ｜, '§', '¦' ]
-    '`' : ｀
-    '~' : ～
-    '!' : { commit: ！ }
-    '@' : [ ＠, ☯ ]
-#    '#' : [ ＃, ⌘ ]
-    '%' : [ ％, '°', '℃' ]
-    '$' : [ ￥, '$', '€', '£', '¥', '¢', '¤' ]
-    '^' : { commit: …… }
-    '&' : ＆
-    '*' : [ ＊, ·, ・, ×, ※, ❂ ]
-    '(' : （
-    ')' : ）
-    '-' : －
-    '_' : ——
-    '+' : ＋
-    '=' : ＝
-    '[' : [ 「, 【, 〔, ［ ]
-    ']' : [ 」, 】, 〕, ］ ]
-    '{' : [ 『, 〖, ｛ ]
-    '}' : [ 』, 〗, ｝ ]
+    " ": {commit: "　"}
+    "!": {commit: "！"}
+    "\"": {pair: ["“", "”"]}
+    "$": ["￥", "$", "€", "£", "¥", "¢", "¤"]
+    "%": ["％", "°", "℃"]
+    "&": "＆"
+    "'": {pair: ["‘", "’"]}
+    "(": "（"
+    ")": "）"
+    "*": ["＊", "·", "・", "×", "※", "❂"]
+    "+": "＋"
+    ",": {commit: "，"}
+    "-": "－"
+    .: {commit: "。"}
+    "/": ["／", "÷"]
+    ":": {commit: "："}
+    ";": {commit: "；"}
+    "<": ["《", "〈", "«", "‹"]
+    "=": "＝"
+    ">": ["》", "〉", "»", "›"]
+    "?": {commit: "？"}
+    "@": ["＠", "☯"]
+    "[": ["「", "【", "〔", "［"]
+    "\\": ["、", "＼"]
+    "]": ["」", "】", "〕", "］"]
+    "^": {commit: "……"}
+    _: "——"
+    "`": "｀"
+    "{": ["『", "〖", "｛"]
+    "|": ["·", "｜", "§", "¦"]
+    "}": ["』", "〗", "｝"]
+    "~": "～"
   half_shape:
-    ',' : { commit: ， }
-    '.' : { commit: 。 }
-    '<' : { commit: 《 }
-    '>' : { commit: 》 }
-  #  '/' : { commit: 、 }
-    '?' : { commit: ？ }
-    ';' : { commit: ； }
-    ':' : { commit: ： }
-    '''' : { pair: [ '‘', '’' ] }
-    '"' : { pair: [ '“', '”' ] }
-    '\' : 、
-#    '|' : [ ·, '|', ｜, '§', '¦' ]
-    '`' : '`'
-    '~' : [ '~', ～ ]
-    '!' : { commit: ！ }
-    '@' : '@'
-#    '#' : '#'
-#    '%' : [ '%', ％, '°', '℃' ]
-#    '$' : [ ￥, '$', '€', '£', '¥', '¢', '¤' ]
-    '^' : { commit: …… }
-    '&' : '&'
-#    '*' : [ '*', ＊, ·, ・, ×, ※, ❂ ]
-    '(' : （
-    ')' : ）
-    '-' : '-'
-    '_' : ——
-    '+' : '+'
-    '=' : '='
-    '[' : [ 【,「  ]
-    ']' : [ 】,」  ]
-    '{' : ｛
-    '}' : ｝
+    "!": {commit: "！"}
+    "\"": {pair: ["“", "”"]}
+    "&": "&"
+    "'": {pair: ["‘", "’"]}
+    "(": "（"
+    ")": "）"
+    "+": "+"
+    ",": {commit: "，"}
+    "-": "-"
+    .: {commit: "。"}
+    ":": {commit: "："}
+    ";": {commit: "；"}
+    "<": {commit: "《"}
+    "=": "="
+    ">": {commit: "》"}
+    "?": {commit: "？"}
+    "@": "@"
+    "[": ["【", "「"]
+    "\\": "、"
+    "]": ["】", "」"]
+    "^": {commit: "……"}
+    _: "——"
+    "`": {commit: "`"}
+    "{": "｛"
+    "}": "｝"
+    "~": ["~", "～"]
+
 
 switches:
   - name: ascii_mode
-    reset: 0
+    reset: 1
     states: [ 中文, 西文 ]
   - name: full_shape
     states: [ 半角, 全角 ]
@@ -123,9 +117,9 @@ engine:
 
 speller:
   auto_select: true
-  # auto_select_qnique_candidate: true #空码自动顶
-  alphabet: 'zyxwvutsrqponmlkjihgfedcba:'
-  initials: ':abcdefghijklmnopqrstuvwxyz'
+  auto_select_unique_candidate: false
+  alphabet: 'zyxwvutsrqponmlkjihgfedcba'
+  initials: 'abcdefghijklmnopqrstuvwxyz'
   #algebra:
   #  - derive/([bpmfdtnlgkhjqxzcsrywe][a-z][viuoa])[viuoa]+/$1/ #顶简为全码
 
@@ -137,6 +131,7 @@ translator:
   enable_sentence: false
   enable_user_dict: false
   encode_commit_history: true
+  max_code_length: 6
   max_phrase_length: 6
 
 history:
@@ -156,7 +151,7 @@ bmma:
   option_name: bmma
   show_in_comment: true
   comment_format:
-    - xform/'/ /
+#    - xform/'/ /
 
 custom_phrase:
   dictionary: ""
@@ -171,7 +166,7 @@ reverse_lookup:
     - xform/$/〕/
 
 menu:
-  page_size: 8
+  page_size: 5
 
 # punctuator:
 #  import_preset: symbols
@@ -185,9 +180,8 @@ key_binder:
 recognizer:
   import_preset: default
   patterns:
-    reverse_lookup: "[a-z`]*`+[a-z`]*"
+    # reverse_lookup: "[a-z]*`+[a-z]*"
     punct: "^/([0-9]0?|[a-z]+)$"
-    #retention: "[a-z;]{1,2}"
     retention: "^[bpmfdtnlgkhjqxzscrywv][a-z][aeiou]{0, 3}"
 
 history:

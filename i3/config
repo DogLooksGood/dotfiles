@@ -62,10 +62,11 @@ bindsym $mod+space exec --no-startup-id "rofi -show combi -modi combi,drun -font
 bindsym $mod+m exec pcmanfm
 
 # Launch Firefox
-bindsym $mod+b exec firefox
+# bindsym $mod+b exec firefox
+bindsym $mod+b exec "qutebrowser -s qt.highdpi true -s content.proxy socks://localhost:1080/"
 
 # Launch Emacs
-bindsym $mod+g exec emacs
+bindsym $mod+g exec "LC_CTYPE=en_US.UTF-8 emacs --dump-file='/home/tianshu/.emacs.d/emacs.pdmp'"
 
 # change focus
 bindsym $mod+h focus left
@@ -214,20 +215,24 @@ client.unfocused        "#131313" "#131313" "#F8F8F8" "#131313"
 # Assignment
 # assign [class="^firefox$"] 4
 
-floating_maximum_size 1920x1320
+# floating_maximum_size 1920x1320
 
 # Default floating windows
-for_window [class="^Arandr$"] floating enable
-for_window [class="^Lxappearance$"] floating enable
+# for_window [class="^Arandr$"] floating enable
+# for_window [class="^Lxappearance$"] floating enable
 
 # Gaps setup
-for_window [class=".*"] border pixel 3
-# gaps inner 0
-smart_borders on
+
+for_window [class=".*"] border pixel 1
+
+# gaps inner 15
+# smart_borders on
 # smart_gaps on
 
+# border_radius 10
+
 # Modify title format
-for_window [class=".*"] title_format "⏵%title"
+# for_window [class=".*"] title_format "⏵%title"
 
 # Initialize
 
