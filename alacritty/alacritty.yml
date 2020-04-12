@@ -190,7 +190,7 @@ colors:
   # Default colors
   primary:
     background: '0x171717'
-    foreground: '0xcccccc'
+    foreground: '0xAAAAAA'
   selection:
     background: '0x404040'
   # Normal colors
@@ -495,7 +495,6 @@ key_bindings:
   - { key: Insert,   mods: Shift,         action: PasteSelection   }
   - { key: Add,      mods: Control,       action: IncreaseFontSize }
   - { key: Minus,    mods: Control,       action: DecreaseFontSize }
-  - { key: Escape,   chars: "" }
   - { key: H,        mods: Alt, chars: "ls -lh\n"                                }
   - { key: G,        mods: Alt|Control, chars: "grep --color=auto -r --include \\*."     }
   - { key: P,        mods: Alt|Control, chars: "ps aux|grep --color=auto \"\""         }

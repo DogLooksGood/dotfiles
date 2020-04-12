@@ -1,4 +1,5 @@
 
+
 # Polybar Settings
 #   Author: Shitianshu
 
@@ -319,9 +320,9 @@ format-disconnected = <label-disconnected>
 
 format-packetloss = <animation-packetloss><label-connected>
 
-label-connected = "%essid%%downspeed:8% %upspeed:8% %local_ip%"
+; label-connected = "%essid%%downspeed:8% %upspeed:8% %local_ip%"
 
-; label-connected = "%essid% %local_ip%"
+label-connected = "%essid% %local_ip%"
 
 label-disconnected = "睊 Not Connected"
 
@@ -435,8 +436,8 @@ dpi = 220
 
 center-fixed = true
 
-font-0 = "terminus(ttf):size=8;1"
-font-1 = "NotoSansMono Nerd Font:size=7;1"
+; font-0 = "terminus(ttf):size=8;1"
+font-0 = "NotoSansMono Nerd Font:size=7;1"
 
 module-margin-left = 0
 module-margin-right = 0

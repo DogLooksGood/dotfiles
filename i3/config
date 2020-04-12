@@ -42,7 +42,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec alacritty
 # bindsym $mod+Return exec i3-sensible-terminal
 
 # start a emacs client
@@ -200,9 +200,9 @@ bindsym $mod+s sticky toggle
 #   We bind a shortcut to enable the primary display, eDP1
 
 bindsym $mod+$alt+x exec xrandr --output eDP1 --auto
-bindsym $mod+$alt+k exec xmodmap ~/.Xmodmap && exec_always xset r rate 165 45
 bindsym $mod+apostrophe exec maim -u -s | xclip -selection clipboard -t image/png
 bindsym $mod+$alt+apostrophe exec maim -s ~/Pictures/screenshots/$(date +%s).png
+bindsym $mod+q exec maim ~/Pictures/screenshots/$(date +%s).png
 
 # Color Settings
 
@@ -217,22 +217,7 @@ client.unfocused        "#131313" "#131313" "#F8F8F8" "#131313"
 
 # floating_maximum_size 1920x1320
 
-# Default floating windows
-# for_window [class="^Arandr$"] floating enable
-# for_window [class="^Lxappearance$"] floating enable
-
-# Gaps setup
-
 for_window [class=".*"] border pixel 1
-
-# gaps inner 15
-# smart_borders on
-# smart_gaps on
-
-# border_radius 10
-
-# Modify title format
-# for_window [class=".*"] title_format "⏵%title"
 
 # Initialize
 
@@ -248,11 +233,10 @@ exec --no-startup-id /usr/lib/kdeconnectd
 
 exec fcitx &
 
-# use clipboard management from fcitx
-# exec copyq &
-
 exec mpd &
 
 exec redshift -l39:116
 
 exec_always feh --bg-fill $HOME/Pictures/wp
+
+
