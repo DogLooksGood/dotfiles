@@ -42,7 +42,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec urxvt
 # bindsym $mod+Return exec i3-sensible-terminal
 
 # start a emacs client
@@ -219,15 +219,39 @@ client.unfocused        "#131313" "#131313" "#F8F8F8" "#131313"
 
 for_window [class=".*"] border pixel 1
 
+# Bar
+
+bar {
+    status_command i3blocks
+    tray_output none
+    font pango:unifont 10
+    mode hide
+    hidden_state hide
+    modifier $mod
+    position top
+
+    colors {
+        background #171717
+        statusline #ffffff
+        separator #353535
+
+        focused_workspace  #A370C5 #9256B4 #ffffff
+        active_workspace   #333333 #5f676a #ffffff
+        inactive_workspace #333333 #222222 #888888
+        urgent_workspace   #2f343a #900000 #ffffff
+        binding_mode       #2f343a #900000 #ffffff
+    }
+}
+
 # Initialize
 
 exec picom &
 
-exec_always xmodmap $HOME/.Xmodmap
+# exec_always xmodmap $HOME/.Xmodmap
 
 exec_always xset r rate 165 45
 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 exec --no-startup-id /usr/lib/kdeconnectd
 

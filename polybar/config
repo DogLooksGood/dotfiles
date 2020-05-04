@@ -459,8 +459,8 @@ modules-left = i3 bspwm title
 modules-center = date
 modules-right = pulseaudio backlight battery network
 
-border-top-size = 0
-border-top-color = ${color.bc}
+border-bottom-size = 2
+border-bottom-color = ${color.bc}
 
 bottom = false
 

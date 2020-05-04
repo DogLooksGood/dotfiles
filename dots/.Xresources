@@ -69,6 +69,7 @@ URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select
 
 !! Quick commands, dont rely on alias or any setup on the remote server.
 URxvt.keysym.M-h: ls -lhb --color=auto\n
+URxvt.keysym.M-u: cd ..\n
 URxvt.keysym.C-M-g: grep --color=auto -r --include \\*.
 URxvt.keysym.C-M-p: ps aux|grep --color=auto ""
 URxvt.keysym.C-M-w: find . -name ""
@@ -87,7 +88,7 @@ URxvt.keysym.C-S-0x43: eval:selection_to_clipboard
 URxvt.keysym.C-S-0x56: eval:paste_clipboard
 
 !! url-select
-URxvt.keysym.M-u:	perl:url-select:select_next
+URxvt.keysym.M-l:	perl:url-select:select_next
 URxvt.url-select.launcher: firefox
 URxvt.url-select.underline: true
 URxvt.matcher.button:	1
