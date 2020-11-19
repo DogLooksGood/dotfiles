@@ -109,7 +109,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: unifont
+    family: "MesloLGS NF"
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -148,7 +148,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 12.0
+  size: 9.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -192,14 +192,14 @@ colors:
     background: '0x171717'
     foreground: '0xAAAAAA'
   selection:
-    background: '0x404040'
+    background: '0x90ccff'
   # Normal colors
   normal:
     black:   '0x000000'
     red:     '0xcd0000'
     green:   '0x00cd00'
     yellow:  '0xcdcd00'
-    blue:    '0x0000ee'
+    blue:    '0x039ce2'
     magenta: '0xcd00cd'
     cyan:    '0x00cdcd'
     white:   '0xe5e5e5'
