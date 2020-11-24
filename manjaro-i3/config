@@ -184,6 +184,10 @@ bindsym $mod+Shift+F6 move container to workspace $ws6; workspace $ws6
 bindsym $mod+Shift+F7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+F8 move container to workspace $ws8; workspace $ws8
 
+# Move workspace to monitor
+bindsym $mod+greater move workspace to output right
+bindsym $mod+less move workspace to output left
+
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
@@ -284,6 +288,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
+exec --no-startup-id blueberry-tray
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
@@ -292,8 +297,8 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 exec --no-startup-id fcitx
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id xset r rate 180 40
-exec_always --no-startup-id setxkbmap -option ctrl:swapcaps
+exec_always --no-startup-id xset r rate 200 40
+exec --no-startup-id setxkbmap -option ctrl:swapcaps
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:

@@ -148,7 +148,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 10
+  size: 10.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -182,40 +182,64 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: true
 
+# # Colors (Pencil Light)
+# colors:
+#   # Default Colors
+#   primary:
+#     background: '0xf1f1f1'
+#     foreground: '0x424242'
+#   # Normal colors
+#   normal:
+#     black:   '0x212121'
+#     red:     '0xc30771'
+#     green:   '0x10a778'
+#     yellow:  '0xa89c14'
+#     blue:    '0x008ec4'
+#     magenta: '0x523c79'
+#     cyan:    '0x20a5ba'
+#     white:   '0xe0e0e0'
+#   # Bright colors
+#   bright:
+#     black:   '0x212121'
+#     red:     '0xfb007a'
+#     green:   '0x5fd7af'
+#     yellow:  '0xf3e430'
+#     blue:    '0x20bbfc'
+#     magenta: '0x6855de'
+#     cyan:    '0x4fb8cc'
+#     white:   '0xf1f1f1'
 
-# color_start
-# xterm.yaml
-# XTerm's default colors
-colors:
-  # Default colors
-  primary:
-    background: '0x171717'
-    foreground: '0xAAAAAA'
-  selection:
-    background: '0x90ccff'
-  # Normal colors
-  normal:
-    black:   '0x000000'
-    red:     '0xcd0000'
-    green:   '0x00cd00'
-    yellow:  '0xcdcd00'
-    blue:    '0x039ce2'
-    magenta: '0xcd00cd'
-    cyan:    '0x00cdcd'
-    white:   '0xe5e5e5'
-
-  # Bright colors
-  bright:
-    black:   '0x7f7f7f'
-    red:     '0xff0000'
-    green:   '0x00ff00'
-    yellow:  '0xffff00'
-    blue:    '0x5c5cff'
-    magenta: '0xff00ff'
-    cyan:    '0x00ffff'
-    white:   '0xffffff'
-
-# color_end
+# # XTerm's default colors
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0x171717'
+#     foreground: '0xAAAAAA'
+#   selection:
+#     background: '0x90ccff'
+#   # Normal colors
+#   normal:
+#     black:   '0x000000'
+#     red:     '0xcd0000'
+#     green:   '0x00cd00'
+#     yellow:  '0xcdcd00'
+#     blue:    '0x039ce2'
+#     magenta: '0xcd00cd'
+#     cyan:    '0x00cdcd'
+#     white:   '0xe5e5e5'
+#
+#   # Bright colors
+#   bright:
+#     black:   '0x7f7f7f'
+#     red:     '0xff0000'
+#     green:   '0x00ff00'
+#     yellow:  '0xffff00'
+#     blue:    '0x5c5cff'
+#     magenta: '0xff00ff'
+#     cyan:    '0x00ffff'
+#     white:   '0xffffff'
+#
+# # color_end
 
 
 # Visual Bell
