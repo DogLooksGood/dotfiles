@@ -27,8 +27,8 @@ font xft:URWGothic-Book 9
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
-# start a terminalhttps://duckduckgo.com/
-bindsym $mod+Return exec alacritty
+# start a terminal
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
