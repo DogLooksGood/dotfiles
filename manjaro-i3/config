@@ -222,6 +222,8 @@ for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
+for_window [class="scrcpy"] floating enable
+for_window [class="scrcpy"] move scratchpad
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -280,13 +282,16 @@ mode "resize" {
 # Lock screen
 bindsym $mod+F9 exec --no-startup-id blurlock
 
+# Scrcpy
+bindsym $mod+Shift+m exec scrcpy --stay-awake
+
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
-exec --no-startup-id clipit
+# exec --no-startup-id clipit
 exec --no-startup-id blueberry-tray
 exec --no-startup-id picom
 exec --no-startup-id start_conky_green
