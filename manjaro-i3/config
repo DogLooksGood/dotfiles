@@ -34,8 +34,8 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+q kill
 
 # start program launcher
-# bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod+d exec --no-startup-id rofi -show combi -font 'Sarasa Mono SC 22'
+bindsym $mod+d exec --no-startup-id dmenu_recency
+# bindsym $mod+d exec --no-startup-id rofi -show combi -font 'Sarasa Mono SC 22'
 
 # launch KDEConnect
 bindsym $mod+k exec kdeconnect-app
