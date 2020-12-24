@@ -109,6 +109,8 @@ export HEX_CDN="http://hexpm.upyun.com"
 alias x="xclip -selection clipboard"
 alias o="xdg-open"
 alias e="emacsclient -c"
+alias h="HTTP_PROXY=http://127.0.0.1:8889 HTTPS_PROXY=http://127.0.0.1:8889"
+alias p="proxychains -q"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
