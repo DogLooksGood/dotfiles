@@ -520,6 +520,7 @@ key_bindings:
   - { key: Plus,      mods: Control,       action: IncreaseFontSize }
   - { key: Minus,    mods: Control,       action: DecreaseFontSize }
   - { key: H,        mods: Alt, chars: "ls -lh\n"                                }
+  - { key: U,        mods: Alt, chars: "cd ..\n"                                }
   - { key: G,        mods: Alt|Control, chars: "grep --color=auto -r --include \\*."     }
   - { key: P,        mods: Alt|Control, chars: "ps aux|grep --color=auto \"\""         }
   - { key: W,        mods: Alt|Control, chars: "find . -name \"\""                     }
