@@ -3,7 +3,6 @@ keycode 66 = Hyper_L
 keycode 37 = Mode_switch
 remove mod4 = Hyper_L
 add control = Hyper_L
-keycode 107 = Super_R
 keycode 61 = z Z A A
 keycode 57 = b B B B
 keycode 47 = s S C C
