@@ -297,12 +297,13 @@ exec --no-startup-id pamac-tray
 # exec --no-startup-id clipit
 exec --no-startup-id blueberry-tray
 exec --no-startup-id picom
-exec --no-startup-id start_conky_green
+# exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec --no-startup-id fcitx5
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id xset r rate 200 40
+exec_always --no-startup-id pkill polybar; polybar -c ~/.config/polybar/config main
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -336,46 +337,46 @@ set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
-bar {
-	i3bar_command i3bar
-	status_command i3status
-	position bottom
-
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
-
-	bindsym button4 nop
-	bindsym button5 nop
-#   font xft:URWGothic-Book 11
-	strip_workspace_numbers yes
-
-#     colors {
-#         background #222D31
-#         statusline #F9FAF9
-#         separator  #454947
+# bar {
+# 	i3bar_command i3bar
+# 	status_command i3status
+# 	position bottom
 #
-# #                      border  backgr. text
-#         focused_workspace  #F9FAF9 #16a085 #292F34
-#         active_workspace   #595B5B #353836 #FDF6E3
-#         inactive_workspace #595B5B #222D31 #EEE8D5
-#         binding_mode       #16a085 #2C2C2C #F9FAF9
-#         urgent_workspace   #16a085 #FDF6E3 #E5201D
+# ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+# #	tray_output primary
+# #	tray_output eDP1
+#
+# 	bindsym button4 nop
+# 	bindsym button5 nop
+# #   font xft:URWGothic-Book 11
+# 	strip_workspace_numbers yes
+#
+# #     colors {
+# #         background #222D31
+# #         statusline #F9FAF9
+# #         separator  #454947
+# #
+# # #                      border  backgr. text
+# #         focused_workspace  #F9FAF9 #16a085 #292F34
+# #         active_workspace   #595B5B #353836 #FDF6E3
+# #         inactive_workspace #595B5B #222D31 #EEE8D5
+# #         binding_mode       #16a085 #2C2C2C #F9FAF9
+# #         urgent_workspace   #16a085 #FDF6E3 #E5201D
+# #     }
+#
+#     colors {
+#         background #171717
+#         statusline #ffffff
+#         separator #353535
+#
+#         focused_workspace  #A370C5 #9256B4 #ffffff
+#         active_workspace   #333333 #5f676a #ffffff
+#         inactive_workspace #333333 #222222 #888888
+#         urgent_workspace   #2f343a #900000 #ffffff
+#         binding_mode       #2f343a #900000 #ffffff
 #     }
 
-    colors {
-        background #171717
-        statusline #ffffff
-        separator #353535
-
-        focused_workspace  #A370C5 #9256B4 #ffffff
-        active_workspace   #333333 #5f676a #ffffff
-        inactive_workspace #333333 #222222 #888888
-        urgent_workspace   #2f343a #900000 #ffffff
-        binding_mode       #2f343a #900000 #ffffff
-    }
-
-}
+# }
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
@@ -411,7 +412,7 @@ bindsym $mod+m bar mode toggle
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
+# smart_borders on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 # set $mode_gaps Gaps: (o) outer, (i) inner
