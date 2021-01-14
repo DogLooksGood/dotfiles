@@ -75,7 +75,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose sudo systemd)
+plugins=(git docker docker-compose sudo systemd direnv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -111,6 +111,8 @@ alias o="xdg-open"
 alias e="emacsclient -c"
 alias h="HTTP_PROXY=http://127.0.0.1:8889 HTTPS_PROXY=http://127.0.0.1:8889"
 alias p="proxychains -q"
+
+eval "$(direnv hook zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
