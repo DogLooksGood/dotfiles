@@ -68,7 +68,7 @@ bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 # bindsym $mod+Shift+F3 exec pcmanfm_pkexec
 # bindsym $mod+F5 exec terminal -e 'mocp'
 # bindsym $mod+t exec --no-startup-id pkill picom
-# bindsym $mod+Ctrl+t exec --no-startup-id picom -b
+bindsym $mod+Shift+g exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym Print exec --no-startup-id i3-scrot
 # bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
@@ -107,7 +107,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # workspace back and forth (with/without active container)
-workspace_auto_back_and_forth yes
+workspace_auto_back_and_forth no
 bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
@@ -302,7 +302,7 @@ exec --no-startup-id fcitx5
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id xset r rate 200 40
-exec_always --no-startup-id pkill polybar; polybar -c ~/.config/polybar/config main
+# exec_always --no-startup-id pkill polybar; polybar -c ~/.config/polybar/config main
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -336,46 +336,33 @@ set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
-# bar {
-# 	i3bar_command i3bar
-# 	status_command i3status
-# 	position bottom
-#
-# ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-# #	tray_output primary
-# #	tray_output eDP1
-#
-# 	bindsym button4 nop
-# 	bindsym button5 nop
-# #   font xft:URWGothic-Book 11
-# 	strip_workspace_numbers yes
-#
-# #     colors {
-# #         background #222D31
-# #         statusline #F9FAF9
-# #         separator  #454947
-# #
-# # #                      border  backgr. text
-# #         focused_workspace  #F9FAF9 #16a085 #292F34
-# #         active_workspace   #595B5B #353836 #FDF6E3
-# #         inactive_workspace #595B5B #222D31 #EEE8D5
-# #         binding_mode       #16a085 #2C2C2C #F9FAF9
-# #         urgent_workspace   #16a085 #FDF6E3 #E5201D
-# #     }
-#
-#     colors {
-#         background #171717
-#         statusline #ffffff
-#         separator #353535
-#
-#         focused_workspace  #A370C5 #9256B4 #ffffff
-#         active_workspace   #333333 #5f676a #ffffff
-#         inactive_workspace #333333 #222222 #888888
-#         urgent_workspace   #2f343a #900000 #ffffff
-#         binding_mode       #2f343a #900000 #ffffff
-#     }
+bar {
+	i3bar_command i3bar
+	status_command i3status
+	position bottom
 
-# }
+## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+#	tray_output primary
+#	tray_output eDP1
+
+	bindsym button4 nop
+	bindsym button5 nop
+#   font xft:URWGothic-Book 11
+	strip_workspace_numbers yes
+
+    colors {
+        background #171717
+        statusline #ffffff
+        separator #353535
+
+        focused_workspace  #A370C5 #9256B4 #ffffff
+        active_workspace   #333333 #5f676a #ffffff
+        inactive_workspace #333333 #222222 #888888
+        urgent_workspace   #2f343a #900000 #ffffff
+        binding_mode       #2f343a #900000 #ffffff
+    }
+
+}
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
