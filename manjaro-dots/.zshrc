@@ -111,6 +111,7 @@ alias o="xdg-open"
 alias e="emacsclient -c"
 alias h="HTTP_PROXY=http://127.0.0.1:8889 HTTPS_PROXY=http://127.0.0.1:8889"
 alias p="proxychains -q"
+alias y="yay --noconfirm -S"
 
 eval "$(direnv hook zsh)"
 
