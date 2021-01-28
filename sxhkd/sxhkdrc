@@ -13,7 +13,7 @@ super + shift + Return
     emacs
 
 # program launcher
-super + @space
+super + d
 	rofi -show combi
 
 # make sxhkd reload its configuration files:
@@ -65,7 +65,7 @@ super + g
 #
 
 # set the window state
-super + {a,shift + a,s,f}
+super + {a,shift + a,@space,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
