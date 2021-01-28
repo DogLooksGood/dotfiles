@@ -1,47 +1,40 @@
 #! /bin/sh
 
-# auto startup
-
-picom &
-
 pkill sxhkd
-
 sxhkd -m -1 &
 
-# bspwm setup
-
-# mq='$(xrandr --query | grep " connected" | cut -d" " -f1)'
-# if [ 1 == $($mq | wc -l) ]; then
 bspc monitor -d 0 1 2 3 4 5 6 7 8 9
-# elif [ 2 == $($mq | wc -l) ]; then
-#     bspc monitor $($mq | head -n 1) -d 5 6 7 8 9
-#     bspc monitor $($mq | tail -n 1) -d 0 1 2 3 4
-# fi
 
-bspc config border_width         6
-bspc config window_gap           22
+bspc config border_width         3
+bspc config border_radius        10
+bspc config window_gap           40
 
-bspc config split_ratio          0.5
+bspc config split_ratio          0.618
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 bspc config active_border_color "#9256B4"
 bspc config focused_border_color "#9256B4"
 bspc config normal_border_color "#131313"
+bspc config automatic_scheme longest_side
 
 bspc rule -a Screenkey manage=off
 bspc rule -a Emacs state=tiled
 
 fcitx &
 
-feh --bg-fill $HOME/Pictures/wp
+pkill flameshot; flameshot &
 
-xmodmap $HOME/.Xmodmap
+nm-applet &
+
+xfce4-power-manager &
+
+fix_xcursor &
+
+pkill volumeicon; volumeicon &
+
+nitrogen --restore
 
 xset r rate 150 50
 
-$HOME/.config/polybar/launch.sh
-
-xsetroot -cursor_name left_ptr
-
-emacs -nw -daemon
+pkill polybar; polybar -c ~/.config/polybar/config main
