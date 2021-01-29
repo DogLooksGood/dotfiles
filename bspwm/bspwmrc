@@ -3,7 +3,7 @@
 pkill sxhkd
 sxhkd -m -1 &
 
-bspc monitor -d 0 1 2 3 4 5 6 7 8 9
+bspc monitor -d 0 1 2 3 4 5 6 7 8
 
 bspc config border_width         3
 bspc config border_radius        10
@@ -21,7 +21,7 @@ bspc config automatic_scheme longest_side
 bspc rule -a Screenkey manage=off
 bspc rule -a Emacs state=tiled
 
-fcitx &
+fcitx5 &
 
 pkill flameshot; flameshot &
 
@@ -35,6 +35,6 @@ pkill volumeicon; volumeicon &
 
 nitrogen --restore
 
-xset r rate 150 50
+xset r rate 150 30
 
 pkill polybar; polybar -c ~/.config/polybar/config main
