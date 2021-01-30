@@ -30,10 +30,10 @@ alert = #bd2c40
 [bar/main]
 dpi = 192
 ;monitor = ${env:MONITOR:HDMI-1}
-width = 98%
+; width = 98%
 height = 54
-offset-x = 1%
-offset-y = 10
+; offset-x = 1%
+; offset-y = 10
 ; radius = 6.0
 fixed-center = false
 
