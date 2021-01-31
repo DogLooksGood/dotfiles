@@ -3,7 +3,7 @@
 pkill sxhkd
 sxhkd -m -1 &
 
-bspc monitor -d 0 1 2 3 4 5 6 7 8
+bspc monitor -d 0 1 2 3 4 5
 
 bspc config border_width         3
 bspc config border_radius        10

@@ -31,7 +31,7 @@ alert = #bd2c40
 dpi = 192
 ;monitor = ${env:MONITOR:HDMI-1}
 ; width = 98%
-height = 54
+height = 42
 ; offset-x = 1%
 ; offset-y = 10
 ; radius = 6.0
@@ -52,9 +52,9 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = Fira Code:pixelsize=10;1
-font-1 = WenQuanYi Micro Hei:pixelsize=10;1
-font-2 = siji:pixelsize=11;1
+font-0 = Fira Code:pixelsize=9;1
+font-1 = WenQuanYi Micro Hei:pixelsize=9;1
+font-2 = siji:pixelsize=10;1
 
 modules-left = bspwm xwindow
 modules-center =
