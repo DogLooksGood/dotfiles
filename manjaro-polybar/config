@@ -29,7 +29,7 @@ alert = #bd2c40
 
 [bar/main]
 dpi = 192
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:}
 ; width = 98%
 height = 42
 ; offset-x = 1%

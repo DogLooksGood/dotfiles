@@ -3,7 +3,14 @@
 pkill sxhkd
 sxhkd -m -1 &
 
-bspc monitor -d 0 1 2 3 4 5
+MONITOR_NUM=$(xrandr | grep ' connected' | wc -l)
+
+if [ $MONITOR_NUM = 2 ]; then
+    bspc monitor DP1 -d 0 1 2 3
+    bspc monitor DP2 -d 4 5 6 7
+else
+    bspc monitor -d 0 1 2 3 4 5 6 7
+fi
 
 bspc config border_width         3
 bspc config border_radius        10
@@ -13,9 +20,9 @@ bspc config split_ratio          0.618
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
-bspc config active_border_color "#9256B4"
+bspc config active_border_color "#606060"
 bspc config focused_border_color "#9256B4"
-bspc config normal_border_color "#131313"
+bspc config normal_border_color "#303030"
 bspc config automatic_scheme longest_side
 
 bspc rule -a Screenkey manage=off
@@ -41,4 +48,10 @@ if [ -f ~/.Xmodmap ]; then
     xmodmap ~/.Xmodmap
 fi
 
-pkill polybar; polybar -c ~/.config/polybar/config main
+if type "xrandr"; then
+  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+    MONITOR=$m polybar --reload -c ~/.config/polybar/config main &
+  done
+else
+  polybar --reload -c ~/.config/polybar/config main &
+fi
