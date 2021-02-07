@@ -15,24 +15,41 @@ XTerm*reverseVideo:      on
 XTerm*selectToClipboard: true
 
 ! color theme begin
-*background:  #2E3440
-*foreground:  #ECEFF4
-*color0:  #434C5E
-*color1:  #BF616A
-*color2:  #A3BE8C
-*color3:  #EBCB8B
-*color4:  #81A1C1
-*color5:  #B48EAD
-*color6:  #88C0D0
-*color7:  #ECEFF4
-*color8:  #434C5E
-*color9:  #BF616A
-*color10:  #A3BE8C
-*color11:  #EBCB8B
-*color12:  #81A1C1
-*color13:  #B48EAD
-*color14:  #88C0D0
-*color15:  #ECEFF4
+URxvt.foreground:   #c5c8c6
+URxvt.background:   #1f1f1f
+URxvt.cursorColor:  #c5c8c6
+
+! black
+URxvt.color0:       #282a2e
+URxvt.color8:       #373b41
+
+! red
+URxvt.color1:       #a85377
+URxvt.color9:       #a85377
+
+! green
+URxvt.color2:       #746f81
+URxvt.color10:      #746f81
+
+! yellow
+URxvt.color3:       #545670
+URxvt.color11:      #545670
+
+! blue
+URxvt.color4:       #6a9bb9
+URxvt.color12:      #6a9bb9
+
+! magenta
+URxvt.color5:       #764970
+URxvt.color13:      #764970
+
+! cyan
+URxvt.color6:       #abb9ba
+URxvt.color14:      #abb9ba
+
+! white
+URxvt.color7:       #899298
+URxvt.color15:      #899298
 ! color theme end
 
 Xcursor.theme: Adwaita
@@ -63,6 +80,7 @@ URxvt.keysym.C-M-g: grep --color=auto -r --include \\*.
 URxvt.keysym.C-M-p: ps aux|grep --color=auto ""
 URxvt.keysym.C-M-w: find . -name ""
 URxvt.keysym.C-M-n: netstat -tulpn|grep --color=auto ""
+URxvt.keysym.C-M-x: echo "$(!!)" | xclip -selection clipboard\n
 
 ! Normal copy-paste keybindings without perls
 URxvt.iso14755:                   false

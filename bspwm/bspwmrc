@@ -36,8 +36,6 @@ pkill flameshot; flameshot &
 
 nm-applet &
 
-xfce4-power-manager &
-
 fix_xcursor &
 
 pkill volumeicon; volumeicon &
