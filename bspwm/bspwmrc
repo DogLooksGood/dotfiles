@@ -14,7 +14,7 @@ fi
 
 bspc config border_width         3
 bspc config border_radius        10
-bspc config window_gap           0
+bspc config window_gap           15
 
 bspc config split_ratio          0.5
 bspc config borderless_singleton true
@@ -36,7 +36,7 @@ pkill flameshot; flameshot &
 
 nm-applet &
 
-fix_xcursor &
+pkill picom; picom &
 
 pkill volumeicon; volumeicon &
 
