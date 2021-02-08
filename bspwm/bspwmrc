@@ -38,8 +38,6 @@ nm-applet &
 
 pkill picom; picom &
 
-pkill volumeicon; volumeicon &
-
 nitrogen --restore
 
 xset r rate 180 30
