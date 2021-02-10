@@ -1,0 +1,91 @@
+{
+  "modules-left": [
+    "river/tags"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "network",
+    "backlight",
+    "pulseaudio",
+    "battery"
+  ],
+  "clock": {
+    "format": "{:%a %d-%m %T}",
+    "interval": 1,
+    "tooltip": false
+  },
+  "network": {
+    "format-wifi": "{essid} {signalStrength}%",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr}",
+    "format-linked": "{ifname} (No IP)",
+    "format-disconnected": "Disconnected",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "tooltip": false
+  },
+  "cpu": {
+    "format": "cpu{usage:3}%",
+    "interval": 1,
+    "states": {
+      "warning": 50,
+      "critical": 90
+    },
+    "tooltip": false
+  },
+  "memory": {
+    "format": "mem {}%",
+    "interval": 1,
+    "states": {
+      "warning": 50,
+      "critical": 90
+    },
+    "tooltip": false
+  },
+  "temperature": {
+    "format": "{temperatureC}°C",
+    "interval": 1,
+    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+    "critical-threshold": 75,
+    "tooltip": false
+  },
+  "battery": {
+    "states": {
+      "good": 80,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "backlight": {
+    "format": "{percent}% {icon}",
+    "format-icons": ["", ""]
+  },
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+    "on-click": "pavucontrol"
+  }
+}
+
+# Local Variables:
+# mode: javascript
+# End:

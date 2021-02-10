@@ -56,7 +56,7 @@ font-0 = Fira Code:pixelsize=9;1
 font-1 = WenQuanYi Micro Hei:pixelsize=9;1
 font-2 = siji:pixelsize=10;1
 
-modules-left = bspwm xwindow
+modules-left = bspwm
 modules-center =
 modules-right = xbacklight pulseaudio memory cpu wlan eth battery date
 
