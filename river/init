@@ -21,7 +21,10 @@ riverctl map normal $mod Return spawn alacritty
 riverctl map normal $mod Q close
 
 # Mod+D to open wofi
-riverctl map normal $mod d spawn bemenu-run
+riverctl map normal $mod D spawn 'bemenu-run -l 15 --nb "#073642" --tb "#073642" --fb "#073642" --hb "#586e75" --tf "#fdf6e3" --hf "#fdf6e3"'
+
+# Mod+P to screenshot
+riverctl map normal $mod P spawn 'grim -g "$(slurp)" - | wl-copy'
 
 # Mod+E to exit river
 riverctl map normal $mod E exit
@@ -161,15 +164,20 @@ riverctl layout rivertile left
 riverctl float-filter-add "float"
 riverctl float-filter-add "popup"
 
-# Set app-ids of views which should use client side decorations
-riverctl csd-filter-add "gedit"
-riverctl csd-filter-add "Emacs"
-
 # Set opacity and fade effect
 riverctl opacity 1.0 0.75 0.0 0.1 20
 
 # HiDPI
 wlr-randr --output eDP-1 --scale 2.0
 
+# fcitx5
+fcitx5 &
+
 # start waybar
 waybar
+
+# mako
+mako &
+
+# wallpaper
+# swaybg -i Pictures/wallpaper/miku.png
