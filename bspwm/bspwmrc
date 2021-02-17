@@ -42,7 +42,7 @@ nitrogen --restore
 
 xset r rate 180 30
 
-dunst &
+pkill dunst; dunst &
 
 if [ -f ~/.Xmodmap ]; then
     xmodmap ~/.Xmodmap
