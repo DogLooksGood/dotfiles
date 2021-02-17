@@ -12,6 +12,10 @@ super + Return
 super + shift + Return
     emacs
 
+# qutebrowser
+super + q
+    qutebrowser
+
 # program launcher
 super + d
 	rofi -show combi
@@ -50,7 +54,7 @@ super + alt + {q,r}
 	bspc {quit,wm -r}
 
 # close and kill
-super + {_,shift + }q
+super + {_,shift + }k
 	bspc node -{c,k}
 
 super + y

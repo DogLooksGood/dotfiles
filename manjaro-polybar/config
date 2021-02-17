@@ -40,10 +40,10 @@ fixed-center = false
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
+line-size = 0
 line-color = #f00
 
-border-size = 4
+border-size = 0
 border-color = #000000
 
 padding-left = 0
@@ -52,13 +52,15 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = Fira Code:pixelsize=9;1
-font-1 = WenQuanYi Micro Hei:pixelsize=9;1
-font-2 = siji:pixelsize=10;1
+font-0 = Fira Code:pixelsize=8;1
+font-1 = WenQuanYi Micro Hei:pixelsize=8;1
+; font-2 = siji:pixelsize=10;1
 
 modules-left = bspwm
-modules-center =
+modules-center = xwindow
 modules-right = backlight-acpi pulseaudio wlan eth battery date
+
+bottom = false
 
 ; tray-position = right
 ; tray-padding = 2
@@ -82,7 +84,7 @@ cursor-scroll = ns-resize
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:40:...%
+label = %title:0:60:...%
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -114,8 +116,10 @@ label-unmounted-foreground = ${colors.foreground-alt}
 type = internal/bspwm
 
 label-focused = %index%
-label-focused-background = ${colors.background-alt}
+; label-focused-background = ${colors.background-alt}
 ; label-focused-underline= ${colors.primary}
+label-focused-background = #B762DE
+label-focused-foreground = #000
 label-focused-padding = 2
 
 label-occupied = %index%
@@ -283,7 +287,7 @@ format-volume = <label-volume>
 label-volume = VOL %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted = 🔇 muted
+label-muted = MUTED
 label-muted-foreground = #666
 
 bar-volume-width = 10
