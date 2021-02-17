@@ -24,7 +24,7 @@ riverctl map normal $mod Q close
 riverctl map normal $mod D spawn 'bemenu-run -l 15 --nb "#073642" --tb "#073642" --fb "#073642" --hb "#586e75" --tf "#fdf6e3" --hf "#fdf6e3"'
 
 # Mod+P to screenshot
-riverctl map normal $mod P spawn 'grim -g "$(slurp)" - | wl-copy'
+riverctl map normal $mod P spawn 'grim -g "$(slurp)" - | wl-copy -t image/png'
 
 # Mod+E to exit river
 riverctl map normal $mod E exit

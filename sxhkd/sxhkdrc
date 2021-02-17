@@ -26,10 +26,10 @@ super + shift + x
 
 # Backlight
 XF86MonBrightnessUp
-	xbacklight +5
+    light -A 5
 
 XF86MonBrightnessDown
-	xbacklight -5
+    light -U 5
 
 # Volume
 XF86AudioRaiseVolume
@@ -86,8 +86,7 @@ super + {p,b,comma,period}
 
 # focus the next/previous node in the current desktop
 super + {_,shift + }Tab
-	bspc node -f {next,prev}.local
-	bspc node -f {next,prev}.local
+    bspc node -f {next,prev}.local.!hidden.window
 
 # focus or send to the given desktop
 super + {_,shift + }F1
@@ -126,3 +125,8 @@ super + alt + shift + {h, t, c, n}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-120 0,0 120,0 -120,120 0}
+
+
+# screenshot
+super + Print
+    maim -u -s | xclip -selection clipboard -t image/png

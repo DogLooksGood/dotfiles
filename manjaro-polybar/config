@@ -58,12 +58,12 @@ font-2 = siji:pixelsize=10;1
 
 modules-left = bspwm
 modules-center =
-modules-right = xbacklight pulseaudio memory cpu wlan eth battery date
+modules-right = backlight-acpi pulseaudio wlan eth battery date
 
-tray-position = right
-tray-padding = 2
-tray-scale = 1.0
-tray-maxsize = 32
+; tray-position = right
+; tray-padding = 2
+; tray-scale = 1.0
+; tray-maxsize = 32
 ;tray-background = #0063ff
 
 wm-restack = bspwm

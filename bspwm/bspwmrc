@@ -14,7 +14,7 @@ fi
 
 bspc config border_width         3
 bspc config border_radius        10
-bspc config window_gap           15
+bspc config window_gap           0
 
 bspc config split_ratio          0.5
 bspc config borderless_singleton true
@@ -41,6 +41,8 @@ pkill picom; picom &
 nitrogen --restore
 
 xset r rate 180 30
+
+dunst &
 
 if [ -f ~/.Xmodmap ]; then
     xmodmap ~/.Xmodmap
