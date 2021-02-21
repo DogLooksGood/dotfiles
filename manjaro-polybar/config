@@ -54,6 +54,7 @@ module-margin-right = 2
 
 font-0 = Fira Code:pixelsize=8;1
 font-1 = Noto Sans CJK SC:pixelsize=8;1
+font-2 = Symbola:pixelsize=10;1
 ; font-2 = siji:pixelsize=10;1
 
 modules-left = bspwm
@@ -201,7 +202,7 @@ label-song-ellipsis = true
 type = internal/xbacklight
 
 format = <label>
-label = "BL %percentage%%"
+label = "💡 %percentage%%"
 
 bar-width = 10
 bar-indicator = |
@@ -294,28 +295,11 @@ label = %date% %time%
 type = internal/pulseaudio
 
 format-volume = <label-volume>
-label-volume = VOL %percentage%%
+label-volume = 🔊 %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted = MUTED
+label-muted = 🔇
 label-muted-foreground = #666
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/alsa]
 type = internal/alsa
@@ -352,11 +336,11 @@ adapter = ADP1
 full-at = 98
 
 format-charging = <label-charging>
-label-charging = "BAT %percentage%% CHARGING"
+label-charging = "🔌 %percentage%% CHARGING"
 ; format-charging-underline = #ffb52a
 
 format-discharging = <label-discharging>
-label-discharging = "BAT %percentage%%"
+label-discharging = "🔋 %percentage%%"
 ; format-discharging-underline = ${self.format-charging-underline}
 
 ; format-full-prefix = " "
