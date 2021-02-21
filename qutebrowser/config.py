@@ -19,7 +19,7 @@ config.bind('<Esc>', 'fake-key <Esc>')
 c.tabs.position = 'bottom'
 c.qt.highdpi = True
 c.content.proxy = 'http://127.0.0.1:8889'
-c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.enabled = False
 c.colors.webpage.bg = "#000"
 c.colors.tabs.even.fg = "#aaaaaa"
 c.colors.tabs.even.bg = "#2c363d"

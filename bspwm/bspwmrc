@@ -3,14 +3,16 @@
 pkill sxhkd
 sxhkd -m -1 &
 
-MONITOR_NUM=$(xrandr | grep ' connected' | wc -l)
+# MONITOR_NUM=$(xrandr | grep ' connected' | wc -l)
+#
+# if [ $MONITOR_NUM = 2 ]; then
+#     bspc monitor DP1 -d 0 1 2 3
+#     bspc monitor DP2 -d 4 5 6 7
+# else
+#     bspc monitor -d 0 1 2 3 4 5 6 7
+# fi
 
-if [ $MONITOR_NUM = 2 ]; then
-    bspc monitor DP1 -d 0 1 2 3
-    bspc monitor DP2 -d 4 5 6 7
-else
-    bspc monitor -d 0 1 2 3 4 5 6 7
-fi
+bspc monitor -d 0 1 2 3 4 5 6 7
 
 bspc config border_width         2
 bspc config border_radius        10
@@ -32,8 +34,6 @@ xsetroot -cursor_name left_ptr
 
 fcitx5 &
 
-pkill flameshot; flameshot &
-
 nm-applet &
 
 pkill picom; picom &
@@ -44,9 +44,9 @@ xset r rate 180 30
 
 pkill dunst; dunst &
 
-if [ -f ~/.Xmodmap ]; then
-    xmodmap ~/.Xmodmap
-fi
+# if [ -f ~/.Xmodmap ]; then
+#     xmodmap ~/.Xmodmap
+# fi
 
 if type "xrandr"; then
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do

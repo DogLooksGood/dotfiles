@@ -31,11 +31,11 @@ alert = #bd2c40
 dpi = 192
 monitor = ${env:MONITOR:}
 ; width = 98%
-height = 42
+height = 48
 ; offset-x = 1%
 ; offset-y = 10
 ; radius = 6.0
-fixed-center = false
+fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -53,7 +53,7 @@ module-margin-left = 1
 module-margin-right = 2
 
 font-0 = Fira Code:pixelsize=8;1
-font-1 = WenQuanYi Micro Hei:pixelsize=8;1
+font-1 = Noto Sans CJK SC:pixelsize=8;1
 ; font-2 = siji:pixelsize=10;1
 
 modules-left = bspwm
@@ -62,11 +62,11 @@ modules-right = backlight-acpi pulseaudio wlan eth battery date
 
 bottom = false
 
-; tray-position = right
-; tray-padding = 2
-; tray-scale = 1.0
-; tray-maxsize = 32
-;tray-background = #0063ff
+tray-position = right
+tray-padding = 2
+tray-scale = 1.0
+tray-maxsize = 32
+tray-background = #B762DE
 
 wm-restack = bspwm
 ;wm-restack = i3
@@ -115,26 +115,36 @@ label-unmounted-foreground = ${colors.foreground-alt}
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %index%
+label-focused = %icon%
 ; label-focused-background = ${colors.background-alt}
 ; label-focused-underline= ${colors.primary}
 label-focused-background = #B762DE
 label-focused-foreground = #000
 label-focused-padding = 2
 
-label-occupied = %index%
+label-occupied = %icon%
 label-occupied-padding = 2
 
-label-urgent = %index%!
+label-urgent = %icon%!
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
-label-empty = %index%
+label-empty = %icon%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
 
 ; Separator in between workspaces
 ; label-separator = |
+format = <label-state> <label-mode>
+
+ws-icon-0 = "0;壹"
+ws-icon-1 = "1;贰"
+ws-icon-2 = "2;叁"
+ws-icon-3 = "3;肆"
+ws-icon-4 = "4;伍"
+ws-icon-5 = "5;陆"
+ws-icon-6 = "6;柒"
+ws-icon-7 = "7;捌"
 
 [module/i3]
 type = internal/i3
@@ -349,8 +359,8 @@ format-discharging = <label-discharging>
 label-discharging = "BAT %percentage%%"
 ; format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
+; format-full-prefix = " "
+; format-full-prefix-foreground = ${colors.foreground-alt}
 ; format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-0 = 
