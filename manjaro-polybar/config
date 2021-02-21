@@ -57,9 +57,9 @@ font-1 = Noto Sans CJK SC:pixelsize=8;1
 font-2 = Symbola:pixelsize=10;1
 ; font-2 = siji:pixelsize=10;1
 
-modules-left = bspwm
-modules-center = xwindow
-modules-right = backlight-acpi pulseaudio wlan eth battery date
+modules-left = bspwm xwindow
+modules-center =
+modules-right = backlight-acpi pulseaudio battery wlan eth date
 
 bottom = false
 
