@@ -202,7 +202,7 @@ label-song-ellipsis = true
 type = internal/xbacklight
 
 format = <label>
-label = "💡 %percentage%%"
+label = "🟒 %percentage%%"
 
 bar-width = 10
 bar-indicator = |
@@ -267,7 +267,7 @@ interval = 3.0
 ; format-connected-underline = #55aa55
 ; format-connected-prefix = " "
 ; format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = ETH %local_ip%
+label-connected = 🖧 %local_ip%
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
