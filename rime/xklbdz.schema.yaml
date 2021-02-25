@@ -8,72 +8,9 @@ schema:
   author:
     - 发明人 大牛
 
-punctuator:
-  full_shape:
-    " ": {commit: "　"}
-    "!": {commit: "！"}
-    "\"": {pair: ["“", "”"]}
-    "$": ["￥", "$", "€", "£", "¥", "¢", "¤"]
-    "%": ["％", "°", "℃"]
-    "&": "＆"
-    "'": {pair: ["‘", "’"]}
-    "(": "（"
-    ")": "）"
-    "*": ["＊", "·", "・", "×", "※", "❂"]
-    "+": "＋"
-    ",": {commit: "，"}
-    "-": "－"
-    .: {commit: "。"}
-    "/": ["／", "÷"]
-    ":": {commit: "："}
-    ";": {commit: "；"}
-    "<": ["《", "〈", "«", "‹"]
-    "=": "＝"
-    ">": ["》", "〉", "»", "›"]
-    "?": {commit: "？"}
-    "@": ["＠", "☯"]
-    "[": ["「", "【", "〔", "［"]
-    "\\": ["、", "＼"]
-    "]": ["」", "】", "〕", "］"]
-    "^": {commit: "……"}
-    _: "——"
-    "`": "｀"
-    "{": ["『", "〖", "｛"]
-    "|": ["·", "｜", "§", "¦"]
-    "}": ["』", "〗", "｝"]
-    "~": "～"
-  half_shape:
-    "!": {commit: "！"}
-    "\"": {pair: ["“", "”"]}
-    "&": "&"
-    "'": {pair: ["‘", "’"]}
-    "(": "（"
-    ")": "）"
-    "+": "+"
-    ",": {commit: "，"}
-    "-": "-"
-    .: {commit: "。"}
-    ":": {commit: "："}
-    ";": {commit: "；"}
-    "<": {commit: "《"}
-    "=": "="
-    ">": {commit: "》"}
-    "?": {commit: "？"}
-    "@": "@"
-    "[": ["【", "「"]
-    "\\": "、"
-    "]": ["】", "」"]
-    "^": {commit: "……"}
-    _: "——"
-    "`": {commit: "`"}
-    "{": "｛"
-    "}": "｝"
-    "~": ["~", "～"]
-
-
 switches:
   - name: ascii_mode
-    reset: 1
+    reset: 0
     states: [ 中文, 西文 ]
   - name: full_shape
     states: [ 半角, 全角 ]
@@ -168,8 +105,11 @@ reverse_lookup:
 menu:
   page_size: 5
 
-# punctuator:
-#  import_preset: symbols
+punctuator:
+  full_shape:
+    __include: punctuation:/full_shape
+  half_shape:
+    __include: punctuation:/half_shape
 
 key_binder:
   bindings:
@@ -183,8 +123,3 @@ recognizer:
     # reverse_lookup: "[a-z]*`+[a-z]*"
     punct: "^/([0-9]0?|[a-z]+)$"
     retention: "^[bpmfdtnlgkhjqxzscrywv][a-z][aeiou]{0, 3}"
-
-history:
-  input: i
-  size: 1
-  initial_quality: 1
