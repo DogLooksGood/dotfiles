@@ -44,9 +44,9 @@ xset r rate 180 30
 
 pkill dunst; dunst &
 
-# if [ -f ~/.Xmodmap ]; then
-#     xmodmap ~/.Xmodmap
-# fi
+if [ -f ~/.Xmodmap ]; then
+    xmodmap ~/.Xmodmap
+fi
 
 if type "xrandr"; then
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
