@@ -49,6 +49,9 @@ XF86AudioMute
 super + alt + {q,r}
 	bspc {quit,wm -r}
 
+super + shift + r
+    xset r rate 180 30
+
 # close and kill
 super + {_,shift + }q
 	bspc node -{c,k}

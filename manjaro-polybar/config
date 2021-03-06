@@ -26,6 +26,7 @@ foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
+main = #4191c6
 
 [bar/main]
 dpi = 192
@@ -67,7 +68,7 @@ tray-position = right
 tray-padding = 2
 tray-scale = 1.0
 tray-maxsize = 32
-tray-background = #B762DE
+tray-background = ${colors.main}
 
 wm-restack = bspwm
 ;wm-restack = i3
@@ -119,7 +120,7 @@ type = internal/bspwm
 label-focused = %icon%
 ; label-focused-background = ${colors.background-alt}
 ; label-focused-underline= ${colors.primary}
-label-focused-background = #B762DE
+label-focused-background = ${colors.main}
 label-focused-foreground = #000
 label-focused-padding = 2
 
