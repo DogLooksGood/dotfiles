@@ -92,25 +92,25 @@ super + {_,shift + }Tab
     bspc node -f {next,prev}.local.!hidden.window
 
 # focus or send to the given desktop
-super + {_,shift + }F1
+{alt,super} + {_,shift + }F1
     bspc {desktop -f,node -d} 0
-super + {_,shift + }F2
+{alt,super} + {_,shift + }F2
     bspc {desktop -f,node -d} 1
-super + {_,shift + }F3
+{alt,super} + {_,shift + }F3
     bspc {desktop -f,node -d} 2
-super + {_,shift + }F4
+{alt,super} + {_,shift + }F4
     bspc {desktop -f,node -d} 3
-super + {_,shift + }F5
+{alt,super} + {_,shift + }F5
     bspc {desktop -f,node -d} 4
-super + {_,shift + }F6
+{alt,super} + {_,shift + }F6
     bspc {desktop -f,node -d} 5
-super + {_,shift + }F7
+{alt,super} + {_,shift + }F7
     bspc {desktop -f,node -d} 6
-super + {_,shift + }F8
+{alt,super} + {_,shift + }F8
     bspc {desktop -f,node -d} 7
-super + {_,shift + }F9
+{alt,super} + {_,shift + }F9
     bspc {desktop -f,node -d} 8
-super + {_,shift + }F0
+{alt,super} + {_,shift + }F0
     bspc {desktop -f,node -d} 9
 
 #
@@ -133,3 +133,6 @@ super + {Left,Down,Up,Right}
 # screenshot
 super + Print
     maim -u -s | xclip -selection clipboard -t image/png
+
+super + o
+    find-cursor

@@ -54,7 +54,7 @@ module-margin-left = 1
 module-margin-right = 2
 
 font-0 = Fira Code:pixelsize=8;1
-font-1 = Noto Sans CJK SC:pixelsize=8;1
+font-1 = Wenquanyi Micro Hei:pixelsize=8;1
 font-2 = Symbola:pixelsize=10;1
 ; font-2 = siji:pixelsize=10;1
 
