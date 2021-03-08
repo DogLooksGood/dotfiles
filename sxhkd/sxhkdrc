@@ -92,25 +92,25 @@ super + {_,shift + }Tab
     bspc node -f {next,prev}.local.!hidden.window
 
 # focus or send to the given desktop
-{alt,super} + {_,shift + }F1
+super + {_,shift + }F1
     bspc {desktop -f,node -d} 0
-{alt,super} + {_,shift + }F2
+super + {_,shift + }F2
     bspc {desktop -f,node -d} 1
-{alt,super} + {_,shift + }F3
+super + {_,shift + }F3
     bspc {desktop -f,node -d} 2
-{alt,super} + {_,shift + }F4
+super + {_,shift + }F4
     bspc {desktop -f,node -d} 3
-{alt,super} + {_,shift + }F5
+super + {_,shift + }F5
     bspc {desktop -f,node -d} 4
-{alt,super} + {_,shift + }F6
+super + {_,shift + }F6
     bspc {desktop -f,node -d} 5
-{alt,super} + {_,shift + }F7
+super + {_,shift + }F7
     bspc {desktop -f,node -d} 6
-{alt,super} + {_,shift + }F8
+super + {_,shift + }F8
     bspc {desktop -f,node -d} 7
-{alt,super} + {_,shift + }F9
+super + {_,shift + }F9
     bspc {desktop -f,node -d} 8
-{alt,super} + {_,shift + }F0
+super + {_,shift + }F0
     bspc {desktop -f,node -d} 9
 
 #

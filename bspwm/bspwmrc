@@ -3,16 +3,16 @@
 pkill sxhkd
 sxhkd -m -1 &
 
-# MONITOR_NUM=$(xrandr | grep ' connected' | wc -l)
-#
-# if [ $MONITOR_NUM = 2 ]; then
-#     bspc monitor DP1 -d 0 1 2 3
-#     bspc monitor DP2 -d 4 5 6 7
-# else
-#     bspc monitor -d 0 1 2 3 4 5 6 7
-# fi
+MONITOR_NUM=$(xrandr --listactivemonitors | grep 'Monitors' | sed 's/Monitors: //g')
 
-bspc monitor -d 0 1 2 3 4 5 6 7
+if [ $MONITOR_NUM = 2 ]; then
+    bspc monitor DP1 -d 0 1 2 3
+    bspc monitor DP2 -d 4 5 6 7
+else
+    bspc monitor -d 0 1 2 3 4 5 6 7
+fi
+
+# bspc monitor -d 0 1 2 3 4 5 6 7
 
 bspc config border_width         2
 bspc config border_radius        10
