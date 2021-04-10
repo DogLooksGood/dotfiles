@@ -3,11 +3,14 @@
 pkill sxhkd
 sxhkd -m -1 &
 
-MONITOR_NUM=$(xrandr | grep ' connected' | wc -l)
+MONITOR_NUM=$(xrandr --listactivemonitors | grep 'Monitors' | sed 's/Monitors: //g')
 
 if [ $MONITOR_NUM = 2 ]; then
-    bspc monitor eDP1 -d 0 1 2 3
-    bspc monitor HDMI1 -d 4 5 6 7
+    MON_LIST=$(xrandr --listactivemonitors | grep -E "[0-9]:" | head -n 2 | tr -s ' ' | cut -d ' ' -f 5)
+    MON_1=$(echo $MON_LIST | head -n 1)
+    MON_2=$(echo $MON_LIST | sed -n 2p)
+    bspc monitor DP1 -d 0 1 2 3
+    bspc monitor DP2 -d 4 5 6 7
 else
     bspc monitor -d 0 1 2 3 4 5 6 7
 fi

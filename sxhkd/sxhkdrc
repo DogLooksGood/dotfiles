@@ -133,3 +133,6 @@ super + {Left,Down,Up,Right}
 # screenshot
 super + Print
     maim -u -s | xclip -selection clipboard -t image/png
+
+super + o
+    find-cursor
