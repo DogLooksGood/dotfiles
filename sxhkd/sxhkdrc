@@ -8,9 +8,9 @@
 super + Return
 	urxvt
 
-# emacs
+# emacs dumped
 super + shift + Return
-    emacs
+    dmacs
 
 # program launcher
 super + d

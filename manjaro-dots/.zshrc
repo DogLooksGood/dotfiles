@@ -110,7 +110,7 @@ export HEX_CDN="http://hexpm.upyun.com"
 alias x="xclip -selection clipboard"
 alias o="xdg-open"
 alias e="emacsclient -c"
-alias h="HTTP_PROXY=http://127.0.0.1:8889 HTTPS_PROXY=http://127.0.0.1:8889"
+alias h="HTTP_PROXY=http://127.0.0.1:8889 HTTPS_PROXY=http://127.0.0.1:8889 http_proxy=http://127.0.0.1:8889 https_proxy=http://127.0.0.1:8889"
 alias p="proxychains -q"
 alias y="yay --noconfirm -S"
 
