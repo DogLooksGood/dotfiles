@@ -7,10 +7,11 @@ MONITOR_NUM=$(xrandr --listactivemonitors | grep 'Monitors' | sed 's/Monitors: /
 
 if [ $MONITOR_NUM = 2 ]; then
     MON_LIST=$(xrandr --listactivemonitors | grep -E "[0-9]:" | head -n 2 | tr -s ' ' | cut -d ' ' -f 5)
-    MON_1=$(echo $MON_LIST | head -n 1)
-    MON_2=$(echo $MON_LIST | sed -n 2p)
-    bspc monitor DP1 -d 0 1 2 3
-    bspc monitor DP2 -d 4 5 6 7
+    MON1=$(echo $MON_LIST | head -n 1)
+    MON2=$(echo $MON_LIST | sed -n 2p)
+
+    bspc monitor $MON1 -d 0 1 2 3
+    bspc monitor $MON2 -d 4 5 6 7
 else
     bspc monitor -d 0 1 2 3 4 5 6 7
 fi
