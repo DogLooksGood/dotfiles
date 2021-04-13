@@ -6,19 +6,16 @@ sxhkd -m -1 &
 MONITOR_NUM=$(xrandr --listactivemonitors | grep 'Monitors' | sed 's/Monitors: //g')
 
 if [ $MONITOR_NUM = 2 ]; then
-    MON_LIST=$(xrandr --listactivemonitors | grep -E "[0-9]:" | head -n 2 | tr -s ' ' | cut -d ' ' -f 5)
-    MON1=$(echo $MON_LIST | head -n 1)
-    MON2=$(echo $MON_LIST | sed -n 2p)
+    MON1=$(xrandr --listactivemonitors | grep -E "[0-9]:" | head -n 2 | tr -s ' ' | cut -d ' ' -f 5 | head -n -z 1)
+    MON2=$(xrandr --listactivemonitors | grep -E "[0-9]:" | head -n 2 | tr -s ' ' | cut -d ' ' -f 5 | sed -n 2p)
 
-    bspc monitor $MON1 -d 0 1 2 3
-    bspc monitor $MON2 -d 4 5 6 7
+    bspc monitor "$MON1" -d 0 1 2 3
+    bspc monitor "$MON2" -d 4 5 6 7
 else
     bspc monitor -d 0 1 2 3 4 5 6 7
 fi
 
-# bspc monitor -d 0 1 2 3 4 5 6 7
-
-bspc config border_width         1
+bspc config border_width         6
 bspc config border_radius        10
 bspc config window_gap           0
 
@@ -48,9 +45,9 @@ xset r rate 180 30
 
 pkill dunst; dunst &
 
-# if [ -f ~/.Xmodmap ]; then
-#     xmodmap ~/.Xmodmap
-# fi
+if [ -f ~/.Xmodmap ]; then
+    xmodmap ~/.Xmodmap
+fi
 
 if type "xrandr"; then
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
