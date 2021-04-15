@@ -6,7 +6,7 @@ sxhkd -m -1 &
 MONITOR_NUM=$(xrandr --listactivemonitors | grep 'Monitors' | sed 's/Monitors: //g')
 
 if [ $MONITOR_NUM = 2 ]; then
-    MON1=$(xrandr --listactivemonitors | grep -E "[0-9]:" | head -n 2 | tr -s ' ' | cut -d ' ' -f 5 | head -n -z 1)
+    MON1=$(xrandr --listactivemonitors | grep -E "[0-9]:" | head -n 2 | tr -s ' ' | cut -d ' ' -f 5 | head -n 1)
     MON2=$(xrandr --listactivemonitors | grep -E "[0-9]:" | head -n 2 | tr -s ' ' | cut -d ' ' -f 5 | sed -n 2p)
 
     bspc monitor "$MON1" -d 0 1 2 3
