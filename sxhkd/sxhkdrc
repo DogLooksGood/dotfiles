@@ -136,3 +136,6 @@ super + Print
 
 super + o
     find-cursor
+
+super + shift + s
+    urxvt -e /bin/bash ~/scripts/prod_scrm

@@ -17,16 +17,16 @@
 ;==========================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #222
-background-alt = #444
-;foreground = ${xrdb:color7:#222}
-foreground = #b9b9b9
-foreground-alt = #555
-primary = #ffb52a
+background = #FFFFFF
+; background = #222
+; background-alt = #444
+foreground = #000000
+; foreground = #b9b9b9
+; foreground-alt = #555
+primary = #dddddd
 secondary = #e60053
 alert = #bd2c40
-main = #4191c6
+main = #dddddd
 
 [bar/main]
 dpi = 192
