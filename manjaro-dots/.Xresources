@@ -53,8 +53,8 @@ XTerm*selectToClipboard: true
 Xcursor.theme: Adwaita
 Xcursor.size:                     54
 
-URxvt.font:                       xft:MesloLGS NF-12,xft:Unifont
-URxvt.boldFont:                   xft:MesloLGS NF-12,xft:Unifont
+URxvt.font:                       xft:MesloLGS NF-10,xft:Unifont
+URxvt.boldFont:                   xft:MesloLGS NF-10,xft:Unifont
 ! URxvt.font:                       xft:Unifont
 ! URxvt.boldFont:                   xft:Unifont
 

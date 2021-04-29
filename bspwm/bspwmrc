@@ -8,9 +8,15 @@ MONITOR_NUM=$(xrandr --listactivemonitors | grep 'Monitors' | sed 's/Monitors: /
 if [ $MONITOR_NUM = 2 ]; then
     MON1=$(xrandr --listactivemonitors | grep -E "[0-9]:" | head -n 2 | tr -s ' ' | cut -d ' ' -f 5 | head -n 1)
     MON2=$(xrandr --listactivemonitors | grep -E "[0-9]:" | head -n 2 | tr -s ' ' | cut -d ' ' -f 5 | sed -n 2p)
-
     bspc monitor "$MON1" -d 0 1 2 3
     bspc monitor "$MON2" -d 4 5 6 7
+elif [ $MONITOR_NUM = 3 ]; then
+    MON1=$(xrandr --listactivemonitors | grep -E "[0-9]:" | head -n 3 | tr -s ' ' | cut -d ' ' -f 5 | head -n 1)
+    MON2=$(xrandr --listactivemonitors | grep -E "[0-9]:" | head -n 3 | tr -s ' ' | cut -d ' ' -f 5 | sed -n 2p)
+    MON3=$(xrandr --listactivemonitors | grep -E "[0-9]:" | head -n 3 | tr -s ' ' | cut -d ' ' -f 5 | sed -n 3p)
+    bspc monitor "$MON1" -d 0 1 2
+    bspc monitor "$MON2" -d 3 4 5
+    bspc monitor "$MON3" -d 6 7
 else
     bspc monitor -d 0 1 2 3 4 5 6 7
 fi
@@ -54,5 +60,7 @@ if type "xrandr"; then
 else
   polybar --reload -c ~/.config/polybar/config main &
 fi
+
+# redshift-gtk &
 
 xmodmap ~/.Xmodmap
