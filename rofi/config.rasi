@@ -1,7 +1,7 @@
 configuration {
  modi: "window,drun,ssh,combi";
  theme: "/usr/share/rofi/themes/Arc.rasi";
- font: "Monospace 22";
+ font: "WenQuanYi Micro Hei 22";
  combi-modi: "window,drun,ssh";
 }
 @import "/usr/share/rofi/themes/Arc.rasi"

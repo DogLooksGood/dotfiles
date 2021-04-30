@@ -6,11 +6,11 @@
 
 # terminal emulator
 super + Return
-	urxvt
+	alacritty
 
 # emacs dumped
 super + shift + Return
-    dmacs
+    emacs
 
 # program launcher
 super + d
