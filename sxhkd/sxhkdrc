@@ -10,7 +10,7 @@ super + Return
 
 # emacs dumped
 super + shift + Return
-    emacs
+    emacsclient -c -n -e '(switch-to-buffer nil)'
 
 # program launcher
 super + d
@@ -40,6 +40,12 @@ XF86AudioLowerVolume
 
 XF86AudioMute
 	pactl set-sink-mute 0 toggle
+
+super + {_, shift + }F9
+    nmcli connection {up, down} qa
+
+super + {_, shift + }F10
+    nmcli connection {up, down} prod
 
 #
 # bspwm hotkeys
@@ -108,10 +114,6 @@ super + {_,shift + }F7
     bspc {desktop -f,node -d} 6
 super + {_,shift + }F8
     bspc {desktop -f,node -d} 7
-super + {_,shift + }F9
-    bspc {desktop -f,node -d} 8
-super + {_,shift + }F0
-    bspc {desktop -f,node -d} 9
 
 #
 # move/resize
