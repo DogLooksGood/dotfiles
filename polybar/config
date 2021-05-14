@@ -17,16 +17,12 @@
 ;==========================================================
 
 [colors]
-background = #FFFFFF
-; background = #222
-; background-alt = #444
-foreground = #000000
-; foreground = #b9b9b9
-; foreground-alt = #555
+background = #000000
+foreground = #FFFFFF
 primary = #dddddd
 secondary = #e60053
 alert = #bd2c40
-main = #dddddd
+main = #333333
 
 [bar/main]
 dpi = 192
@@ -54,7 +50,7 @@ module-margin-left = 1
 module-margin-right = 2
 
 font-0 = Fira Code:pixelsize=8;1
-font-1 = Wenquanyi Micro Hei:pixelsize=8;1
+font-1 = LXGW WenKai:pixelsize=8;1
 font-2 = Symbola:pixelsize=10;1
 ; font-2 = siji:pixelsize=10;1
 
@@ -121,7 +117,7 @@ label-focused = %icon%
 ; label-focused-background = ${colors.background-alt}
 ; label-focused-underline= ${colors.primary}
 label-focused-background = ${colors.main}
-label-focused-foreground = #000
+label-focused-foreground = #fff
 label-focused-padding = 2
 
 label-occupied = %icon%
