@@ -6,7 +6,7 @@
 
 # terminal emulator
 super + Return
-	alacritty
+    urxvt -e tmux
 
 # emacs dumped
 super + shift + Return
