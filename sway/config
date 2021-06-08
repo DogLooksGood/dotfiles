@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:LXGW WenKai 9
+font pango:WenQuanYi Micro Hei 9
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -49,7 +49,8 @@ floating_modifier $mod
 bindsym $mod+Return exec alacritty -e tmux -2
 
 # screenshot
-bindsym $mod+Print exec grim -c - | swappy -f -
+bindsym $mod+Shift+Print exec grim -c - | swappy -f -
+bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy
 
 # kill focused window
 bindsym $mod+q kill

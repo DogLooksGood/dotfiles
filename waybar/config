@@ -28,9 +28,10 @@
     "modules-right": [
         "network",
         "battery",
-        "tray",
+        "pulseaudio",
         "clock#date",
-        "clock#time"
+        "clock#time",
+        "tray"
     ],
 
 
@@ -119,7 +120,7 @@
     "sway/workspaces": {
         "all-outputs": false,
         "disable-scroll": true,
-        "format": "{icon} {name}",
+        "format": "{name}",
         "format-icons": {
             "urgent": "",
             "focused": "",
