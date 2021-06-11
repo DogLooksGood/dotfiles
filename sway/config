@@ -46,20 +46,21 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty -e tmux -2
+exec --no-startup-id xrdb -load ~/.Xresources
+bindsym $mod+Return exec urxvt
 
 # screenshot
-bindsym $mod+Print exec grim -c - | swappy -f -
+bindsym $mod+Shift+Print exec grim -c - | swappy -f -
+bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy
 
 # kill focused window
 bindsym $mod+q kill
 
 # start program launcher
-bindsym $mod+d exec alacritty --title 'launcher' -e sh -c \'dmenu_path | fzf | xargs swaymsg exec\'
-for_window [title="^launcher$"] floating enable, border pixel
+bindsym $mod+d exec dmenu_run
 
 # edit-server
-for_window [title="^edit-server$"] floating enable, border pixel
+for_window [class="[.]*"] border pixel
 
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
@@ -111,6 +112,12 @@ bindsym $mod+tab focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
+
+# Make the currently focused window a scratchpad
+bindsym $mod+m move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+b scratchpad show
 
 # focus the child container
 #bindsym $mod+d focus child
