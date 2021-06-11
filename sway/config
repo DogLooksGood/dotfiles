@@ -57,8 +57,7 @@ bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy
 bindsym $mod+q kill
 
 # start program launcher
-bindsym $mod+d exec alacritty --title 'launcher' -e sh -c \'dmenu_path | fzf | xargs swaymsg exec\'
-for_window [title="^launcher$"] floating enable, border pixel
+bindsym $mod+d exec dmenu_run
 
 # edit-server
 for_window [class="[.]*"] border pixel
