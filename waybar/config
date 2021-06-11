@@ -16,7 +16,7 @@
     "position": "top",
 
     // If height property would be not present, it'd be calculated dynamically
-    "height": 30,
+    "height": 20,
 
     "modules-left": [
         "sway/workspaces",
@@ -28,9 +28,9 @@
     "modules-right": [
         "network",
         "battery",
-        "tray",
         "clock#date",
-        "clock#time"
+        "clock#time",
+        "tray"
     ],
 
 
@@ -119,7 +119,7 @@
     "sway/workspaces": {
         "all-outputs": false,
         "disable-scroll": true,
-        "format": "{icon} {name}",
+        "format": "{name}",
         "format-icons": {
             "urgent": "",
             "focused": "",
