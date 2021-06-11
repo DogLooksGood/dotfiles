@@ -1,4 +1,4 @@
-Xft.dpi: 192
+! Xft.dpi: 196
 
 ! -------------------------------------------------------------
 ! URxvt Color Theme Start
@@ -39,74 +39,32 @@ Xft.dpi: 192
 *color7: #CCCCCC
 *color15: #FFFFFF
 
+URxvt.font: xft:terminus:size=14, xft:unifont:size=10
+URxvt.boldFont: xft:terminus:size=14, xft:unifont:size=10
+
 ! -------------------------------------------------------------
 ! URxvt Color Theme End
 ! -------------------------------------------------------------
 
-URxvt.scrollBar:         false
-URxvt.scrollBar_right:   false
+URxvt.scrollstyle: xterm
 
-URxvt.transparent:       false
+URxvt.perl-ext-common: default,resize-font
 
-URxvt.depth: 32
-
-URxvt.font: xft:unifont:pixelsize=32
-
-! Disable bold font.
-URxvt.boldFont:
-URxvt.letterSpace: 0
-
-! Add internal borders
-URxvt.internalBorder: 20
-
-Emacs.antialias:  true
-*autohint:   true
-
-URxvt.title: URxvt
-
-!! URxvt Plugins
-URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select
+URxvt.urlLauncher: firefox
 
 !! Quick commands, dont rely on alias or any setup on the remote server.
-URxvt.keysym.M-h: ls -lhb --color=auto\n
-URxvt.keysym.M-u: cd ..\n
-URxvt.keysym.C-M-g: grep --color=auto -r --include \\*.
-URxvt.keysym.C-M-p: ps aux|grep --color=auto ""
-URxvt.keysym.C-M-w: find . -name ""
-URxvt.keysym.C-M-n: netstat -tulpn|grep --color=auto ""
-
-! Disable ISO 14755 unicode input so we can use Ctrl-Shift bindings
-URxvt.iso14755:        false
-URxvt.iso14755_52:     false
-
-! ! Disable Ctrl-Alt-c & Ctrl-Alt-v bindings (optional)
-! URxvt.keysym.C-M-c:    builtin-string:
-! URxvt.keysym.C-M-v:    builtin-string:
-
-! Bind Ctrl-Shift-c & Ctrl-Shift-v to copy and paste
-URxvt.keysym.C-S-0x43: eval:selection_to_clipboard
-URxvt.keysym.C-S-0x56: eval:paste_clipboard
-
-!! url-select
-URxvt.keysym.M-l:	perl:url-select:select_next
-URxvt.url-select.launcher: firefox
-URxvt.url-select.underline: true
-URxvt.matcher.button:	1
-
-!! keyboard-select:
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-h:         ls -lhb --color=auto\n
+URxvt.keysym.C-M-g:       grep --color=auto -r --include \\*.
+URxvt.keysym.C-M-p:       ps aux|grep --color=auto ""
+URxvt.keysym.C-M-w:       find . -name ""
+URxvt.keysym.C-M-n:       netstat -tulpn|grep --color=auto ""
+URxvt.keysym.C-minus:     resize-font:smaller
+URxvt.keysym.C-plus:      resize-font:bigger
 
 !! resize-font
 URxvt.resize-font.smaller:	C-Down
 URxvt.resize-font.bigger:	C-Up
 
-Emacs.background: #211F23
-Emacs.menuBar: off
-Emacs.verticalScrollBars: off
-Emacs.toolBar: off
-Emacs.internalBorder: 16
-Emacs.useXIM: off
-
-!! Cursor size
-Xcursor.size: 48
-Xcursor.theme: Pop
+!! Common Keybinds for Navigations
+URxvt.keysym.Shift-Up: command:\033]720;1\007
+URxvt.keysym.Shift-Down: command:\033]721;1\007

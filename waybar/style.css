@@ -50,7 +50,7 @@
 #waybar {
     background: #323232;
     color: white;
-    font-family: WenQuanYi Micro Hei, Cantarell, Noto Sans, sans-serif;
+    font-family: WenQuanYi Zen Hei, Cantarell, Noto Sans, sans-serif;
     font-size: 13px;
 }
 
@@ -170,7 +170,7 @@
 }
 
 #window {
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 #workspaces button {
