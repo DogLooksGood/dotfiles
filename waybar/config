@@ -26,12 +26,12 @@
         "sway/window"
     ],
     "modules-right": [
+        "cpu",
         "network",
         "battery",
         "pulseaudio",
         "clock#date",
-        "clock#time",
-        "tray"
+        "clock#time"
     ],
 
 
@@ -128,22 +128,22 @@
         }
     },
 
-    //"pulseaudio": {
-    //    //"scroll-step": 1,
-    //    "format": "{icon}  {volume}%",
-    //    "format-bluetooth": "{icon}  {volume}%",
-    //    "format-muted": "",
-    //    "format-icons": {
-    //        "headphones": "",
-    //        "handsfree": "",
-    //        "headset": "",
-    //        "phone": "",
-    //        "portable": "",
-    //        "car": "",
-    //        "default": ["", ""]
-    //    },
-    //    "on-click": "pavucontrol"
-    //},
+    "pulseaudio": {
+       //"scroll-step": 1,
+       "format": "{icon}  {volume}%",
+       "format-bluetooth": "{icon}  {volume}%",
+       "format-muted": "",
+       "format-icons": {
+           "headphones": "",
+           "handsfree": "",
+           "headset": "",
+           "phone": "",
+           "portable": "",
+           "car": "",
+           "default": ["", ""]
+       },
+       "on-click": "pavucontrol"
+    },
 
     "temperature": {
       "critical-threshold": 80,
