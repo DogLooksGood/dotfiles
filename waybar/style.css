@@ -48,7 +48,8 @@
 
 /* The whole bar */
 #waybar {
-  background: #323232;
+  /* background: #323232; */
+  background: #171717;
   color: white;
   font-family: WenQuanYi Micro Hei Mono Light, Cantarell, Noto Sans, sans-serif;
   font-size: 10px;

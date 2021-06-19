@@ -40,13 +40,14 @@
 *color15: #FFFFFF
 
 URxvt.font: xft:terminus:size=12, xft:WenQuanYi Bitmap Song:size=12
-URxvt.boldFont: xft:terminus:size=12, xft:WenQuanYi Bitmap Song:size=10
+URxvt.boldFont: xft:terminus:size=12, xft:WenQuanYi Bitmap Song:size=12
 
 ! -------------------------------------------------------------
 ! URxvt Color Theme End
 ! -------------------------------------------------------------
 
-URxvt.scrollstyle: xterm
+! URxvt.scrollstyle: xterm
+URxvt.scrollBar: false
 
 URxvt.perl-ext-common: default,resize-font,clipboard,url-select,keyboard-select
 

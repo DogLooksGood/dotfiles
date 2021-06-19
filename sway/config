@@ -53,12 +53,13 @@ bindsym $mod+Shift+Return exec emacs
 # screenshot
 bindsym $mod+Shift+Print exec grim -c - | swappy -f -
 bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy
+bindsym Print exec grim -c - | wl-copy
 
 # kill focused window
 bindsym $mod+q kill
 
 # start program launcher
-bindsym $mod+d exec dmenu_run -fn 'unifont' -nb '#000000' -nf '#999999' -sb '#65309b' -sf '#EEEEEE' -b
+bindsym $mod+d exec dmenu_run -fn 'WenQuanYi Micro Hei Lite 8' -nb '#000000' -nf '#999999' -sb '#65309b' -sf '#EEEEEE' -b
 
 # edit-server
 for_window [class="[.]*"] border pixel
@@ -90,6 +91,9 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
+bindsym $mod+greater move workspace to output right
+bindsym $mod+less move workspace to output left
 
 # split in horizontal orientation
 bindsym $mod+comma split h
@@ -188,8 +192,8 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-output HDMI-A-1 scale 2 res 2560x1440 pos 1280 0
-output eDP-1 scale 2 res 2560x1440 pos 0 0
+output HDMI-A-1 scale 2 res 2560x1440 pos 1280 0 bg ~/Pictures/wallpaper.jpg stretch
+output eDP-1 scale 2 res 2560x1440 pos 0 0 bg ~/Pictures/wallpaper.jpg stretch
 
 bindsym $mod+r mode "resize"
 
