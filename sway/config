@@ -59,7 +59,7 @@ bindsym Print exec grim -c - | wl-copy
 bindsym $mod+q kill
 
 # start program launcher
-bindsym $mod+d exec dmenu_run -fn 'WenQuanYi Micro Hei Lite 8' -nb '#000000' -nf '#999999' -sb '#65309b' -sf '#EEEEEE' -b
+bindsym $mod+d exec dmenu_run -fn 'WenQuanYi Micro Hei Lite 8' -nb '#000000' -nf '#999999' -sb '#65309b' -sf '#EEEEEE' -b -m $(swaymsg -t get_outputs | jq 'map(.focused == true) | index(true)')
 
 # edit-server
 for_window [class="[.]*"] border pixel
@@ -139,14 +139,22 @@ set $ws7 "7"
 set $ws8 "8"
 
 # switch to workspace
-bindsym $mod+F1 workspace number $ws1
-bindsym $mod+F2 workspace number $ws2
-bindsym $mod+F3 workspace number $ws3
-bindsym $mod+F4 workspace number $ws4
-bindsym $mod+F5 workspace number $ws5
-bindsym $mod+F6 workspace number $ws6
-bindsym $mod+F7 workspace number $ws7
-bindsym $mod+F8 workspace number $ws8
+# bindsym $mod+F1 workspace number $ws1
+# bindsym $mod+F2 workspace number $ws2
+# bindsym $mod+F3 workspace number $ws3
+# bindsym $mod+F4 workspace number $ws4
+# bindsym $mod+F5 workspace number $ws5
+# bindsym $mod+F6 workspace number $ws6
+# bindsym $mod+F7 workspace number $ws7
+# bindsym $mod+F8 workspace number $ws8
+bindsym F1 workspace number $ws1
+bindsym F2 workspace number $ws2
+bindsym F3 workspace number $ws3
+bindsym F4 workspace number $ws4
+bindsym F5 workspace number $ws5
+bindsym F6 workspace number $ws6
+bindsym F7 workspace number $ws7
+bindsym F8 workspace number $ws8
 
 # move focused container to workspace
 bindsym $mod+Shift+F1 move container to workspace number $ws1
