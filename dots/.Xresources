@@ -39,17 +39,19 @@
 *color7: #CCCCCC
 *color15: #FFFFFF
 
-URxvt.font: xft:terminus:size=12, xft:WenQuanYi Bitmap Song:size=12
-URxvt.boldFont: xft:terminus:size=12, xft:WenQuanYi Bitmap Song:size=12
-
 ! -------------------------------------------------------------
 ! URxvt Color Theme End
 ! -------------------------------------------------------------
 
-! URxvt.scrollstyle: xterm
+URxvt.font: xft:VGA:size=14, xft:WenQuanYi WenQuanYi Bitmap Song:size=14
+URxvt.boldFont: xft:VGA:size=14, xft:WenQuanYi WenQuanYi Bitmap Song:size=14
+
+URxvt.scrollstyle: xterm
 URxvt.scrollBar: false
 
-URxvt.perl-ext-common: default,resize-font,clipboard,url-select,keyboard-select
+URxvt.perl-ext-common: default,resize-font
+
+URxvt.urlLauncher: firefox
 
 !! Quick commands, dont rely on alias or any setup on the remote server.
 URxvt.keysym.M-h:         ls -lhb --color=auto\n
@@ -64,13 +66,31 @@ URxvt.keysym.C-plus:      resize-font:bigger
 URxvt.resize-font.smaller:	C-Down
 URxvt.resize-font.bigger:	C-Up
 
-!! Common Keybinds
-URxvt.keysym.Shift-Up:      command:\033]720;1\007
-URxvt.keysym.Shift-Down:    command:\033]721;1\007
-URxvt.url-select.launcher:  firefox
-URxvt.url-select.underline: true
-URxvt.keysym.M-u:           perl:url-select:select_next
-URxvt.keysym.M-Escape:      perl:keyboard-select:activate
-URxvt.keysym.M-s:           perl:keyboard-select:search
-URxvt.keysym.M-c:           perl:clipboard:copy
-URxvt.keysym.M-v:           perl:clipboard:paste
+!! Common Keybinds for Navigations
+URxvt.keysym.Shift-Up: command:\033]720;1\007
+URxvt.keysym.Shift-Down: command:\033]721;1\007
+
+xterm*faceName: VGA
+xterm*faceNameDoublesize: WenQuanYi WenQuanYi Bitmap Song
+xterm*faceSize: 15
+xterm*faceDoublesize: 14
+XTerm*allowBoldFonts: false
+
+xterm*VT100.Translations: #override \
+    Alt <Key>H: string("ls -lhb --color=auto \n") \n\
+    Ctrl Alt <Key>G: string("ps aux|grep --color=auto \"\"") \n\
+    Ctrl Alt <Key>P: string("find . -name \"\"") \n\
+    Ctrl Alt <Key>W: string("netstat -tulpn|grep --color=auto \"\"") \n\
+    Ctrl <Key> minus: smaller-vt-font() \n\
+    Ctrl <Key> plus: larger-vt-font() \n\
+    Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
+
+! Use Alt as Meta
+xterm*metaSendsEscape: true
+xterm*termName: xterm-256color
+xterm*openIm: false
+
+XTerm.vt100.locale: false
+XTerm.vt100.utf8: true
+XTerm.vt100.saveLines: 4096
