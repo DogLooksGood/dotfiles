@@ -47,7 +47,7 @@ floating_modifier $mod
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 exec --no-startup-id xrdb -load ~/.Xresources
-bindsym $mod+Return exec xterm
+bindsym $mod+Return exec xterm -ti vt340
 bindsym $mod+Shift+Return exec emacs
 
 # screenshot
