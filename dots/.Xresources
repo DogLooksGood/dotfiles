@@ -1,5 +1,6 @@
 ! -------------------------------------------------------------
-! URxvt Color Theme Start
+! URxvt
+! install rxvt-unicode, urxvt-clipboard(AUR)
 ! -------------------------------------------------------------
 
 *.background: #171717
@@ -37,19 +38,15 @@
 *color7: #CCCCCC
 *color15: #FFFFFF
 
-! -------------------------------------------------------------
-! URxvt Color Theme End
-! -------------------------------------------------------------
+URxvt.termName: xterm-256color
 
-URxvt.font: xft:VGA:size=14, xft:WenQuanYi WenQuanYi Bitmap Song:size=14
-URxvt.boldFont: xft:VGA:size=14, xft:WenQuanYi WenQuanYi Bitmap Song:size=14
+URxvt.font: xft:VGA:size=14, xft:WenQuanYi WenQuanYi Bitmap Song:size=12
+URxvt.boldFont: xft:VGA:size=14, xft:WenQuanYi WenQuanYi Bitmap Song:size=12
 
 URxvt.scrollstyle: xterm
 URxvt.scrollBar: false
 
-URxvt.perl-ext-common: default,resize-font
-
-URxvt.urlLauncher: firefox
+URxvt.perl-ext-common: clipboard
 
 !! Quick commands, dont rely on alias or any setup on the remote server.
 URxvt.keysym.M-h:         ls -lhb --color=auto\n
@@ -59,17 +56,17 @@ URxvt.keysym.C-M-w:       find . -name ""
 URxvt.keysym.C-M-n:       netstat -tulpn|grep --color=auto ""
 URxvt.keysym.C-minus:     resize-font:smaller
 URxvt.keysym.C-plus:      resize-font:bigger
-
-!! resize-font
-URxvt.resize-font.smaller:	C-Down
-URxvt.resize-font.bigger:	C-Up
-
-!! Common Keybinds for Navigations
 URxvt.keysym.Shift-Up: command:\033]720;1\007
 URxvt.keysym.Shift-Down: command:\033]721;1\007
 
+! -------------------------------------------------------------
+! XTerm
+! -------------------------------------------------------------
+
+! xterm*faceName: VGA
 xterm*faceName: VGA
 xterm*faceNameDoublesize: WenQuanYi WenQuanYi Bitmap Song
+! xterm*faceNameDoublesize: unifont
 xterm*faceSize: 15
 xterm*faceDoublesize: 14
 XTerm*allowBoldFonts: false
@@ -97,4 +94,4 @@ xterm.vt100.saveLines: 4096
 
 xterm*pointerShape: arrow
 xterm*pointerColor: red
-xterm*cursorColor: yellow
+xterm*cursorColor: red
