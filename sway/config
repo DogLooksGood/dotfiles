@@ -51,7 +51,7 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+Return exec emacs
 
 # screenshot
-bindsym $mod+Shift+Print exec grim -c - | swappy -f -
+bindsym $mod+Shift+Print exec grim -g "$(slurp)" - | swappy -f -
 bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy
 bindsym Print exec grim -c - | wl-copy
 
