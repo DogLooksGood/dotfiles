@@ -41,7 +41,7 @@ urxvt*depth: 32
 
 URxvt.termName: xterm-256color
 
-URxvt.font: xft:MxPlus IBM VGA 9x16:size=12, xft:WenQuanYi WenQuanYi Bitmap Song:size=12
+URxvt.font: xft:MxPlus IBM VGA 8x16:size=12, xft:WenQuanYi WenQuanYi Bitmap Song:size=13
 URxvt.boldFont:
 
 URxvt.scrollstyle: xterm
@@ -59,8 +59,8 @@ URxvt.keysym.C-minus:     resize-font:smaller
 URxvt.keysym.C-plus:      resize-font:bigger
 URxvt.keysym.Shift-Up:    command:\033]720;1\007
 URxvt.keysym.Shift-Down:  command:\033]721;1\007
-URxvt.keysym.C-Left:      command:\033]50;xft:MxPlus IBM VGA 8x16:size=12\007
-URxvt.keysym.C-Right:     command:\033]50;xft:MxPlus IBM VGA 9x14:size=12\007
+URxvt.keysym.C-Left:      command:\033]50;xft:MxPlus IBM VGA 8x16:size=12, xft:WenQuanYi WenQuanYi Bitmap Song:size=13\007
+URxvt.keysym.C-Right:     command:\033]50;xft:MxPlus IBM VGA 9x14:size=12, xft:WenQuanYi WenQuanYi Bitmap Song:size=10\007
 
 ! -------------------------------------------------------------
 ! XTerm
@@ -71,7 +71,7 @@ xterm*faceName: MxPlus IBM VGA 8x16:antialias=false
 xterm*faceNameDoublesize: WenQuanYi WenQuanYi Bitmap Song
 ! xterm*faceNameDoublesize: unifont
 xterm*faceSize: 15
-xterm*faceDoublesize: 14
+xterm*faceDoublesize: 13
 XTerm*allowBoldFonts: false
 
 ! multi fonts
@@ -84,6 +84,8 @@ xterm*VT100.Translations: #override \
     Ctrl Alt <Key>G: string("ps aux|grep --color=auto \"\"") \n\
     Ctrl Alt <Key>P: string("find . -name \"\"") \n\
     Ctrl Alt <Key>W: string("netstat -tulpn|grep --color=auto \"\"") \n\
+    ! Ctrl <Key>Left: string("\033]50;xft:MxPlus IBM VGA 8x16:size=12\007") \n\
+    ! Ctrl <Key>Right: string("\033]50;xft:MxPlus IBM VGA 9x14:size=12\007") \n\
     Ctrl <Key> minus: smaller-vt-font() \n\
     Ctrl <Key> plus: larger-vt-font() \n\
     Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
