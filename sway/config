@@ -48,7 +48,7 @@ floating_modifier $mod
 # bindsym $mod+Return exec i3-sensible-terminal
 exec --no-startup-id xrdb -load ~/.Xresources
 bindsym $mod+Return exec urxvt
-bindsym $mod+Shift+Return exec emacs
+bindsym $mod+Shift+Return exec urxvt +sb -e emacsclient -nw
 
 # screenshot
 bindsym $mod+Shift+Print exec grim -g "$(slurp)" - | swappy -f -
