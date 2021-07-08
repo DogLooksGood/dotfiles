@@ -5,9 +5,8 @@ Xft.dpi:192
 ! install rxvt-unicode, urxvt-clipboard(AUR)
 ! -------------------------------------------------------------
 *.background: #171717
-! urxvt*background: rgba:0000/0000/0000/A000
-urxvt*depth: 32
 *.foreground: #A8A8A8
+*.cursorColor: #FF0000
 
 !black
 *color0: #383c4a
