@@ -229,3 +229,5 @@ input type:keyboard repeat_rate 40
 default_border pixel 1
 
 include $HOME/.sway
+
+for_window [class="^imv$"] floating enable

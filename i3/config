@@ -36,7 +36,7 @@ exec --no-startup-id dunst
 
 exec --no-startup-id setxkbmap -option ctrl:swapcaps
 
-exec --no-startup-id xset r rate 180 30
+exec --no-startup-id xset r rate 180 40
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -61,13 +61,13 @@ set $right n
 floating_modifier Mod4
 
 # start a terminal
-bindsym $mod+Return exec urxvt -e tmux -2
+bindsym $mod+Return exec urxvt
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id rofi -show combi
 # A more modern dmenu replacement is rofi:
 # bindsym $mod+d exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -99,10 +99,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+comma split h
+bindsym $mod+period split h
 
 # split in vertical orientation
-bindsym $mod+period split v
+bindsym $mod+comma split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -122,7 +122,7 @@ bindsym $mod+Tab focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+o focus child
 
 # move the currently focused window to the scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -143,14 +143,14 @@ set $ws7 "7"
 set $ws8 "8"
 
 # switch to workspace
-bindsym $mod+F1 workspace number $ws1
-bindsym $mod+F2 workspace number $ws2
-bindsym $mod+F3 workspace number $ws3
-bindsym $mod+F4 workspace number $ws4
-bindsym $mod+F5 workspace number $ws5
-bindsym $mod+F6 workspace number $ws6
-bindsym $mod+F7 workspace number $ws7
-bindsym $mod+F8 workspace number $ws8
+bindsym F1 workspace number $ws1
+bindsym F2 workspace number $ws2
+bindsym F3 workspace number $ws3
+bindsym F4 workspace number $ws4
+bindsym F5 workspace number $ws5
+bindsym F6 workspace number $ws6
+bindsym F7 workspace number $ws7
+bindsym F8 workspace number $ws8
 
 # move focused container to workspace
 bindsym $mod+Shift+F1 move container to workspace number $ws1
@@ -202,4 +202,6 @@ bindsym $mod+r mode "resize"
 #         status_command i3status
 # }
 
-for_window [title="^*Minibuf-0*$"] move scratchpad, floating enable
+
+
+for_window [class="^imv$"] floating enable

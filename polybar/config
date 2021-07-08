@@ -54,7 +54,7 @@ font-1 = LXGW WenKai:pixelsize=8;1
 font-2 = Symbola:pixelsize=10;1
 ; font-2 = siji:pixelsize=10;1
 
-modules-left = bspwm xwindow
+modules-left = i3 xwindow
 modules-center =
 modules-right = backlight-acpi pulseaudio battery wlan eth date
 

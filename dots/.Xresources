@@ -1,3 +1,5 @@
+Xft.dpi:192
+
 ! -------------------------------------------------------------
 ! URxvt
 ! install rxvt-unicode, urxvt-clipboard(AUR)
@@ -41,7 +43,7 @@ urxvt*depth: 32
 
 URxvt.termName: xterm-256color
 
-URxvt.font: xft:MxPlus IBM VGA 8x16:size=12, xft:WenQuanYi WenQuanYi Bitmap Song:size=13
+URxvt.font: xft:MxPlus IBM VGA 8x16:size=12, xft:Unifont:size=13, xft: Symbola:size=12
 URxvt.boldFont:
 
 URxvt.scrollstyle: xterm
@@ -59,8 +61,8 @@ URxvt.keysym.C-minus:     resize-font:smaller
 URxvt.keysym.C-plus:      resize-font:bigger
 URxvt.keysym.Shift-Up:    command:\033]720;1\007
 URxvt.keysym.Shift-Down:  command:\033]721;1\007
-URxvt.keysym.C-Left:      command:\033]50;xft:MxPlus IBM VGA 8x16:size=12, xft:WenQuanYi WenQuanYi Bitmap Song:size=13\007
-URxvt.keysym.C-Right:     command:\033]50;xft:MxPlus IBM VGA 9x14:size=12, xft:WenQuanYi WenQuanYi Bitmap Song:size=10\007
+URxvt.keysym.C-Left:      command:\033]50;xft:MxPlus IBM VGA 8x16:size=12, xft:Unifont:size=13, xft: Symbola:size=12\007
+URxvt.keysym.C-Right:     command:\033]50;xft:MxPlus IBM VGA 9x14:size=12, xft:Unifont:size=10, xft: Symbola:size=12\007
 
 ! -------------------------------------------------------------
 ! XTerm
