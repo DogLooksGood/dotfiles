@@ -46,8 +46,11 @@ URxvt.termName: xterm-256color
 URxvt.font: xft:MxPlus IBM VGA 8x16:size=12, xft:Unifont:size=13, xft: Symbola:size=12
 URxvt.boldFont:
 
-URxvt.scrollstyle: xterm
-URxvt.scrollBar: false
+URxvt.scrollstyle: plain
+URxvt.scrollBar: true
+URxvt.fading: 25
+URxvt.cursorBlink: true
+URxvt.skipBuiltinGlyphs: true
 
 URxvt.perl-ext-common: default,clipboard,resize-font
 
@@ -86,8 +89,6 @@ xterm*VT100.Translations: #override \
     Ctrl Alt <Key>G: string("ps aux|grep --color=auto \"\"") \n\
     Ctrl Alt <Key>P: string("find . -name \"\"") \n\
     Ctrl Alt <Key>W: string("netstat -tulpn|grep --color=auto \"\"") \n\
-    ! Ctrl <Key>Left: string("\033]50;xft:MxPlus IBM VGA 8x16:size=12\007") \n\
-    ! Ctrl <Key>Right: string("\033]50;xft:MxPlus IBM VGA 9x14:size=12\007") \n\
     Ctrl <Key> minus: smaller-vt-font() \n\
     Ctrl <Key> plus: larger-vt-font() \n\
     Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
