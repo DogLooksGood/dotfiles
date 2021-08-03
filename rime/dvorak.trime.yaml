@@ -256,8 +256,8 @@ preset_keyboards:
       - {width: 5}
       # row 4
       - {width: 20, click: BackSpace, key_back_color: bgn, key_text_color: tgn}
-      - {width: 15, click: Mode_switch, long_click: Candidate_switch, key_back_color: bgn, key_text_color: tgn}
-      - {width: 30, click: space, long_click: Keyboard_switch}
+      - {width: 15, click: Keyboard_symbols, key_back_color: bgn, key_text_color: tgn, label: '#'}
+      - {width: 30, click: space}
       - {width: 15, click: Shift_L, key_back_color: bgn, key_text_color: tgn}
       - {width: 20, click: Return, key_back_color: bgn, key_text_color: tgn}
 
@@ -303,9 +303,9 @@ preset_keyboards:
 
       # row 4
       - {width: 20, click: BackSpace, key_back_color: bgn, key_text_color: tgn}
-      - {width: 15, click: Mode_switch, long_click: Candidate_switch, key_back_color: bgn, key_text_color: tgn}
-      - {width: 30, click: space}
       - {width: 15, click: Keyboard_default, key_back_color: bgn, key_text_color: tgn}
+      - {width: 30, click: space}
+      - {width: 15, click: Shift_L, key_back_color: bgn, key_text_color: tgn}
       - {width: 20, click: Return, key_back_color: bgn, key_text_color: tgn}
 
   number:
