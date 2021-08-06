@@ -10,8 +10,8 @@ height:
   1: &jpgd1 30 #表情键盘
   2: &jpgd2 24 #颜文字键盘1
   3: &jpgd3 24 #颜文字键盘2
-  4: &jpgd4 40 #主键盘
-  5: &jpgd5 39.5 #符号键盘
+  4: &jpgd4 50 #主键盘
+  5: &jpgd5 50 #符号键盘
   6: &hgap 4 #键盘横缝大小
   7: &sgap 4 #键盘竖缝大小
 
@@ -220,7 +220,7 @@ preset_keyboards:
     ascii_mode: 0
     keys:
       # row 1
-      - {width: 5}
+      - {width: 10, click: ';', long_click: ':'}
       - {width: 10, click: ',', long_click: '?'}
       - {width: 10, click: '.', long_click: '!'}
       - {width: 10, click: 'p', long_click: 'P'}
@@ -230,7 +230,6 @@ preset_keyboards:
       - {width: 10, click: 'c', long_click: 'C'}
       - {width: 10, click: 'r', long_click: 'R'}
       - {width: 10, click: 'l', long_click: 'L'}
-      - {width: 5}
       # row 2
       - {width: 10, click: 'a', long_click: 'A'}
       - {width: 10, click: 'o', long_click: '<'}
@@ -243,7 +242,7 @@ preset_keyboards:
       - {width: 10, click: 'n', long_click: 'N'}
       - {width: 10, click: 's', long_click: 'S'}
       # row 3
-      - {width: 5}
+      - {width: 10, click: "'", long_click: "\""}
       - {width: 10, click: 'q', long_click: 'Q'}
       - {width: 10, click: 'j', long_click: '<'}
       - {width: 10, click: 'k', long_click: 'K'}
@@ -253,13 +252,14 @@ preset_keyboards:
       - {width: 10, click: 'w', long_click: 'W'}
       - {width: 10, click: 'v', long_click: 'V'}
       - {width: 10, click: 'z', long_click: 'Z'}
-      - {width: 5}
       # row 4
-      - {width: 20, click: BackSpace, key_back_color: bgn, key_text_color: tgn}
-      - {width: 15, click: Keyboard_symbols, key_back_color: bgn, key_text_color: tgn, label: '#'}
+      - {width: 20, click: BackSpace, key_back_color: bbs, key_text_color: tbs}
+      - {width: 15, click: Keyboard_symbols, key_back_color: bgn, key_text_color: tgn}
       - {width: 30, click: space}
       - {width: 15, click: Shift_L, key_back_color: bgn, key_text_color: tgn}
       - {width: 20, click: Return, key_back_color: bgn, key_text_color: tgn}
+      # bottom margin
+      - {width: 100, height: 180}
 
   symbols:
     author: "ShiTianshu"
@@ -292,7 +292,7 @@ preset_keyboards:
 
       - {width: 10, click: '/'}
       - {width: 10, click: '_'}
-      - {width: 10, click: '\\'}
+      - {width: 10, click: \}
       - {width: 10, click: '|'}
       - {width: 10, click: '@'}
       - {width: 10, click: '^'}
@@ -302,11 +302,13 @@ preset_keyboards:
       - {width: 10, click: '-'}
 
       # row 4
-      - {width: 20, click: BackSpace, key_back_color: bgn, key_text_color: tgn}
+      - {width: 20, click: BackSpace, key_back_color: bbs, key_text_color: tbs}
       - {width: 15, click: Keyboard_default, key_back_color: bgn, key_text_color: tgn}
       - {width: 30, click: space}
       - {width: 15, click: Shift_L, key_back_color: bgn, key_text_color: tgn}
       - {width: 20, click: Return, key_back_color: bgn, key_text_color: tgn}
+      # bottom margin
+      - {width: 100, height: 180}
 
   number:
     author: "ShiTianshu"
@@ -341,6 +343,8 @@ preset_keyboards:
       - {click: 0, long_click: cut}
       - {click: '=', long_click: '≠', key_back_color: bgn, key_text_color: tgn}
       - {click: Return, long_click: Menu, key_back_color: bgn, key_text_color: tgn}
+      # bottom margin
+      - {width: 100, height: 180}
 
 android_keys:
   __include: trime:/android_keys
@@ -417,7 +421,7 @@ preset_keys:
   Keyboard_default: {label: 返回, functional: false, send: Eisu_toggle, select: .default}
   Keyboard_switch: {label: 键盘, functional: true, send: Eisu_toggle, select: .next}
   Keyboard_number: {label: "123", functional: false, send: Eisu_toggle, select: number}
-  Keyboard_symbols: {label: 更多, functional: true, send: Eisu_toggle, select: symbols}
+  Keyboard_symbols: {label: "#", functional: true, send: Eisu_toggle, select: symbols}
   Keyboard_move: {label: ❖, functional: true, send: Eisu_toggle, select: move}
   Keyboard_next: {label: 后退, functional: false, send: Eisu_toggle, select: .next}
   Keyboard_last: {label: 后退, functional: false, send: Eisu_toggle, select: .last}
