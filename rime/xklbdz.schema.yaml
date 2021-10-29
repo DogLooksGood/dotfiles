@@ -7,6 +7,8 @@ schema:
   version: "1.1"
   author:
     - 发明人 大牛
+  dependencies:
+    - pinyin_simp
 
 switches:
   - name: ascii_mode
@@ -43,8 +45,7 @@ engine:
   translators:
     - punct_translator
     - table_translator
-#    - reverse_lookup_translator
-    - history_translator@history
+    - reverse_lookup_translator
   filters:
     - simplifier
     - uniquifier
@@ -71,11 +72,6 @@ translator:
   max_code_length: 6
   max_phrase_length: 6
 
-history:
-  input: u
-  size: 1
-  initial_quality: 10000
-
 emoji_cn:
   opencc_config: emoji.json
   option_name: emoji_cn
@@ -97,7 +93,9 @@ custom_phrase:
   enable_sentence: false
 
 reverse_lookup:
-  dictionary: jdyb6cx
+  dictionary: pinyin_simp
+  prefix: "i"
+  tips: 拼音
   comment_format:
     - xform/^/〔/
     - xform/$/〕/
@@ -115,11 +113,12 @@ key_binder:
   bindings:
     - {accept: minus, send: Page_Up, when: has_menu}
     - {accept: equal, send: Page_Down, when: has_menu}
-    - { when: has_menu, accept: "&", toggle: emoji_cn}
-    - { when: has_menu, accept: "^", toggle: bmma}
+    - {accept: "Control+p", send: Page_Up, when: has_menu}
+    - {accept: "Control+n", send: Page_Down, when: has_menu}
+
 recognizer:
   import_preset: default
   patterns:
-    # reverse_lookup: "[a-z]*`+[a-z]*"
+    reverse_lookup: "i+[a-z]*$"
     punct: "^/([0-9]0?|[a-z]+)$"
     retention: "^[bpmfdtnlgkhjqxzscrywv][a-z][aeiou]{0, 3}"
