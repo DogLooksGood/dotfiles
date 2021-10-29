@@ -7,8 +7,8 @@ schema:
   version: "1.1"
   author:
     - 发明人 大牛
-  dependencies:
-    - pinyin_simp
+  # dependencies:
+  #   - pinyin_simp
 
 switches:
   - name: ascii_mode
@@ -18,14 +18,6 @@ switches:
     states: [ 半角, 全角 ]
   - name: ascii_punct
     states: [ 。，, ．， ]
-  - name: _hide_key_hint
-    states: [ 提示, 简洁 ]
-  - name: jmfj
-    states: [ 汉字, 漢字 ]
-  - options: [ _key_Left ]
-    states: [ " ⟵ " ]
-  - options: [ _key_Right ]
-    states: [ " ⟶ " ]
 
 engine:
   processors:
@@ -47,20 +39,12 @@ engine:
     - punct_translator
     - table_translator
     - reverse_lookup_translator
-  filters:
-    - simplifier
-    - uniquifier
-    - simplifier@emoji_cn
-    - simplifier@jmfj
-    - simplifier@bmma
 
 speller:
   auto_select: true
   auto_select_unique_candidate: false
   alphabet: 'zyxwvutsrqponmlkjihgfedcba'
   initials: 'abcdefghijklmnopqrstuvwxyz'
-  #algebra:
-  #  - derive/([bpmfdtnlgkhjqxzcsrywe][a-z][viuoa])[viuoa]+/$1/ #顶简为全码
 
 translator:
   dictionary: xklbdz.extended
@@ -72,26 +56,6 @@ translator:
   encode_commit_history: true
   max_code_length: 6
   max_phrase_length: 6
-
-emoji_cn:
-  opencc_config: emoji.json
-  option_name: emoji_cn
-  tips: all
-jmfj:
-  opencc_config: s2t.json
-  option_name: jmfj
-bmma:
-  opencc_config: pinyin.json
-  option_name: bmma
-  show_in_comment: true
-  comment_format:
-#    - xform/'/ /
-
-custom_phrase:
-  dictionary: ""
-  user_dict: custom_phrase
-  db_class: stabledb
-  enable_sentence: false
 
 reverse_lookup:
   dictionary: pinyin_simp
@@ -105,15 +69,11 @@ menu:
   page_size: 5
 
 punctuator:
-  full_shape:
-    __include: punctuation:/full_shape
-  half_shape:
-    __include: punctuation:/half_shape
+  import_preset: symbols
 
 key_binder:
+  import_preset: default
   bindings:
-    - {accept: minus, send: Page_Up, when: has_menu}
-    - {accept: equal, send: Page_Down, when: has_menu}
     - {accept: "Control+p", send: Page_Up, when: has_menu}
     - {accept: "Control+n", send: Page_Down, when: has_menu}
 
