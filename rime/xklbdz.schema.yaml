@@ -16,11 +16,12 @@ switches:
     states: [ 中文, 西文 ]
   - name: full_shape
     states: [ 半角, 全角 ]
-  - name: jmfj
-    states: [ 汉字, 漢字 ]
+  - name: ascii_punct
+    states: [ 。，, ．， ]
   - name: _hide_key_hint
     states: [ 提示, 简洁 ]
-    reset: 1
+  - name: jmfj
+    states: [ 汉字, 漢字 ]
   - options: [ _key_Left ]
     states: [ " ⟵ " ]
   - options: [ _key_Right ]

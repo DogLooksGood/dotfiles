@@ -219,6 +219,17 @@ preset_keyboards:
     width: 10
     ascii_mode: 0
     keys:
+      - {width: 10, click: '1'}
+      - {width: 10, click: '2'}
+      - {width: 10, click: '3'}
+      - {width: 10, click: '4'}
+      - {width: 10, click: '5'}
+      - {width: 10, click: '6'}
+      - {width: 10, click: '7'}
+      - {width: 10, click: '8'}
+      - {width: 10, click: '9'}
+      - {width: 10, click: '0'}
+
       # row 1
       - {width: 10, click: ';', long_click: ':'}
       - {width: 10, click: ',', long_click: '?'}
@@ -259,15 +270,14 @@ preset_keyboards:
       - {width: 15, click: Shift_L, key_back_color: bgn, key_text_color: tgn}
       - {width: 20, click: Return, key_back_color: bgn, key_text_color: tgn}
       # bottom margin
-      - {width: 100, height: 180}
+      # - {width: 100, height: 180}
 
   symbols:
     author: "ShiTianshu"
     name: 符号
     width: 10
-    ascii_mode: 1
+    # ascii_mode: 1
     keys:
-      # row 1
       - {width: 10, click: '1'}
       - {width: 10, click: '2'}
       - {width: 10, click: '3'}
@@ -285,10 +295,21 @@ preset_keyboards:
       - {width: 10, click: '%'}
       - {width: 10, click: '='}
       - {width: 10, click: '*'}
-      - {width: 10, click: '{}{Left}', label: '{}'}
-      - {width: 10, click: '[]{Left}', label: '[]'}
-      - {width: 10, click: '(){Left}', label: '()'}
-      - {width: 10, click: '<>{Left}', label: '<>'}
+      - {width: 10, click: ':'}
+      - {width: 10, click: '<'}
+      - {width: 10, click: '>'}
+      - {width: 10, click: '"'}
+
+      - {width: 10, click: '['}
+      - {width: 10, click: ']'}
+      - {width: 10, click: '{'}
+      - {width: 10, click: '}'}
+      - {width: 10, click: '('}
+      - {width: 10, click: ')'}
+      - {width: 10, click: ';'}
+      - {width: 10, click: ','}
+      - {width: 10, click: '.'}
+      - {width: 10, click: "'"}
 
       - {width: 10, click: '/'}
       - {width: 10, click: '_'}
@@ -301,14 +322,13 @@ preset_keyboards:
       - {width: 10, click: '+'}
       - {width: 10, click: '-'}
 
-      # row 4
       - {width: 20, click: BackSpace, key_back_color: bbs, key_text_color: tbs}
       - {width: 15, click: Keyboard_default, key_back_color: bgn, key_text_color: tgn}
       - {width: 30, click: space}
       - {width: 15, click: Shift_L, key_back_color: bgn, key_text_color: tgn}
       - {width: 20, click: Return, key_back_color: bgn, key_text_color: tgn}
       # bottom margin
-      - {width: 100, height: 180}
+      # - {width: 100, height: 180}
 
   number:
     author: "ShiTianshu"
@@ -344,7 +364,7 @@ preset_keyboards:
       - {click: '=', long_click: '≠', key_back_color: bgn, key_text_color: tgn}
       - {click: Return, long_click: Menu, key_back_color: bgn, key_text_color: tgn}
       # bottom margin
-      - {width: 100, height: 180}
+      # - {width: 100, height: 180}
 
 android_keys:
   __include: trime:/android_keys
@@ -408,7 +428,7 @@ preset_keys:
   DeleteCandidate: {label: 删词, send: Control+Delete, functional: false}
   Candidate_switch: {toggle: _hide_candidate, send: Mode_switch, states: [ 候选, 无候选 ]}
   # rime状态
-  Mode_switch: {toggle: ascii_mode, functional: false, send: Mode_switch, states: [ 中,英 ]}
+  Mode_switch: {toggle: ascii_mode, functional: false, send: Mode_switch, states: [ 中文, 英文 ]}
   Zenkaku_Hankaku: {toggle: full_shape, send: Mode_switch, states: [ 半角, 全角 ]}
   Henkan: {toggle: simplification, send: Mode_switch, states: [ 汉字, 汉字 ]}
   Charset_switch: {toggle: extended_charset, send: Mode_switch, states: [ 常用, 增广 ]}
